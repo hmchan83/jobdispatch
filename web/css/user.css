@@ -1,0 +1,24 @@
+/* line 1, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\user.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/user\.less}line{font-family:\000031}}
+.staff-photo {
+  width: 108px;
+  margin: 0 auto;
+}
+/* line 5, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\user.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/user\.less}line{font-family:\000035}}
+.staff-photo img {
+  width: 100px;
+  height: 100px;
+  border: 4px #F5F5F5 solid;
+}
+/* line 12, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\user.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/user\.less}line{font-family:\0000312}}
+.staff-data div {
+  margin-bottom: 10px;
+}
+/* line 16, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\user.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/user\.less}line{font-family:\0000316}}
+.staff-role {
+  color: #666666;
+  font-size: 16px;
+}
