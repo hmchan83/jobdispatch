@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Tasks</title>
         <%@include file="style_jsp/default_header_style.jsp" %>
         <link href="css/assigned-tasks.css" rel="stylesheet" type="text/css"/>
         <style>
@@ -27,7 +27,6 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <h4 class="modal-title" id="myModalLabel">New task</h4>
                     </div>
                     <form class="form-horizontal" role="form">
