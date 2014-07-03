@@ -1,71 +1,81 @@
-/* line 1, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\000031}}
+/* line 1, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\000031}}
 .div-center {
   display: block;
   margin: 0 auto;
 }
-/* line 6, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\000036}}
+/* line 6, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\000036}}
 .vertical-top {
   vertical-align: top;
 }
-/* line 8, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\000038}}
+/* line 8, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\000038}}
 .txt-center {
   text-align: center;
 }
-/* line 10, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000310}}
+/* line 10, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000310}}
 .IB {
   display: inline-block;
 }
-/* line 12, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000312}}
+/* line 12, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000312}}
 .P0 {
   padding: 0px;
 }
-/* line 13, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000313}}
+/* line 13, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000313}}
 .PL0 {
   padding-left: 0px;
 }
-/* line 14, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000314}}
+/* line 14, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000314}}
 .PR0 {
   padding-right: 0px;
 }
-/* line 16, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000316}}
+/* line 16, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000316}}
+.MT5 {
+  margin-top: 5px;
+}
+/* line 17, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000317}}
+.MT10 {
+  margin-top: 10px;
+}
+/* line 19, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000319}}
 .fill {
   min-height: 100%;
 }
-/* line 18, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000318}}
+/* line 21, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000321}}
 .W30 {
   width: 30%;
 }
-/* line 19, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000319}}
+/* line 22, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000322}}
 .W40 {
   width: 40%;
 }
-/* line 20, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000320}}
+/* line 23, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000323}}
 .W50 {
   width: 49.5%;
 }
-/* line 21, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000321}}
+/* line 24, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000324}}
 .W60 {
   width: 60%;
 }
-/* line 23, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000323}}
+/* line 26, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000326}}
 .FS18 {
   font-size: 18px;
 }
-/* line 25, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\helper.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/helper\.less}line{font-family:\0000325}}
+/* line 28, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\helper.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/helper\.less}line{font-family:\0000328}}
 .italic-heading {
   color: #666666;
   font-style: italic;

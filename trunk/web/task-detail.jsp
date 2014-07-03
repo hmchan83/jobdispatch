@@ -59,8 +59,33 @@
                 margin-top: 5px;
             }
         </style>
+        <link href="css/modalstyle.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <div class="modal fade" id="change_assignee_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">New Assignee</h4>
+                    </div>
+                    <form class="form-horizontal" role="form">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="new_asignee" class="col-sm-3 col-md-3 control-label">Assign To</label>
+                                <div class="col-sm-9 col-md-9">
+                                    <input type="text" class="form-control" name="new_asignee" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+        
         <div class="task-heading">
             <div class="task-id">13579</div>
             <div class="task-title"><h2>This is a task title</h2></div>
@@ -68,10 +93,9 @@
         </div>
         
         <div class="button-section">
-            <button class="btn btn-default btn-primary btn-lg"><span class="glyphicon glyphicon-play"></span> Start progress</button>
-            <button class="btn btn-default btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span> Complete</button>
-            <button class="btn btn-default btn-warning btn-lg"><span class="glyphicon glyphicon-user"></span> Assign</button>
-            <button class="btn btn-default btn-lg"><span class="glyphicon glyphicon-bold"></span> Comment</button>
+            <button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-play"></span> Start progress</button>
+            <button class="btn btn-default btn-success"><span class="glyphicon glyphicon-ok"></span> Complete</button>
+            <button class="btn btn-default btn-warning" data-toggle="modal" data-target="#change_assignee_popup"><span class="glyphicon glyphicon-user"></span> Assign</button>
         </div>
         
         <div class="task-basic-info task-info">
@@ -111,6 +135,10 @@
             <div class="commentblock">
                 <div class="commentblock-metadata">username comment - 13/Jun/2014 9:25AM</div>
                 <div class="commentblock-comment">This is a comment!</div>
+            </div>
+            <div class="commentarea">
+                <textarea class="form-control" rows="5"></textarea>
+                <button class="btn btn-default btn-info MT10">Comment</button>
             </div>
         </div>
     </body>
