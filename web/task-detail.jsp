@@ -58,34 +58,28 @@
             .task-creation-time{
                 margin-top: 5px;
             }
+            
+            #change_assignee_popup .modal-dialog{
+                width: 80%;
+                margin: 0 auto;
+            }
+            
+            .control-label{
+                padding-top: 7px;
+            }
         </style>
         <link href="css/modalstyle.css" rel="stylesheet" type="text/css"/>
+        <script>
+            function update_prompt(question, field){
+                bootbox.prompt(question, function(result) {                
+                if (result === null) {                                                                       
+                } else {                  
+                }
+              });
+            }
+        </script>
     </head>
     <body>
-        <div class="modal fade" id="change_assignee_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">New Assignee</h4>
-                    </div>
-                    <form class="form-horizontal" role="form">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="new_asignee" class="col-sm-3 col-md-3 control-label">Assign To</label>
-                                <div class="col-sm-9 col-md-9">
-                                    <input type="text" class="form-control" name="new_asignee" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <input type="submit" class="btn btn-primary" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-          </div>
-        
         <div class="task-heading">
             <div class="task-id">13579</div>
             <div class="task-title"><h2>This is a task title</h2></div>
@@ -95,7 +89,7 @@
         <div class="button-section">
             <button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-play"></span> Start progress</button>
             <button class="btn btn-default btn-success"><span class="glyphicon glyphicon-ok"></span> Complete</button>
-            <button class="btn btn-default btn-warning" data-toggle="modal" data-target="#change_assignee_popup"><span class="glyphicon glyphicon-user"></span> Assign</button>
+            <button class="btn btn-default btn-warning" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
         </div>
         
         <div class="task-basic-info task-info">
