@@ -6,6 +6,7 @@
         <title>Tasks</title>
         <%@include file="style_jsp/default_header_style.jsp" %>
         <link href="css/assigned-tasks.css" rel="stylesheet" type="text/css"/>
+        <link href="css/modalstyle.css" rel="stylesheet" type="text/css"/>
         <style>
             .task-list-container button{
                 margin: 0px 0px 10px 0px;
@@ -15,10 +16,6 @@
                 border: 0px solid;
                 width: 100%;
                 min-height: 100%;
-            }
-            .control-label{
-                font-weight: normal;
-                font-style: italic;
             }
         </style>
     </head>
@@ -32,44 +29,44 @@
                     <form class="form-horizontal" role="form">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="taskid" class="col-sm-3 control-label">Task ID</label>
-                                <div class="col-sm-9">
+                                <label for="taskid" class="col-sm-3 col-md-3 control-label">Task ID</label>
+                                <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="taskid" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="tasktitle" class="col-sm-3 control-label">Task Title</label>
-                                <div class="col-sm-9">
+                                <label for="tasktitle" class="col-sm-3 col-md-3 control-label">Task Title</label>
+                                <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="tasktitle" />
                                 </div>
                             </div> 
                             <div class="form-group">
-                                <label for="tasktype" class="col-sm-3 control-label">Task Type</label>
-                                <div class="col-sm-9">
+                                <label for="tasktype" class="col-sm-3 col-md-3 control-label">Task Type</label>
+                                <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="tasktype" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="taskstatus" class="col-sm-3 control-label">Task Status</label>
-                                <div class="col-sm-9">
+                                <label for="taskstatus" class="col-sm-3 col-md-3 control-label">Task Status</label>
+                                <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="taskstatus" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="taskpriority" class="col-sm-3 control-label">Task Priority</label>
-                                <div class="col-sm-9">
+                                <label for="taskpriority" class="col-sm-3 col-md-3 control-label">Task Priority</label>
+                                <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="taskpriority" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="taskdescription" class="col-sm-3 control-label">Task Description</label>
-                                <div class="col-sm-9">
+                                <label for="taskdescription" class="col-sm-3 col-md-3 control-label">Task Description</label>
+                                <div class="col-sm-9 col-md-9">
                                     <textarea class="form-control" name="taskdescription" rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="asignee" class="col-sm-3 control-label">Assign To</label>
-                                <div class="col-sm-9">
+                                <label for="asignee" class="col-sm-3 col-md-3 control-label">Assign To</label>
+                                <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="asignee" />
                                 </div>
                             </div>
