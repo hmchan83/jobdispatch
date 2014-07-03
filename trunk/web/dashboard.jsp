@@ -9,6 +9,10 @@
             .advices{
                 margin-top: 20px;
             }
+            
+            .stat-containter div{
+                margin-bottom: 20px;
+            }
         </style>
     </head>
     <body>
@@ -17,7 +21,7 @@
         </jsp:include>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-md-6 stat-containter resolved">
+                <div class="col-sm-6 col-md-6 stat-container resolved">
                     <div class="resolved-graph stat-graph"></div>
                     <jsp:include page="template_jsp/num-stat.jsp" flush="true">
                         <jsp:param name="status" value="resolved"/>
@@ -47,7 +51,7 @@
                 </div> 
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-12 advices-containter">
+                <div class="col-sm-12 col-md-12 advices-container">
                     <h3>advices</h3>
                     <div class="jobs-first-container advices table-responsive">
                         <div class="italic-heading FS18">work on these jobs first</div>
