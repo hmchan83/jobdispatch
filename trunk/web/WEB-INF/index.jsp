@@ -34,7 +34,7 @@
             </div><!--/.nav-collapse -->
         </div>
         <div class="container">
-            <form class="form-signin div-center" role="form" method="POST">
+            <form class="form-signin div-center" id="login-form" role="form" action="index" method="POST">
                 <h4 class="form-signin-heading">Please sign in</h4>
                 <input type="text" class="form-control" placeholder="Username" required="" autofocus="">
                 <input type="password" class="form-control" placeholder="Password" required="">
