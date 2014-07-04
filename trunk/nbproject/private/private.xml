@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/josephchong/Documents/NetBeansProjects/jobdispatch/web/less/modalstyle.less</file>
-            <file>file:/C:/Users/josephchong/Documents/NetBeansProjects/jobdispatch/web/template_jsp/assigned_tasks.jsp</file>
-            <file>file:/C:/Users/josephchong/Documents/NetBeansProjects/jobdispatch/web/tasks.jsp</file>
-            <file>file:/C:/Users/josephchong/Documents/NetBeansProjects/jobdispatch/web/task-detail.jsp</file>
-            <file>file:/C:/Users/josephchong/Documents/NetBeansProjects/jobdispatch/web/less/helper.less</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/template_jsp/num-stat.jsp</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/dashboard.jsp</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/less/helper.less</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/index.jsp</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/task-detail.jsp</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/tasks.jsp</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/style_jsp/default_style.jsp</file>
         </group>
     </open-files>
 </project-private>

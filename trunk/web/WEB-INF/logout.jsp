@@ -15,14 +15,14 @@
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.jsp">Unnamed system</a>
+                    <a class="navbar-brand" href="index">Unnamed system</a>
                 </div>
             </div><!--/.nav-collapse -->
         </div>
         <div class="container">
             <div class="jumbotron logout_msg txt-center">
                 <h1 class="MB25"><span class="glyphicon glyphicon-ok"></span>You are now log out!</h1>
-                <a href="index.jsp" class="btn btn-default btn-warning btn-lg"><span class="glyphicon glyphicon-share-alt"></span> Click here to go back to the homepage</a>
+                <a href="index" class="btn btn-default btn-warning btn-lg"><span class="glyphicon glyphicon-share-alt"></span> Click here to go back to the homepage</a>
             </div>
         </div>
     </body>

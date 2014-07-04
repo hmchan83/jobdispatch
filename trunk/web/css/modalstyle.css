@@ -1,6 +1,4 @@
-/* line 1, C:\Users\josephchong\Documents\NetBeansProjects\jobdispatch\web\less\modalstyle.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/josephchong\/Documents\/NetBeansProjects\/jobdispatch\/web\/less\/modalstyle\.less}line{font-family:\000031}}
-.control-label {
-  font-weight: normal;
-  font-style: italic;
+.control-label{
+    font-weight: normal;
+    font-style: italic;
 }

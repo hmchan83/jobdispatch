@@ -7,16 +7,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="main.jsp">Unnamed system</a>
+            <a class="navbar-brand" href="main">Unnamed system</a>
         </div>
         <ul class="nav navbar-nav navbar-right navbar-collapse collapse">
-            <li><a href="dashboard.jsp">Dashboard</a></li>
-            <li><a href="tasks.jsp">Tasks</a></li>
+            <li><a href="dashboard">Dashboard</a></li>
+            <li><a href="tasks">Tasks</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">${param.username} <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="editprofile.jsp">Edit Profile</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="editprofile">Edit Profile</a></li>
+                    <li><a href="logout">Logout</a></li>
                 </ul>
             </li>
         </ul>

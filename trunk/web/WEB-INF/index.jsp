@@ -29,7 +29,7 @@
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.jsp">Unnamed system</a>
+                    <a class="navbar-brand" href="index">Unnamed system</a>
                 </div>
             </div><!--/.nav-collapse -->
         </div>
