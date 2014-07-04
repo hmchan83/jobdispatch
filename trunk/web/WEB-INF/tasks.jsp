@@ -30,12 +30,6 @@
                     <form class="form-horizontal" role="form">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="taskid" class="col-sm-3 col-md-3 control-label">Task ID</label>
-                                <div class="col-sm-9 col-md-9">
-                                    <input type="text" class="form-control" name="taskid" />
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label for="tasktitle" class="col-sm-3 col-md-3 control-label">Task Title</label>
                                 <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="tasktitle" />
