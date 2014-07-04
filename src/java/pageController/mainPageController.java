@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pageController;
 
 import java.io.IOException;
@@ -13,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,10 +33,17 @@ public class mainPageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
-        try{
-            dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
-            dispatcher.forward(request, response);
-        }catch(Exception e){}
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            response.sendRedirect("index");
+        } else {
+            try {
+                dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
+                dispatcher.forward(request, response);
+            } catch (Exception e) {
+            }
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

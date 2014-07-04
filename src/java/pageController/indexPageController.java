@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -20,22 +21,22 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class indexPageController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher; 
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher dispatcher;
+        HttpSession session = request.getSession();
         try{
-            dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
-            dispatcher.forward(request, response);
+            if (session.isNew()) {
+                if (request.getParameter("submit") == null) {
+                    dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
+                    dispatcher.forward(request, response);
+                }else{
+                    //do authentication first
+                    //create userbean according to the getParameter('username')
+                }
+            }else{
+                response.sendRedirect("main");
+            }         
         }catch(Exception e){}
     }
 
