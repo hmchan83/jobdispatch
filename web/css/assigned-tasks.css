@@ -1,34 +1,28 @@
-/* line 1, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\assigned-tasks.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/assigned-tasks\.less}line{font-family:\000031}}
-.assigned-tasks {
-  border: 1px solid #F5F5F5;
-  font-size: 14px;
-  margin-bottom: 30px;
+.assigned-tasks{
+    border: 1px solid #F5F5F5;
+    font-size: 14px;
+    margin-bottom: 30px;
+} 
+
+.assigned-tasks div{
+    padding-left: 10px;
+    line-height: 35px;
+    vertical-align: middle;
 }
-/* line 6, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\assigned-tasks.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/assigned-tasks\.less}line{font-family:\000036}}
-.assigned-tasks div {
-  padding-left: 10px;
-  line-height: 35px;
-  vertical-align: middle;
+
+.assigned-tasks .task-title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow : ellipsis;
 }
-/* line 12, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\assigned-tasks.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/assigned-tasks\.less}line{font-family:\0000312}}
-.assigned-tasks .task-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+.assigned-tasks .tasks{
+    background-color: white;
 }
-/* line 18, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\assigned-tasks.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/assigned-tasks\.less}line{font-family:\0000318}}
-.assigned-tasks .tasks {
-  background-color: white;
-}
-/* line 22, E:\Users\Joseph\Documents\NetBeansProjects\JobDispatch\web\less\assigned-tasks.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/Users\/Joseph\/Documents\/NetBeansProjects\/JobDispatch\/web\/less\/assigned-tasks\.less}line{font-family:\0000322}}
-.assigned-tasks .title-bar {
-  background-color: #F6F6F6;
-  padding-left: 15px;
-  font-weight: 600;
-  font-style: italic;
+
+.assigned-tasks .title-bar{
+    background-color: #F6F6F6;
+    padding-left: 15px;
+    font-weight: 600;
+    font-style: italic;
 }
