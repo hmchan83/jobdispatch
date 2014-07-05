@@ -28,6 +28,10 @@
         <servlet-name>logoutPageController</servlet-name>
         <servlet-class>pageController.logoutPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>404</servlet-name>
+        <jsp-file>/WEB-INF/404.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>indexPageController</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -56,12 +60,20 @@
         <servlet-name>logoutPageController</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>404</servlet-name>
+        <url-pattern>/404</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/index</welcome-file>
+        <welcome-file>welcome.jsp</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/404.jsp</location>
+    </error-page>
 </web-app>
