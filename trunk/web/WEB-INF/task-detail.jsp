@@ -59,9 +59,10 @@
                 margin-top: 5px;
             }
             
-            #change_assignee_popup .modal-dialog{
+            .modal-dialog{
                 width: 80%;
                 margin: 0 auto;
+                padding-top: 70px;
             }
             
             .control-label{
