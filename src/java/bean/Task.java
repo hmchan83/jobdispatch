@@ -11,9 +11,9 @@ package bean;
  * @author Marcus
  */
 public class Task {
-    private int taskid;
-    private String title;
-    private TaskType tasktype;
+    private int taskID;
+    private String taskName;
+    private TaskType taskType;
     private Status status;
     private Priority priority;
     private String description;
@@ -21,20 +21,20 @@ public class Task {
     public Task() {
     }
 
-    public String getTitle() {
-        return title;
+    public String getTaskName() {
+        return taskName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTaskName(String title) {
+        this.taskName = title;
     }
 
-    public TaskType getTasktype() {
-        return tasktype;
+    public TaskType getTaskType() {
+        return taskType;
     }
 
-    public void setTasktype(TaskType tasktype) {
-        this.tasktype = tasktype;
+    public void setTaskType(TaskType tasktype) {
+        this.taskType = tasktype;
     }
 
     public Status getStatus() {
@@ -61,12 +61,12 @@ public class Task {
         this.description = description;
     }
 
-    public int getTaskid() {
-        return taskid;
+    public int getTaskID() {
+        return taskID;
     }
 
-    public void setTaskid(int taskid) {
-        this.taskid = taskid;
+    public void setTaskID(int taskid) {
+        this.taskID = taskid;
     }
     
     

@@ -11,26 +11,26 @@ package bean;
  * @author Marcus
  */
 public class UserRole {
-    private int roleid;
-    private String rolename;
+    private int roleID;
+    private String roleName;
 
     public UserRole() {
     }
 
-    public int getRoleid() {
-        return roleid;
+    public int getRoleID() {
+        return roleID;
     }
 
-    public void setRoleid(int roleid) {
-        this.roleid = roleid;
+    public void setRoleID(int roleid) {
+        this.roleID = roleid;
     }
 
-    public String getRolename() {
-        return rolename;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRolename(String rolename) {
-        this.rolename = rolename;
+    public void setRoleName(String rolename) {
+        this.roleName = rolename;
     }
     
     
