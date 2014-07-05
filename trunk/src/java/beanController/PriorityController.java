@@ -23,7 +23,7 @@ public class PriorityController extends BeanController{
         super();
         priorityList = new ArrayList<>();
         try{
-            super.setpStmt("SELECT StatusID, StatusName FROM TaskStatus Order By StatusID");
+            super.setpStmt("SELECT PriorityID, PriorityName FROM TaskPriority Order By PriorityID");
             ResultSet rs=super.getpStmt().executeQuery();
             Priority tmp = new Priority();
             while(rs.next()){
@@ -51,7 +51,7 @@ public class PriorityController extends BeanController{
     
     public void addPriority(Priority priority){
         try{
-            super.setpStmt("Insert INTO TaskStatus (StatusID,StatusName) VALUES (?,?)");
+            super.setpStmt("Insert INTO TaskPriority (PriorityID,PriorityName) VALUES (?,?)");
             super.getpStmt().setInt(1, priority.getPriorityID());
             super.getpStmt().setString(2, priority.getPriorityName());
             super.getpStmt().executeUpdate();
@@ -64,7 +64,7 @@ public class PriorityController extends BeanController{
     
     public void addPriority(String Name){
         try{
-            super.setpStmt("Insert INTO TaskStatus (StatusName) VALUES (?)");
+            super.setpStmt("Insert INTO TaskPriority (PriorityName) VALUES (?)");
             super.getpStmt().setString(1, Name);
             super.getpStmt().executeUpdate();
             Priority NewPriority = new Priority();
