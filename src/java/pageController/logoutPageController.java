@@ -34,7 +34,8 @@ public class logoutPageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
+        if(session != null)
         session.invalidate();
         try{
             dispatcher = request.getRequestDispatcher("/WEB-INF/logout.jsp");
