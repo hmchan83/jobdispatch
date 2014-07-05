@@ -19,7 +19,7 @@
                 margin-top: 0px;
             }
             
-            button{
+            input[type="submit"]{
                 margin-top: 10px;
             }
         </style>
@@ -36,9 +36,9 @@
         <div class="container">
             <form class="form-signin div-center" id="login-form" role="form" action="index" method="POST">
                 <h4 class="form-signin-heading">Please sign in</h4>
-                <input type="text" class="form-control" placeholder="Username" required="" autofocus="">
-                <input type="password" class="form-control" placeholder="Password" required="">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="">
+                <input type="password" class="form-control" name="password" placeholder="Password" required="">
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Log In" />
             </form>
         </div>
     </body>
