@@ -12,25 +12,25 @@ package bean;
  */
 public class Department {
     
-    private int deptid;
+    private int deptID;
     private String deptname;
 
     public Department() {
     }
 
-    public int getDeptid() {
-        return deptid;
+    public int getDeptID() {
+        return deptID;
     }
 
-    public void setDeptid(int deptid) {
-        this.deptid = deptid;
+    public void setDeptID(int deptID) {
+        this.deptID = deptID;
     }
 
-    public String getDeptname() {
+    public String getDeptName() {
         return deptname;
     }
 
-    public void setDeptname(String deptname) {
+    public void setDeptName(String deptname) {
         this.deptname = deptname;
     }
     
