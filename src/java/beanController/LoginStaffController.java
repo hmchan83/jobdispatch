@@ -32,9 +32,8 @@ public class LoginStaffController extends BeanController{
                     DepartmentController deptcon = new DepartmentController();
                     LoginStaff tmp = new LoginStaff();
                     tmp.setStaffID(rs.getInt(1));
-                    tmp.setUserName(rs.getString(2));
-                    tmp.setRealName(rs.getString(3));
-                    tmp.setUserName(username);
+                    tmp.setUserName(rs.getString(3));
+                    tmp.setRealName(rs.getString(2));
                     tmp.setRole(rolecon.getRole(rs.getInt(5)));
                     tmp.setDept(deptcon.getDept(rs.getInt(6)));
                     tmp.seteMail(rs.getString(7));
