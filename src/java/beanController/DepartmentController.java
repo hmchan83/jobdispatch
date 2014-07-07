@@ -24,8 +24,9 @@ public class DepartmentController extends BeanController {
         try {
             super.setpStmt("SELECT DeptID, DeptName FROM Department Order By DeptID");
             ResultSet rs = super.execute();
-            Department tmp = new Department();
+            Department tmp;
             while (rs.next()) {
+                tmp = new Department();
                 tmp.setDeptID(rs.getInt(1));
                 tmp.setDeptName(rs.getString(2));
                 deptList.add(tmp);

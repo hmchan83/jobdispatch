@@ -18,8 +18,9 @@ public class TaskTypeController extends BeanController {
         try {
             super.setpStmt("SELECT TypeID, TypeName FROM TaskType Order By TypeID");
             ResultSet rs = super.execute();
-            TaskType tmp = new TaskType();
+            TaskType tmp;
             while (rs.next()) {
+                tmp = new TaskType();
                 tmp.setTypeID(rs.getInt(1));
                 tmp.setTypeName(rs.getString(2));
                 typeList.add(tmp);
