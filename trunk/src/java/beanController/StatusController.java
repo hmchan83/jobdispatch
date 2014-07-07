@@ -19,8 +19,9 @@ public class StatusController extends BeanController {
         try {
             super.setpStmt("SELECT StatusID, StatusName FROM TaskStatus Order By StatusID");
             ResultSet rs = super.execute();
-            Status tmp = new Status();
+            Status tmp;
             while (rs.next()) {
+                tmp = new Status();
                 tmp.setStatusID(rs.getInt(1));
                 tmp.setStatusName(rs.getString(2));
                 statusList.add(tmp);
