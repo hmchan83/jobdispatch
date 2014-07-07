@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="CurrentUser" class="bean.LoginStaff" scope="session" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,19 +15,15 @@
         <link rel="stylesheet" href="css/user.css" />
     </head>
     <body>
-        <jsp:include page="template_jsp/header.jsp" flush="true">
-            <jsp:param name="username" value="Joseph" />
-        </jsp:include>
+        <jsp:include page="template_jsp/header.jsp" flush="true" />
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-3 hidden-xs hidden-sm staff-container">
-                    <jsp:include page="template_jsp/user.jsp" flush="true">
-                        <jsp:param name="name" value="Joseph" />
-                    </jsp:include>
+                    <jsp:include page="template_jsp/user.jsp" flush="true" />
                 </div>
                 <div class="col-md-7 task-container">
                     <div class="welcome-msg block">
-                        <h1>Welcome! username</h1>
+                        <h1>Welcome! <jsp:getProperty name="CurrentUser" property="realName" /></h1>
                     </div>
                     <jsp:include page="template_jsp/assigned_tasks.jsp" flush="true" />
                 </div>

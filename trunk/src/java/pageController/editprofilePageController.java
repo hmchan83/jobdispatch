@@ -35,7 +35,7 @@ public class editprofilePageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession(false);
-        if (session == null) {
+        if (session.getAttribute("CurrentUser") == null) {
             response.sendRedirect("index");
         } else {
             try {

@@ -25,8 +25,9 @@ public class UserRoleController extends BeanController{
             try {
                 super.setpStmt("SELECT RoleID, RoleName FROM UserRole Order By RoleID");
                 ResultSet rs = super.execute();
-                UserRole tmp = new UserRole();
+                UserRole tmp;
                 while (rs.next()) {
+                    tmp = new UserRole();
                     tmp.setRoleID(rs.getInt(1));
                     tmp.setRoleName(rs.getString(2));
                     roleList.add(tmp);

@@ -34,6 +34,8 @@ public class Department {
         this.deptname = deptname;
     }
     
-    
+    public String toString(){
+        return this.deptname;
+    }
     
 }

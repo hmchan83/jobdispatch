@@ -19,7 +19,8 @@ public class indexPageController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getSession(false) != null)
+        HttpSession session = request.getSession(false);
+        if(session.getAttribute("CurrentUser") != null)
             response.sendRedirect("main");
         else
             request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
@@ -30,26 +31,19 @@ public class indexPageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //do authentication first
         String username = request.getParameter("username");
-        byte[] password = request.getParameter("password").getBytes(Charset.forName("UTF-8"));
-        String digested_password = new String(password, "UTF-8");
-        try {
-            MessageDigest md5 = MessageDigest.getInstance("MD5");
-            digested_password = new String(md5.digest(password), "UTF-8");
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(indexPageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String password = request.getParameter("password");
         HttpSession session = null;
         LoginStaffController lsc = new LoginStaffController();
-        if(lsc.Verify(username, digested_password)){
+        if(lsc.Verify(username, password)){
             if(lsc.getUser() != null){
                 session = request.getSession(true);
                 session.setAttribute("CurrentUser", lsc.getUser());
+                response.sendRedirect("main");   
             }
         }else{
             request.setAttribute("invalid_login", true);
             request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
         }
-        response.sendRedirect("main");   
     }
 
 
