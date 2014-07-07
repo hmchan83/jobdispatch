@@ -9,7 +9,7 @@ import bean.*;
  */
 public class BeanController {
 
-    private String url = "jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad901_db;";
+    private String url = "jdbc:sqlserver://w2ksa.cs.cityu.edu.hk:1433;databaseName=aiad018_db;";
     private String login = "aiad018";
     private String passwd = "aiad018";
     protected Connection con;

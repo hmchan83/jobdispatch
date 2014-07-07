@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package beanController;
 
 import bean.LoginStaff;
@@ -18,10 +12,16 @@ public class LoginStaffController extends BeanController{
     
     private LoginStaff currentUser;
     
-    void LoginStaff(){
+    public LoginStaffController(){
+        super();
+        currentUser = null;
     }
     
-    boolean Verify(String username, String Pw){
+    void LoginStaff(){
+        
+    }
+    
+    public boolean Verify(String username, String Pw){
         try{
             super.setpStmt("SELECT StaffID, RealName, Username, Pwd, RoleID, DeptID, Email, ContactNumber FROM Staff Where Username = ?");
             super.getpStmt().setString(1, username);
