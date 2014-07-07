@@ -7,6 +7,6 @@
         <h2><jsp:getProperty name="CurrentUser" property="realName" /></h2>
     </div>
     <div class="staff-role block txt-center">
-        <jsp:getProperty name="CurrentUser" property="role"/> of Department
+        <jsp:getProperty name="CurrentUser" property="role"/> of <jsp:getProperty name="CurrentUser" property="dept"/>
     </div>
 </div>

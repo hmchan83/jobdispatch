@@ -38,6 +38,7 @@ public class LoginStaffController extends BeanController{
                     tmp.setDept(deptcon.getDept(rs.getInt(6)));
                     tmp.seteMail(rs.getString(7));
                     tmp.setTel(rs.getInt(8));
+                    tmp.setPassword(rs.getString(4));
                     this.currentUser = tmp;
                     return true;                    
                 }
