@@ -3,6 +3,8 @@ package beanController;
 import bean.LoginStaff;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
+import org.apache.catalina.util.ParameterMap;
 
 /**
  *
@@ -15,6 +17,11 @@ public class LoginStaffController extends BeanController{
     public LoginStaffController(){
         super();
         currentUser = null;
+    }
+    
+    public LoginStaffController(LoginStaff user){
+        super();
+        currentUser = user;
     }
     
     void LoginStaff(){
@@ -60,5 +67,22 @@ public class LoginStaffController extends BeanController{
     
     public void clear(){
         currentUser=null;
+    }
+
+    public boolean update(ParameterMap pMap) {
+        if(pMap.containsKey("password"))   currentUser.setPassword((String)pMap.get("password"));
+        if(pMap.containsKey("email"))   currentUser.seteMail((String)pMap.get("email"));
+        if(pMap.containsKey("telno"))   currentUser.setTel(Integer.parseInt((String)pMap.get("telno")));
+        super.setpStmt("UPDATE Staff SET Pwd = ?, Email = ?, ContactNumber = ? where StaffID = ?");
+        try{
+            super.getpStmt().setString(1, currentUser.getPassword());
+            super.getpStmt().setString(2, currentUser.geteMail());
+            super.getpStmt().setInt(3, currentUser.getTel());
+            super.getpStmt().setInt(4, currentUser.getStaffID());
+            super.executeUpdate();
+        }catch(SQLException ex){
+            return false;
+        }
+        return true;
     }
 }
