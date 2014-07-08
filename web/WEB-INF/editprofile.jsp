@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="style_jsp/default_header_style.jsp" %>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
         <link rel="stylesheet" href="css/user.css" />
         <style>
             label{
@@ -14,6 +15,15 @@
                 font-style: italic;
             }
         </style>
+        <script>
+            function hashPW() {
+                if ($('input[name="password"]').val().length !== 0) {
+                    var hash = CryptoJS.MD5($('input[name="password"]').val());
+                    $('input[name="password"]').val(hash);
+                }
+                alert(hash);
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="template_jsp/header.jsp" flush="true">
@@ -25,7 +35,7 @@
                     <jsp:include page="template_jsp/user.jsp" flush="true" />
                 </div>
                 <div class="col-md-7 staff-detail-container">
-                    <form class="form-horizontal" role="form" action="editprofile">
+                    <form class="form-horizontal" role="form" action="editprofile" method="POST" onsubmit="hashPW()">
                         <div class="form-group">
                             <label for="staffid" class="col-sm-3 col-md-3 control-label">Staff ID</label>
                             <div class="col-sm-9 col-md-9">
@@ -60,7 +70,6 @@
                             <label class="col-sm-3 col-md-3 control-label"></label>
                             <div class="col-sm-9 col-md-9">
                                 <input type="submit" class="btn btn-primary" />
-                                <input type="reset" class="btn btn-danger" />
                             </div>
                         </div>
                     </form>
