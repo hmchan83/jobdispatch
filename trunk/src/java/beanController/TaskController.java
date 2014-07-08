@@ -2,6 +2,7 @@ package beanController;
 
 import bean.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -37,7 +38,7 @@ public class TaskController extends BeanController {
         }
     }
 
-    public void modifyTask(int taskID, Task newInfo) {//Update a Task
+     public void modifyTask(int taskID, Task newInfo) {//Update a Task
 
     }
 

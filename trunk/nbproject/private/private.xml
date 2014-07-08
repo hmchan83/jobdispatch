@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/beanController/PriorityController.java</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/WEB-INF/editprofile.jsp</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/beanController/LoginStaffController.java</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/WEB-INF/tasks.jsp</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/beanController/DepartmentController.java</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/bean/LoginStaff.java</file>
+            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/pageController/editprofilePageController.java</file>
+        </group>
     </open-files>
 </project-private>
