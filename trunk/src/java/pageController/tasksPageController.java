@@ -1,6 +1,6 @@
 package pageController;
 
-import bean.Staff;
+import bean.LoginStaff;
 import bean.Task;
 import beanController.TaskListController;
 import java.io.IOException;
@@ -33,13 +33,12 @@ public class tasksPageController extends HttpServlet {
         } else {
             try {
                 TaskListController tlc = new TaskListController();
-                Staff s = (Staff)session.getAttribute("CurrentUser");
+                LoginStaff s = (LoginStaff)session.getAttribute("CurrentUser");
                 ArrayList<Task> tasks = tlc.getTasksByStaff(s.getStaffID());
                 session.setAttribute("tasklist", tasks);
                 dispatcher = request.getRequestDispatcher("/WEB-INF/tasks.jsp");
                 dispatcher.forward(request, response);
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
     }
 

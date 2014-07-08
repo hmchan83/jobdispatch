@@ -1,7 +1,11 @@
 package pageController;
 
+import bean.LoginStaff;
+import bean.Task;
+import beanController.TaskListController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +24,10 @@ public class mainPageController extends HttpServlet {
             response.sendRedirect("index");
         } else {
             try {
+                TaskListController tlc = new TaskListController();
+                LoginStaff s = (LoginStaff)session.getAttribute("CurrentUser");
+                ArrayList<Task> tasks = tlc.getTasksByStaff(s.getStaffID());
+                session.setAttribute("tasklist", tasks);
                 dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {
