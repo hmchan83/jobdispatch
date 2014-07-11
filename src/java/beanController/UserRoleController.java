@@ -67,10 +67,10 @@ public class UserRoleController extends BeanController{
         try {
             super.setpStmt("Insert INTO UserRole (RoleName) VALUES (?)");
             super.getpStmt().setString(1, Name);
-            super.executeUpdate();
-            UserRole NewPriority = new UserRole();
+            super.executeUpdate();            
             ResultSet insertedID = super.getpStmt().getGeneratedKeys();
             if (insertedID.next()) {
+                UserRole NewPriority = new UserRole();
                 NewPriority.setRoleID(insertedID.getInt(1));
                 NewPriority.setRoleName(Name);
                 roleList.add(NewPriority);

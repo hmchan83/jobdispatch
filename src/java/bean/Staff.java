@@ -72,6 +72,11 @@ public class Staff {
         this.tel = tel;
     }
     
+    @Override
+    public String toString(){
+        return realName;
+    }
+    
     
     
 }

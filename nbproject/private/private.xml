@@ -3,14 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/WEB-INF/editprofile.jsp</file>
-            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/beanController/LoginStaffController.java</file>
-            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/pageController/indexPageController.java</file>
-            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/bean/Task.java</file>
-            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/WEB-INF/template_jsp/assigned_tasks.jsp</file>
-            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/web/WEB-INF/index.jsp</file>
-            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/bean/LoginStaff.java</file>
-            <file>file:/E:/Users/Joseph/Documents/NetBeansProjects/jobsdispatch/src/java/pageController/editprofilePageController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/beanController/LoginStaffController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/beanController/StaffController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/beanController/UserRoleController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/pageController/taskdetailPageController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/web/WEB-INF/template_jsp/assigned_tasks.jsp</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/bean/LoginStaff.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/bean/Task.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/beanController/TaskListController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/web/WEB-INF/main.jsp</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/bean/Staff.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/web/WEB-INF/task-detail.jsp</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/pageController/indexPageController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/bean/Comment.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/bean/Department.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/beanController/BeanController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/beanController/CommentController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/pageController/tasksPageController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/beanController/TaskController.java</file>
+            <file>file:/C:/Users/Marcus/Documents/NetBeansProjects/jobdispatch/src/java/beanController/DepartmentController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,3 +1,6 @@
+<%@page import="bean.Comment"%>
+<%@page import="bean.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -115,11 +118,11 @@
                     <h4 class="task-info-heading">People</h4>
                     <div class="info-block">
                         <div class="task-basic-info-label IB W30">Assignee</div>
-                        <div class="task-basic-info-details IB">Joseph</div>
+                        <div class="task-basic-info-details IB"><jsp:getProperty name="task" property="assignee" /></div>
                     </div>
                     <div class="info-block">
                         <div class="task-basic-info-label IB W30">Reporter</div>
-                        <div class="task-basic-info-details IB">Joseph</div>
+                        <div class="task-basic-info-details IB"><jsp:getProperty name="task" property="reporter" /></div>
                     </div>
                 </div>
             </div>
@@ -129,18 +132,20 @@
             </div>
             <div class="task-desc-info task-info">
                 <h4 class="task-info-heading">Comments</h4>
+                <% ArrayList<Comment> commentList = (ArrayList<Comment>)request.getAttribute("commentList"); 
+                if(commentList!=null && commentList.size()>0)
+                for(Comment c : commentList){ %>
                 <div class="commentblock">
-                    <div class="commentblock-metadata">username comment - 13/Jun/2014 9:25AM</div>
-                    <div class="commentblock-comment">This is a comment!</div>
+                    <div class="commentblock-metadata"><%=c.getCommenter()%> - <%=c.getDate()%></div>
+                    <div class="commentblock-comment"><%=c.getComment()%></div>
                 </div>
-                <div class="commentblock">
-                    <div class="commentblock-metadata">username comment - 13/Jun/2014 9:25AM</div>
-                    <div class="commentblock-comment">This is a comment!</div>
-                </div>
+                <% }%>
+                <form action="taskdetail?taskid=<jsp:getProperty name="task" property="taskID" />" method="post">
                 <div class="commentarea">
-                    <textarea class="form-control" rows="5"></textarea>
-                    <button class="btn btn-default btn-info MT10">Comment</button>
+                    <textarea class="form-control" rows="5" name="com_content"></textarea>
+                    <button class="btn btn-default btn-info MT10" onclick="this.form.submit()">Comment</button>
                 </div>
+                </form>
             </div>
         </div>
     </body>
