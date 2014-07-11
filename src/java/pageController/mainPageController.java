@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class mainPageController extends HttpServlet {
+public class mainPageController extends pageController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession(false);
-        if (session.getAttribute("CurrentUser") == null) {
+        if (!authentication(session)) {
             response.sendRedirect("index");
         } else {
             try {
