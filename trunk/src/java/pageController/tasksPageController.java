@@ -3,9 +3,11 @@ package pageController;
 import bean.LoginStaff;
 import bean.Staff;
 import bean.Task;
+import beanController.PriorityController;
 import beanController.StaffController;
 import beanController.TaskController;
 import beanController.TaskListController;
+import beanController.TaskTypeController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ public class tasksPageController extends HttpServlet {
                 TaskListController tlc = new TaskListController();
                 LoginStaff s = (LoginStaff)session.getAttribute("CurrentUser");
                 session.setAttribute("tasklist", tlc.getTasksByStaff(s.getStaffID()));
+                request.setAttribute("tasktypelist", new TaskTypeController().getTypeList());
+                request.setAttribute("taskprioritylist", new PriorityController().getPriorityList());
                 dispatcher = request.getRequestDispatcher("/WEB-INF/tasks.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {}
@@ -43,17 +47,18 @@ public class tasksPageController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Enumeration pNames = request.getParameterNames();
         ParameterMap pMap = new ParameterMap();
         HttpSession session = request.getSession(false);
         while (pNames.hasMoreElements()){
             String pName = (String)pNames.nextElement();
             if(pName.equals("assignee")){
-                //find the name of the assignee
+                //find the assignee according to the name
                 StaffController sc = new StaffController();
                 Staff a = sc.getStaff(request.getParameter(pName));
+                if(a == null)
+                    request.setAttribute("invalid_assignee", true);
                 pMap.put("assigneeid", a.getStaffID());
             }else
                 pMap.put(pName, request.getParameter(pName));
