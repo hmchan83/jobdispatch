@@ -81,13 +81,14 @@
         </script>
     </head>
     <body>
+        <jsp:useBean id="task" type="bean.Task" scope="request"/>
         <div class="container">
             <div class="task-heading">
-                <div class="task-id">13579</div>
-                <div class="task-title"><h2>This is a task title</h2></div>
-                <div class="task-creation-time">Created on 5/July/2015 9:30AM</div>
+                <div class="task-id"></div>
+                <div class="task-title"><h2><jsp:getProperty name="task" property="taskID" /> - <jsp:getProperty name="task" property="taskName" /></h2></div>
+                <div class="task-creation-time"
+>Created on 5/July/2015 9:30AM</div>
             </div>
-
             <div class="button-section">
                 <button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-play"></span> Start progress</button>
                 <button class="btn btn-default btn-success"><span class="glyphicon glyphicon-ok"></span> Complete</button>
@@ -99,15 +100,15 @@
                     <h4 class="task-info-heading">Details</h4>
                     <div class="info-block">
                         <div class="task-basic-info-label IB W30">Type</div>
-                        <div class="task-basic-info-details IB">Bug</div>
+                        <div class="task-basic-info-details IB"><jsp:getProperty name="task" property="taskType" /></div>
                     </div>
                     <div class="info-block">
                         <div class="task-basic-info-label IB W30">Status</div>
-                        <div class="task-basic-info-details IB">Active</div>
+                        <div class="task-basic-info-details IB"><jsp:getProperty name="task" property="status" /></div>
                     </div>
                     <div class="info-block">
                         <div class="task-basic-info-label IB W30">Priority</div>
-                        <div class="task-basic-info-details IB">Top</div>
+                        <div class="task-basic-info-details IB"><jsp:getProperty name="task" property="priority" /></div>
                     </div>
                 </div>
                 <div class="IB W50">
@@ -116,11 +117,15 @@
                         <div class="task-basic-info-label IB W30">Asignee</div>
                         <div class="task-basic-info-details IB">Joseph</div>
                     </div>
+                    <div class="info-block">
+                        <div class="task-basic-info-label IB W30">Reporter</div>
+                        <div class="task-basic-info-details IB">Joseph</div>
+                    </div>
                 </div>
             </div>
             <div class="task-desc-info task-info">
                 <h4 class="task-info-heading">Description</h4>
-                <p class="description">This is a description</p>
+                <p class="description"><jsp:getProperty name="task" property="description" /></p>
             </div>
             <div class="task-desc-info task-info">
                 <h4 class="task-info-heading">Comments</h4>

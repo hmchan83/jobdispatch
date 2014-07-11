@@ -28,6 +28,11 @@ public class Status {
 
     public void setStatusName(String StatusName) {
         this.StatusName = StatusName;
-    }    
+    }
+    
+    @Override
+    public String toString(){
+        return this.StatusName;
+    }
     
 }

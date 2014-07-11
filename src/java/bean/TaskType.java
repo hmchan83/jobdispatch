@@ -34,4 +34,9 @@ public class TaskType {
         this.typeName = typename;
     }
     
+    @Override
+    public String toString(){
+        return this.getTypeName();
+    }
+    
 }

@@ -1,5 +1,7 @@
 package pageController;
 
+import bean.Task;
+import beanController.TaskController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -24,6 +26,12 @@ public class taskdetailPageController extends HttpServlet {
             response.sendRedirect("index");
         } else {
             try {
+                int taskid = Integer.parseInt(request.getParameter("taskid"));
+                
+                TaskController taskcon = new TaskController();
+                Task detail = taskcon.getTaskDetail(taskid);
+                request.setAttribute("task", detail);
+                
                 dispatcher = request.getRequestDispatcher("/WEB-INF/task-detail.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {
