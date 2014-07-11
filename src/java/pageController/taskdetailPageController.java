@@ -21,20 +21,17 @@ public class taskdetailPageController extends pageController {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
-        if (!authentication(request.getSession(false))) {
-            response.sendRedirect("index");
-        } else {
-            try {
-                int taskid = Integer.parseInt(request.getParameter("taskid"));
-                
-                TaskController taskcon = new TaskController();
-                Task detail = taskcon.getTaskDetail(taskid);
-                request.setAttribute("task", detail);
-                
-                dispatcher = request.getRequestDispatcher("/WEB-INF/task-detail.jsp");
-                dispatcher.forward(request, response);
-            } catch (Exception e) {
-            }
+        redirectWithAuth(request.getSession(false), response);
+        try {
+            int taskid = Integer.parseInt(request.getParameter("taskid"));
+
+            TaskController taskcon = new TaskController();
+            Task detail = taskcon.getTaskDetail(taskid);
+            request.setAttribute("task", detail);
+
+            dispatcher = request.getRequestDispatcher("/WEB-INF/task-detail.jsp");
+            dispatcher.forward(request, response);
+        } catch (Exception e) {
         }
     }
 

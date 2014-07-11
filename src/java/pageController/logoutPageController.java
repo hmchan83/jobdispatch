@@ -15,7 +15,7 @@ public class logoutPageController extends pageController {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession(false);
-        if (!authentication(session))
+        if (authentication(session))
             session.invalidate();
         else
             request.setAttribute("invalid_logout", "yes");

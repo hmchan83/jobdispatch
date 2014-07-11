@@ -22,6 +22,10 @@ public abstract class pageController extends HttpServlet {
     protected boolean authentication(HttpSession session){
         return session != null && session.getAttribute("CurrentUser") != null;
     }
+    protected void redirectWithAuth(HttpSession session, HttpServletResponse response) throws ServletException, IOException{
+        if(!authentication(session))
+            response.sendRedirect("index");
+    }
 
     /**
      * Returns a short description of the servlet.
