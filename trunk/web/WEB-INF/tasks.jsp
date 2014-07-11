@@ -27,7 +27,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">New task</h4>
                     </div>
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form" action="tasks" method="POST">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="tasktitle" class="col-sm-3 col-md-3 control-label">Task Title</label>
@@ -39,12 +39,6 @@
                                 <label for="tasktype" class="col-sm-3 col-md-3 control-label">Task Type</label>
                                 <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="tasktype" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="taskstatus" class="col-sm-3 col-md-3 control-label">Task Status</label>
-                                <div class="col-sm-9 col-md-9">
-                                    <input type="text" class="form-control" name="taskstatus" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -62,7 +56,7 @@
                             <div class="form-group">
                                 <label for="asignee" class="col-sm-3 col-md-3 control-label">Assign To</label>
                                 <div class="col-sm-9 col-md-9">
-                                    <input type="text" class="form-control" name="asignee" />
+                                    <input type="text" class="form-control" name="assignee" />
                                 </div>
                             </div>
                         </div>
