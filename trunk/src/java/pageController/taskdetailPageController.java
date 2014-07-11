@@ -15,14 +15,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author Joseph
  */
-public class taskdetailPageController extends HttpServlet {
+public class taskdetailPageController extends pageController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
-        HttpSession session = request.getSession(false);
-        if (session.getAttribute("CurrentUser") == null) {
+        if (!authentication(request.getSession(false))) {
             response.sendRedirect("index");
         } else {
             try {

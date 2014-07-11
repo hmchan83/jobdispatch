@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Joseph
  */
-public class dashboardPageController extends HttpServlet {
+public class dashboardPageController extends pageController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,8 +34,7 @@ public class dashboardPageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
-        HttpSession session = request.getSession(false);
-        if (session.getAttribute("CurrentUser") == null) {
+        if (!authentication(request.getSession(false))) {
             response.sendRedirect("index");
         } else {
             try {

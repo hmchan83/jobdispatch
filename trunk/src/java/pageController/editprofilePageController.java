@@ -17,14 +17,13 @@ import org.apache.catalina.util.ParameterMap;
  *
  * @author Joseph
  */
-public class editprofilePageController extends HttpServlet {
+public class editprofilePageController extends pageController {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
-        HttpSession session = request.getSession(false);
-        if (session.getAttribute("CurrentUser") == null) {
+        if (!authentication(request.getSession(false))) {
             response.sendRedirect("index");
         } else {
             try {

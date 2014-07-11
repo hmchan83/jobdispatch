@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class logoutPageController extends HttpServlet {
+public class logoutPageController extends pageController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession(false);
-        if (session.getAttribute("CurrentUser") != null)
+        if (!authentication(session))
             session.invalidate();
         else
             request.setAttribute("invalid_logout", "yes");

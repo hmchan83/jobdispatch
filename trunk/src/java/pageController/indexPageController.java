@@ -15,15 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class indexPageController extends HttpServlet {
+public class indexPageController extends pageController {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if(session.getAttribute("CurrentUser") != null)
-            response.sendRedirect("main");
-        else
+        if(!authentication(request.getSession(false)))
             request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+        else
+            response.sendRedirect("main");            
     }
 
     @Override

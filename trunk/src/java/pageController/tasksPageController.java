@@ -24,14 +24,14 @@ import org.apache.catalina.util.ParameterMap;
  *
  * @author Joseph
  */
-public class tasksPageController extends HttpServlet {
+public class tasksPageController extends pageController {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession(false);
-        if (session.getAttribute("CurrentUser") == null) {
+        if (!authentication(session)) {
             response.sendRedirect("index");
         } else {
             try {
