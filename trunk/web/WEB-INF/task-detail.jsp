@@ -114,7 +114,7 @@
                 <div class="IB W50">
                     <h4 class="task-info-heading">People</h4>
                     <div class="info-block">
-                        <div class="task-basic-info-label IB W30">Asignee</div>
+                        <div class="task-basic-info-label IB W30">Assignee</div>
                         <div class="task-basic-info-details IB">Joseph</div>
                     </div>
                     <div class="info-block">

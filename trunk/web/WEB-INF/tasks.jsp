@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="asignee" class="col-sm-3 col-md-3 control-label">Assign To</label>
+                                <label for="assignee" class="col-sm-3 col-md-3 control-label">Assign To</label>
                                 <div class="col-sm-9 col-md-9">
                                     <input type="text" class="form-control" name="assignee" />
                                 </div>
