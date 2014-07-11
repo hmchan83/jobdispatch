@@ -90,12 +90,16 @@
                 <div class="task-id"></div>
                 <div class="task-title"><h2><jsp:getProperty name="task" property="taskID" /> - <jsp:getProperty name="task" property="taskName" /></h2></div>
                 <div class="task-creation-time"
->Created on 5/July/2015 9:30AM</div>
+>Created on <jsp:getProperty name="task" property="date" /></div>
             </div>
             <div class="button-section">
+                <% if(task.getStatus().getStatusID()==2){ %>
                 <button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-play"></span> Start progress</button>
+                <% }else if (task.getStatus().getStatusID()==3){ %>
                 <button class="btn btn-default btn-success"><span class="glyphicon glyphicon-ok"></span> Complete</button>
+                <% }else if (task.getStatus().getStatusID()==4){ %>
                 <button class="btn btn-default btn-warning" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
+                <% } %>
             </div>
 
             <div class="task-basic-info task-info">

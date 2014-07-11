@@ -5,6 +5,9 @@
  */
 package bean;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 
 /**
  *
@@ -20,6 +23,7 @@ public class Task{
     private String description;
     private Staff assignee;
     private Staff reporter;
+    private String date;
 
     public Task() {
     }
@@ -87,4 +91,20 @@ public class Task{
     public void setReporter(Staff reporter) {
         this.reporter = reporter;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    public void setTime(Timestamp t){
+        this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t);
+    }
+
+
+    
+    
 }
