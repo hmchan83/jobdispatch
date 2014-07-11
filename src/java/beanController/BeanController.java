@@ -57,11 +57,16 @@ public class BeanController {
         }
     }
     
-    public void executeUpdate(){
+    public boolean executeUpdate(){
         try{
-            this.pStmt.executeUpdate();
+            int affectedrow = this.pStmt.executeUpdate();
+            if(affectedrow <= 0){
+                return false;
+            }
+            return true;
         } catch (SQLException ex){
             error(ex);
+            return false;
         }
     }
 
