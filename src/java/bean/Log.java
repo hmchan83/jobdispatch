@@ -1,6 +1,7 @@
 package bean;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -13,7 +14,7 @@ public class Log{
     private Task task;
     private Staff assignee;
     private Staff reporter;
-    private Date date;
+    private Timestamp date;
     
     public int getLogID() {
         return logID;
@@ -55,11 +56,15 @@ public class Log{
         this.reporter = reporter;
     }
 
-    public Date getDate() {
+    public Timestamp getTime(){
         return date;
     }
-
-    public void setDate(Date date) {
+    
+    public String getDate() {
+        String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+        return format;
+    }
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

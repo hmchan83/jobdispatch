@@ -2,6 +2,7 @@ package beanController;
 
 import bean.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import org.apache.catalina.util.ParameterMap;
 
@@ -28,6 +29,7 @@ public class TaskController extends BeanController {
             StatusController statusCon = new StatusController();
             PriorityController priorityCon = new PriorityController();
             StaffController staffCon = new StaffController();
+            LogController logCon = new LogController();
             while (rs.next()) {
                 t.setTaskID(rs.getInt("TaskID")); //TaskID
                 t.setTaskName(rs.getString("TaskName")); //TaskName
@@ -37,6 +39,8 @@ public class TaskController extends BeanController {
                 t.setDescription(rs.getString("TaskDescription"));
                 t.setAssignee(staffCon.getStaff(rs.getInt("AssigneeID")));
                 t.setReporter(staffCon.getStaff(rs.getInt("ReporterID")));
+                String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(logCon.getTaskCreatTime(rs.getInt("TaskID")));
+                t.setDate(format);
             }
             return t;
         } catch (SQLException ex) {
@@ -74,7 +78,8 @@ public class TaskController extends BeanController {
         if(pMap.containsKey("taskdescription")) t.setDescription((String)pMap.get("taskdescription"));
         if(pMap.containsKey("assigneeid"))   t.setAssignee(new StaffController().getStaff((Integer)pMap.get("assigneeid")));
         if(pMap.containsKey("reporterid"))   t.setReporter(new StaffController().getStaff((Integer)pMap.get("reporterid")));
-        
+        Timestamp current = new Timestamp(System.currentTimeMillis());
+        t.setTime(current);
         super.setpStmt("INSERT INTO task (TaskName, TypeID, StatusID, PriorityID, TaskDescription, AssigneeID, ReporterID) values(?, ?, ?, ?, ?, ?, ?)");
         try{
             super.getpStmt().setString(1, t.getTaskName());
@@ -85,6 +90,12 @@ public class TaskController extends BeanController {
             super.getpStmt().setInt(6, t.getAssignee().getStaffID());
             super.getpStmt().setInt(7, t.getReporter().getStaffID());
             super.executeUpdate();
+            ResultSet insertedID = super.getpStmt().getGeneratedKeys();
+            if(insertedID.next()){
+                t.setTaskID(insertedID.getInt(1));
+            }
+            LogController logCon = new LogController();
+            logCon.logCreateTask(t, t.getAssignee(), t.getReporter(), current);
         }catch(SQLException ex){
             return false;
         }

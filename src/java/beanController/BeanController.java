@@ -41,7 +41,7 @@ public class BeanController {
 
     public void setpStmt(String pStmt) {
         try {
-            this.pStmt = con.prepareStatement(pStmt);
+            this.pStmt = con.prepareStatement(pStmt,Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException ex) {
             error(ex);
         }
