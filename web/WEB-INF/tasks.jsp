@@ -1,3 +1,6 @@
+<%@page import="bean.Priority"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="bean.TaskType"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -72,13 +75,21 @@
                             <div class="form-group">
                                 <label for="tasktype" class="col-sm-3 col-md-3 control-label">Task Type</label>
                                 <div class="col-sm-9 col-md-9">
-                                    <input type="text" class="form-control" name="tasktype" />
+                                    <select name="tasktype" class="form-control">
+                                        <%for(TaskType t : (ArrayList<TaskType>)request.getAttribute("tasktypelist")){%>
+                                            <option value="<%=t.getTypeID()%>"><%=t.getTypeName()%></option>
+                                        <%}%>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="taskpriority" class="col-sm-3 col-md-3 control-label">Task Priority</label>
                                 <div class="col-sm-9 col-md-9">
-                                    <input type="text" class="form-control" name="taskpriority" />
+                                    <select name="taskpriority" class="form-control">
+                                        <%for(Priority p : (ArrayList<Priority>)request.getAttribute("taskprioritylist")){%>
+                                            <option value="<%=p.getPriorityID()%>"><%=p.getPriorityName()%></option>
+                                        <%}%>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
