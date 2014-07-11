@@ -36,6 +36,7 @@ public class indexPageController extends pageController {
         if(lsc.Verify(username, password)){
             if(lsc.getUser() != null){
                 session = request.getSession(true);
+                session.setMaxInactiveInterval(-1);
                 session.setAttribute("CurrentUser", lsc.getUser());
                 response.sendRedirect("main");   
             }
@@ -45,10 +46,9 @@ public class indexPageController extends pageController {
         }
     }
 
-
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "prepare data for and handle request from indexPage";
     }
 
 }

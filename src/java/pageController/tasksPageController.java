@@ -48,27 +48,29 @@ public class tasksPageController extends pageController {
         Enumeration pNames = request.getParameterNames();
         ParameterMap pMap = new ParameterMap();
         HttpSession session = request.getSession(false);
+        boolean invalid_assignee = false;
+        boolean valid_add_task = false;
         while (pNames.hasMoreElements()){
             String pName = (String)pNames.nextElement();
             if(pName.equals("assignee")){
                 //find the assignee according to the name
-                StaffController sc = new StaffController();
-                Staff a = sc.getStaff(request.getParameter(pName));
-                if(a == null)
-                    request.setAttribute("invalid_assignee", true);
-                pMap.put("assigneeid", a.getStaffID());
+                Staff a = new StaffController().getStaff(request.getParameter(pName));
+                if(a!=null)
+                    pMap.put("assigneeid", a.getStaffID());
+                else
+                    invalid_assignee = true;
             }else
                 pMap.put(pName, request.getParameter(pName));
         }
         LoginStaff s = (LoginStaff)session.getAttribute("CurrentUser");
         pMap.put("reporterid", s.getStaffID());
         TaskController tc = new TaskController();
-        if(tc.createTask(pMap)){
-            response.sendRedirect("tasks");
-        }else{
-            request.setAttribute("invalid_add_task", true);
-            request.getRequestDispatcher("/WEB-INF/tasks.jsp").forward(request, response);
+        if(!invalid_assignee && tc.createTask(pMap)){
+            valid_add_task = true;
         }
+        request.setAttribute("invalid_assignee", invalid_assignee);
+        request.setAttribute("valid_add_task", valid_add_task);
+        doGet(request, response);
     }
 
     /**
