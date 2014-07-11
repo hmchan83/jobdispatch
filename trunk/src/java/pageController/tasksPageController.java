@@ -31,19 +31,16 @@ public class tasksPageController extends pageController {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         HttpSession session = request.getSession(false);
-        if (!authentication(session)) {
-            response.sendRedirect("index");
-        } else {
-            try {
-                TaskListController tlc = new TaskListController();
-                LoginStaff s = (LoginStaff)session.getAttribute("CurrentUser");
-                session.setAttribute("tasklist", tlc.getTasksByStaff(s.getStaffID()));
-                request.setAttribute("tasktypelist", new TaskTypeController().getTypeList());
-                request.setAttribute("taskprioritylist", new PriorityController().getPriorityList());
-                dispatcher = request.getRequestDispatcher("/WEB-INF/tasks.jsp");
-                dispatcher.forward(request, response);
-            } catch (Exception e) {}
-        }
+        redirectWithAuth(session, response);
+        try {
+            TaskListController tlc = new TaskListController();
+            LoginStaff s = (LoginStaff)session.getAttribute("CurrentUser");
+            session.setAttribute("tasklist", tlc.getTasksByStaff(s.getStaffID()));
+            request.setAttribute("tasktypelist", new TaskTypeController().getTypeList());
+            request.setAttribute("taskprioritylist", new PriorityController().getPriorityList());
+            dispatcher = request.getRequestDispatcher("/WEB-INF/tasks.jsp");
+            dispatcher.forward(request, response);
+        } catch (Exception e) {}
     }
 
     @Override

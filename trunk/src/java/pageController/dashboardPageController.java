@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pageController;
 
 import java.io.IOException;
@@ -21,27 +20,15 @@ import javax.servlet.http.HttpSession;
  */
 public class dashboardPageController extends pageController {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
-        if (!authentication(request.getSession(false))) {
-            response.sendRedirect("index");
-        } else {
-            try {
-                dispatcher = request.getRequestDispatcher("/WEB-INF/dashboard.jsp");
-                dispatcher.forward(request, response);
-            } catch (Exception e) {
-            }
+        redirectWithAuth(request.getSession(false), response);
+        try {
+            dispatcher = request.getRequestDispatcher("/WEB-INF/dashboard.jsp");
+            dispatcher.forward(request, response);
+        } catch (Exception e) {
         }
     }
 
