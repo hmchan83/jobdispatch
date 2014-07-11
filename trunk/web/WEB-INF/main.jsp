@@ -13,6 +13,13 @@
             }
         </style>
         <link rel="stylesheet" href="css/user.css" />
+        <script>           
+            $(document).ready(function(){
+                $(".task-list-detail a").each(function(){
+                    $(this).attr("href", "tasks?taskid="+$(this).data("taskid"));
+                });
+            });
+        </script>
     </head>
     <body>
         <jsp:include page="template_jsp/header.jsp" flush="true" />

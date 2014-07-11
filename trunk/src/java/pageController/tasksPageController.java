@@ -35,8 +35,7 @@ public class tasksPageController extends HttpServlet {
             try {
                 TaskListController tlc = new TaskListController();
                 LoginStaff s = (LoginStaff)session.getAttribute("CurrentUser");
-                ArrayList<Task> tasks = tlc.getTasksByStaff(s.getStaffID());
-                session.setAttribute("tasklist", tasks);
+                session.setAttribute("tasklist", tlc.getTasksByStaff(s.getStaffID()));
                 dispatcher = request.getRequestDispatcher("/WEB-INF/tasks.jsp");
                 dispatcher.forward(request, response);
             } catch (Exception e) {}
