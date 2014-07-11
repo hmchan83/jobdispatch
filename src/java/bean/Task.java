@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bean;
 
 /**
@@ -11,12 +10,15 @@ package bean;
  * @author Marcus
  */
 public class Task {
+
     private int taskID;
     private String taskName;
     private TaskType taskType;
     private Status status;
     private Priority priority;
     private String description;
+    private Staff assignee;
+    private Staff reporter;
 
     public Task() {
     }
@@ -68,7 +70,20 @@ public class Task {
     public void setTaskID(int taskid) {
         this.taskID = taskid;
     }
-    
-    
-    
+
+    public Staff getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Staff assignee) {
+        this.assignee = assignee;
+    }
+
+    public Staff getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(Staff reporter) {
+        this.reporter = reporter;
+    }
 }

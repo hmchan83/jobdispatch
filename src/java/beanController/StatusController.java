@@ -22,8 +22,8 @@ public class StatusController extends BeanController {
             Status tmp;
             while (rs.next()) {
                 tmp = new Status();
-                tmp.setStatusID(rs.getInt(1));
-                tmp.setStatusName(rs.getString(2));
+                tmp.setStatusID(rs.getInt("StatusID"));
+                tmp.setStatusName(rs.getString("StatusName"));
                 statusList.add(tmp);
             }
         } catch (SQLException ex) {
