@@ -18,6 +18,7 @@ public abstract class pageController extends HttpServlet {
 
     @Override
     protected abstract void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    @Override
     protected abstract void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     protected boolean authentication(HttpSession session){
         return session != null && session.getAttribute("CurrentUser") != null;

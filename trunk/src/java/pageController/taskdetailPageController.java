@@ -20,16 +20,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author Joseph
  */
-public class taskdetailPageController extends HttpServlet {
+public class taskdetailPageController extends pageController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
-        HttpSession session = request.getSession(false);
-        if (session.getAttribute("CurrentUser") == null) {
-            response.sendRedirect("index");
-        } else {
+        redirectWithAuth(request.getSession(false), response);
             try {
                 int taskid = Integer.parseInt(request.getParameter("taskid"));
                 
@@ -46,7 +43,6 @@ public class taskdetailPageController extends HttpServlet {
             } catch (Exception e) {
             }
         }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -58,10 +54,8 @@ public class taskdetailPageController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
             processRequest(request, response);
-        
     }
 
     /**
@@ -80,7 +74,6 @@ public class taskdetailPageController extends HttpServlet {
         int taskid = Integer.parseInt(request.getParameter("taskid"));
         HttpSession session = request.getSession(false);
         CommentController comcon = new CommentController();
-        StaffController stacon = new StaffController();
         if(!comcon.newComment(taskid, content, ((LoginStaff)session.getAttribute("CurrentUser")).getStaffID())){
             
         }
