@@ -10,6 +10,8 @@
         <%@include file="style_jsp/default_header_style.jsp" %>
         <link href="css/assigned-tasks.css" rel="stylesheet" type="text/css"/>
         <link href="css/modalstyle.css" rel="stylesheet" type="text/css"/>
+        <link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/pnotify.custom.min.js"></script>
         <style>
             .task-list-container button{
                 margin: 0px 0px 10px 0px;
@@ -44,16 +46,45 @@
                 $(".task-detail-container iframe").attr("src", "taskdetail?taskid=" + taskid);
             }
 
+            function displayMessage() {
+                var isAddTask = "${requestScope.valid_add_task}";
+                var invalidAssignee = "${requestScope.invalid_assignee}";
+                if (isAddTask == "true")
+                    new PNotify({
+                        title: 'Task Created Successfully',
+                        text: '',
+                        type: 'success'
+                    });
+                else {
+                    if (invalidAssignee == "true") {
+                        new PNotify({
+                            title: "Task can't be created",
+                            text: 'You put the wrong assignee username',
+                            type: 'error'
+                        });
+                    } else if(invalidAssignee == "false"){
+                        new PNotify({
+                            title: "Task can't be created",
+                            text: 'Something went wrong',
+                            type: 'error',
+                            icon: 'glyphicon glyphicon-user'
+                        });
+                    }
+                }
+            }
+
             $(document).ready(function() {
                 $(".task-list-detail a").each(function() {
                     $(this).on("click", function() {
                         changeTaskDetail($(this).data("taskid"));
                     });
                 });
-                if ($.getUrlVar('taskid')!== undefined)
+                if ($.getUrlVar('taskid') !== undefined)
                     changeTaskDetail($.getUrlVar('taskid'));
                 else
                     changeTaskDetail($(".task-list-detail a:first").data("taskid"));
+
+                displayMessage();
             });
         </script>
     </head>
@@ -76,8 +107,8 @@
                                 <label for="tasktype" class="col-sm-3 col-md-3 control-label">Task Type</label>
                                 <div class="col-sm-9 col-md-9">
                                     <select name="tasktype" class="form-control">
-                                        <%for(TaskType t : (ArrayList<TaskType>)request.getAttribute("tasktypelist")){%>
-                                            <option value="<%=t.getTypeID()%>"><%=t.getTypeName()%></option>
+                                        <%for (TaskType t : ((ArrayList<TaskType>)request.getAttribute("tasktypelist"))) {%>
+                                        <option value="<%=t.getTypeID()%>"><%=t.getTypeName()%></option>
                                         <%}%>
                                     </select>
                                 </div>
@@ -86,8 +117,8 @@
                                 <label for="taskpriority" class="col-sm-3 col-md-3 control-label">Task Priority</label>
                                 <div class="col-sm-9 col-md-9">
                                     <select name="taskpriority" class="form-control">
-                                        <%for(Priority p : (ArrayList<Priority>)request.getAttribute("taskprioritylist")){%>
-                                            <option value="<%=p.getPriorityID()%>"><%=p.getPriorityName()%></option>
+                                        <%for (Priority p : (ArrayList<Priority>) request.getAttribute("taskprioritylist")) {%>
+                                        <option value="<%=p.getPriorityID()%>"><%=p.getPriorityName()%></option>
                                         <%}%>
                                     </select>
                                 </div>

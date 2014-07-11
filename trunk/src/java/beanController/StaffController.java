@@ -65,7 +65,8 @@ public class StaffController extends BeanController {
                 s.setRoleID(rs.getInt("RoleID"));
                 s.seteMail(rs.getString("Email"));
                 s.setTel(rs.getInt("ContactNumber"));
-            }
+            }else
+                return null;
             return s;
         } catch (SQLException ex) {
             return null;
