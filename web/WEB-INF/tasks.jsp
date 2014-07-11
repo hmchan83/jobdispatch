@@ -16,9 +16,43 @@
                 border: 0px solid;
                 width: 100%;
                 min-height: 100%;
-                
+
             }
         </style>
+        <script>
+            $.extend({
+                getUrlVars: function() {
+                    var vars = [], hash;
+                    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                    for (var i = 0; i < hashes.length; i++)
+                    {
+                        hash = hashes[i].split('=');
+                        vars.push(hash[0]);
+                        vars[hash[0]] = hash[1];
+                    }
+                    return vars;
+                },
+                getUrlVar: function(name) {
+                    return $.getUrlVars()[name];
+                }
+            });
+
+            function changeTaskDetail(taskid) {
+                $(".task-detail-container iframe").attr("src", "taskdetail?taskid=" + taskid);
+            }
+
+            $(document).ready(function() {
+                $(".task-list-detail a").each(function() {
+                    $(this).on("click", function() {
+                        changeTaskDetail($(this).data("taskid"));
+                    });
+                });
+                if ($.getUrlVar('taskid')!== undefined)
+                    changeTaskDetail($.getUrlVar('taskid'));
+                else
+                    changeTaskDetail($(".task-list-detail a:first").data("taskid"));
+            });
+        </script>
     </head>
     <body>
         <div class="modal fade" id="new_task_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -67,7 +101,7 @@
                     </form>
                 </div>
             </div>
-          </div>
+        </div>
         <jsp:include page="template_jsp/header.jsp" flush="true">
             <jsp:param name="username" value="Joseph" />
         </jsp:include>

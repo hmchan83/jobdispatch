@@ -8,7 +8,7 @@
     <div class="tasks">
         <% for(Task t : tasks){ %>
         <div class="task-list-detail block row">
-            <a href="#">
+            <a data-taskid="<%=t.getTaskID()%>">
                 <div class="col-md-2 task-id"><%=t.getTaskID()%></div>
                 <div class="col-md-10 task-title"><%=t.getTaskName()%></div>
             </a>
