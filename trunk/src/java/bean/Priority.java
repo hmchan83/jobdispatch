@@ -30,5 +30,10 @@ public class Priority {
         this.priorityName = priorityName;
     }
     
+    @Override
+    public String toString(){
+        return this.priorityName;
+    }
+    
     
 }

@@ -25,12 +25,12 @@ public class TaskController extends BeanController {
             StatusController statusCon = new StatusController();
             PriorityController priorityCon = new PriorityController();
             while (rs.next()) {
-                t.setTaskID(rs.getInt(1)); //TaskID
-                t.setTaskName(rs.getString(2)); //TaskName
-                t.setTaskType(taskTypeCon.getTaskType(rs.getInt(3))); //TaskType
-                t.setStatus(statusCon.getStatus(rs.getInt(4))); //Status
-                t.setPriority(priorityCon.getPriority(rs.getInt(5)));
-                t.setDescription(rs.getString(6));
+                t.setTaskID(rs.getInt("TaskID")); //TaskID
+                t.setTaskName(rs.getString("TaskName")); //TaskName
+                t.setTaskType(taskTypeCon.getTaskType(rs.getInt("TypeID"))); //TaskType
+                t.setStatus(statusCon.getStatus(rs.getInt("StatusID"))); //Status
+                t.setPriority(priorityCon.getPriority(rs.getInt("PriorityID")));
+                t.setDescription(rs.getString("TaskDescription"));
             }
             return t;
         } catch (SQLException ex) {
