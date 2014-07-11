@@ -5,11 +5,12 @@
  */
 package bean;
 
+
 /**
  *
  * @author Marcus
  */
-public class Task {
+public class Task{
 
     private int taskID;
     private String taskName;

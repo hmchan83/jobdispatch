@@ -27,6 +27,7 @@ public class TaskController extends BeanController {
             TaskTypeController taskTypeCon = new TaskTypeController();
             StatusController statusCon = new StatusController();
             PriorityController priorityCon = new PriorityController();
+            StaffController staffCon = new StaffController();
             while (rs.next()) {
                 t.setTaskID(rs.getInt("TaskID")); //TaskID
                 t.setTaskName(rs.getString("TaskName")); //TaskName
@@ -34,6 +35,8 @@ public class TaskController extends BeanController {
                 t.setStatus(statusCon.getStatus(rs.getInt("StatusID"))); //Status
                 t.setPriority(priorityCon.getPriority(rs.getInt("PriorityID")));
                 t.setDescription(rs.getString("TaskDescription"));
+                t.setAssignee(staffCon.getStaff(rs.getInt("AssigneeID")));
+                t.setReporter(staffCon.getStaff(rs.getInt("ReporterID")));
             }
             return t;
         } catch (SQLException ex) {
@@ -41,6 +44,23 @@ public class TaskController extends BeanController {
         }
     }
 
+    public Boolean updateStatus(int taskID, int newvalue){
+        try{
+            super.setpStmt("UPDATE Task SET StatusID = ? Where TaskID = ?");
+            super.getpStmt().setInt(1, newvalue);
+            super.getpStmt().setInt(2, taskID);
+            Boolean c = super.executeUpdate();
+            if(c==true){
+                StatusController statusCon = new StatusController();
+                this.get(taskID).setStatus(statusCon.getStatus(newvalue));
+                return true;
+            }else
+            return false;
+        }catch(SQLException ex){
+            return false;
+        }        
+    }
+    
     public void modifyTask(int taskID, Task newInfo) {//Update a Task
 
     }
