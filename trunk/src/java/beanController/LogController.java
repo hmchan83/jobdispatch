@@ -57,9 +57,14 @@ public class LogController extends BeanController{
                         return true;
                     }
                 }
-            return false;
-            case "New":
-                return logCreateTask(task,assignee,reporter,date);
+                return false;
+            case "New": case "create":
+                if(logCreateTask(task,assignee,reporter,date)){
+                    if(logAssignTask(task,assignee,reporter,date)){
+                        return true;
+                    }                   
+                }
+                return false;
             case "Assigned":
                 return logAssignTask(task,assignee,reporter,date);
         }
