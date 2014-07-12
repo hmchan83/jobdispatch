@@ -1,4 +1,9 @@
+<%@page import="java.util.Map"%>
+<%@page import="bean.Task"%>
+<%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% HashMap<Task, Integer> urgent_tasks = (HashMap<Task, Integer>)request.getAttribute("urgent_tasks"); %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -62,12 +67,15 @@
                                 <th>Priority</th>
                                 <th>Unresolved for</th>
                             </thead>
-                            <tr>
-                                <td>1357</td>
-                                <td>This is a title</td>
-                                <td>High</td>
-                                <td>56 days</td>
-                            </tr>
+                            
+                            <%for(Map.Entry<Task, Integer> entry : urgent_tasks.entrySet()){%>
+                                <tr>
+                                    <td><%=entry.getKey().getTaskID()%></td>
+                                    <td><%=entry.getKey().getTaskName()%></td>
+                                    <td><%=entry.getKey().getPriority()%></td>
+                                    <td><%=entry.getValue()%> days</td>
+                                </tr>
+                            <%}%>
                         </table>
                     </div>
                     <div class="col-sm-6 col-md-6 PL0">
