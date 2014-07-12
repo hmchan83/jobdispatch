@@ -29,7 +29,7 @@
                     </jsp:include>
                     <jsp:include page="template_jsp/num-stat.jsp" flush="true">
                         <jsp:param name="status" value="resolved"/>
-                        <jsp:param name="type" value="status" />
+                        <jsp:param name="type" value="type" />
                     </jsp:include>
                     <jsp:include page="template_jsp/ppl-stat.jsp" flush="true">
                         <jsp:param name="status" value="resolved" />
@@ -43,7 +43,7 @@
                     </jsp:include>
                     <jsp:include page="template_jsp/num-stat.jsp" flush="true">
                         <jsp:param name="status" value="unresolved"/>
-                        <jsp:param name="type" value="status" />
+                        <jsp:param name="type" value="type" />
                     </jsp:include>
                     <jsp:include page="template_jsp/ppl-stat.jsp" flush="true">
                         <jsp:param name="status" value="unresolved" />
