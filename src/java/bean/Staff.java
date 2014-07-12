@@ -4,7 +4,7 @@ package bean;
  *
  * @author Marcus
  */
-public class Staff {
+public class Staff{
     private int staffID;
     private String realName;
     private String userName;
@@ -75,8 +75,6 @@ public class Staff {
     @Override
     public String toString(){
         return realName;
-    }
-    
-    
+    } 
     
 }

@@ -4,7 +4,7 @@ package bean;
  *
  * @author Marcus
  */
-public class LoginStaff {
+public class LoginStaff extends Staff{
     
     private int staffID;
     private String realName;
