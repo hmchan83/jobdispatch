@@ -8,7 +8,15 @@ import bean.TaskType;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -40,110 +48,127 @@ public class DashboardController extends BeanController{
     
     public void getHighWorkloadPPL(){
         StaffController sc = new StaffController();
+        HashMap temp = new HashMap();
         super.setpStmt("select top 10 count(*) as count, assigneeid from task where (statusid=1 or statusid=2) group by assigneeid order by count(*) desc");
         ResultSet rs = super.execute();
         try{
-        while(rs.next()){
-            int count = rs.getInt("count");
-            Staff assignee = sc.getStaff(rs.getInt("assigneeid"));
-            dashboard.getHigh_workload_ppl().put(assignee, count);
-        }
+            while(rs.next()){
+                int count = rs.getInt("count");
+                Staff assignee = sc.getStaff(rs.getInt("assigneeid"));
+                temp.put(assignee, count);
+            }
         }catch(SQLException e){}
+        dashboard.setHigh_workload_ppl(sortByValues(temp));
     }
     
     public void getLowWorkloadPPL(){
         StaffController sc = new StaffController();
+        HashMap temp = new HashMap();
         super.setpStmt("select top 10 count(*) as count, assigneeid from task where (statusid=1 or statusid=2) group by assigneeid order by count(*) asc");
         ResultSet rs = super.execute();
         try{
         while(rs.next()){
             int count = rs.getInt("count");
             Staff assignee = sc.getStaff(rs.getInt("assigneeid"));
-            dashboard.getLow_workload_ppl().put(assignee, count);
+            temp.put(assignee, count);
         }
         }catch(SQLException e){}
+        dashboard.setLow_workload_ppl(sortByValues(temp));
     }
     
     public void getUrgentTasks(){
         TaskController tc = new TaskController();
+        HashMap temp = new HashMap();
         super.setpStmt("select top 10 s.taskid, s.date from systemlog s, task t where logType='create' and not exists(select * from systemlog u where s.taskid = u.taskid and (logtype='start' or logtype='complete')) and s.taskid=t.taskid order by t.priorityid asc, s.date asc");
         ResultSet rs = super.execute();
         try{
             while(rs.next()){
                 Task t = tc.getTaskDetail(rs.getInt("taskid"));
                 long diff = new Date().getTime() - ((Date)rs.getObject("date")).getTime();
-                dashboard.getUrgent_tasks().put(t, diff);
+                temp.put(t, diff);
             }
         }catch(SQLException e){}
+        dashboard.setUrgent_tasks(sortByValues(temp));
     }
     
     public void getUnresolvedType(){
         TaskTypeController ttc = new TaskTypeController();
+        HashMap temp = new HashMap();
         super.setpStmt("select count(*) as count, typeid from task where (statusid=1 or statusid=2 or statusid=3) group by typeid order by count desc");
         ResultSet rs = super.execute();
         try{
             while(rs.next()){
                 TaskType t = ttc.getTaskType(rs.getInt("typeid"));
                 int count = rs.getInt("count");
-                dashboard.getUnresolved_type().put(t, count);
+                temp.put(t, count);
             }
         }catch(SQLException e){}
+        dashboard.setUnresolved_type(sortByValues(temp));
     }
     
     public void getUnresolvedPriority(){
         PriorityController pc = new PriorityController();
+        HashMap temp = new HashMap();
         super.setpStmt("select count(*) as count, priorityid from task where (statusid=1 or statusid=2 or statusid=3) group by priorityid order by count desc");
         ResultSet rs = super.execute();
         try{
             while(rs.next()){
                 Priority p = pc.getPriority(rs.getInt("priorityid"));
                 int count = rs.getInt("count");
-                dashboard.getUnresolved_priority().put(p, count);
+                temp.put(p, count);
             }
         }catch(SQLException e){}
+        dashboard.setUnresolved_priority(sortByValues(temp));
     }
     
     public void getResolvedType(){
         TaskTypeController ttc = new TaskTypeController();
+        HashMap temp = new HashMap();
         super.setpStmt("select count(*) as count, typeid from task where (statusid=4 or statusid=5) group by typeid order by count desc");
         ResultSet rs = super.execute();
         try{
             while(rs.next()){
                 TaskType t = ttc.getTaskType(rs.getInt("typeid"));
                 int count = rs.getInt("count");
-                dashboard.getResolved_type().put(t, count);
+                temp.put(t, count);
             }
         }catch(SQLException e){}
+        dashboard.setResolved_type(sortByValues(temp));
     }
     
     public void getResolvedPriority(){
         PriorityController pc = new PriorityController();
+        HashMap temp = new HashMap();
         super.setpStmt("select count(*) as count, priorityid from task where (statusid=4 or statusid=5) group by priorityid order by count desc");
         ResultSet rs = super.execute();
         try{
             while(rs.next()){
                 Priority p = pc.getPriority(rs.getInt("priorityid"));
                 int count = rs.getInt("count");
-                dashboard.getResolved_priority().put(p, count);
+                temp.put(p, count);
             }
         }catch(SQLException e){}
+        dashboard.setResolved_type(sortByValues(sortByValues(temp)));
     }
     
     public void getProductivePPL(){
         StaffController sc = new StaffController();
+        HashMap temp = new HashMap();
         super.setpStmt("select top 10 count(distinct taskid) as count, assigneeid from systemlog where logtype='complete' group by assigneeid order by count desc");
         ResultSet rs = super.execute();
         try{
             while(rs.next()){
                 Staff s = sc.getStaff(rs.getInt("assigneeid"));
                 int count = rs.getInt("count");
-                dashboard.getProductive_ppl().put(s, count);
+                temp.put(s, count);
             }
         }catch(SQLException e){}
+        dashboard.setProductive_ppl(sortByValues(temp));
     }
     
     public void getNonProductivePPL(){
         StaffController sc = new StaffController();
+        HashMap temp = new HashMap();
         super.setpStmt("select top 10 count(distinct taskid) as count, assigneeid from systemlog where logtype='complete' group by assigneeid order by count asc");
         ResultSet rs = super.execute();
         try{
@@ -153,10 +178,11 @@ public class DashboardController extends BeanController{
                 while(rs.next()){
                     Staff s = sc.getStaff(rs.getInt("assigneeid"));
                     int count = rs.getInt("count");
-                    dashboard.getNon_productive_ppl().put(s, count);
+                    temp.put(s, count);
                 }
             }
         }catch(SQLException e){}
+        dashboard.setNon_productive_ppl(sortByValues(temp));
     }
     
     public void getUnresolvedTotal(){
@@ -176,4 +202,24 @@ public class DashboardController extends BeanController{
             dashboard.setTotal_resolved_tasks(rs.getInt("count"));
         }}catch(Exception e){}
     }
+    
+    private HashMap sortByValues(HashMap map) { 
+       List list = new LinkedList(map.entrySet());
+       // Defined Custom Comparator here
+       Collections.sort(list, new Comparator() {
+            public int compare(Object o1, Object o2) {
+               return ((Comparable) ((Map.Entry) (o1)).getValue())
+                  .compareTo(((Map.Entry) (o2)).getValue());
+            }
+       });
+
+       // Here I am copying the sorted list in HashMap
+       // using LinkedHashMap to preserve the insertion order
+       HashMap sortedHashMap = new LinkedHashMap();
+       for (Iterator it = list.iterator(); it.hasNext();) {
+              Map.Entry entry = (Map.Entry) it.next();
+              sortedHashMap.put(entry.getKey(), entry.getValue());
+       } 
+       return sortedHashMap;
+  }
 }

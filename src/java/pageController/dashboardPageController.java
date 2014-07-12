@@ -5,6 +5,7 @@
  */
 package pageController;
 
+import beanController.DashboardController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -25,6 +26,7 @@ public class dashboardPageController extends pageController {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         redirectWithAuth(request.getSession(false), response);
+        DashboardController dc = new DashboardController();
         try {
             dispatcher = request.getRequestDispatcher("/WEB-INF/dashboard.jsp");
             dispatcher.forward(request, response);
@@ -32,15 +34,6 @@ public class dashboardPageController extends pageController {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
