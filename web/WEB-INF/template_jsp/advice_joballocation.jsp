@@ -6,7 +6,7 @@
         <thead>
             <th>Name</th>
             <th>Unresolved jobs assigned to them</th>
-        </thead>
+        </thead>       
         <tr>
             <td>Joseph Chong</td>
             <td>500</td>

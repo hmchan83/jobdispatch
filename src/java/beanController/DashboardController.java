@@ -58,7 +58,7 @@ public class DashboardController extends BeanController{
                 temp.put(assignee, count);
             }
         }catch(SQLException e){}
-        dashboard.setHigh_workload_ppl(sortByValues(temp));
+        dashboard.setHigh_workload_ppl(sortByValues(temp, true));
     }
     
     public void getLowWorkloadPPL(){
@@ -84,11 +84,11 @@ public class DashboardController extends BeanController{
         try{
             while(rs.next()){
                 Task t = tc.getTaskDetail(rs.getInt("taskid"));
-                long diff = new Date().getTime() - ((Date)rs.getObject("date")).getTime();
+                long diff = (new Date().getTime() - ((Date)rs.getObject("date")).getTime())/(1000*60*60*24);
                 temp.put(t, diff);
             }
         }catch(SQLException e){}
-        dashboard.setUrgent_tasks(sortByValues(temp));
+        dashboard.setUrgent_tasks(sortByValues(temp, true));
     }
     
     public void getUnresolvedType(){
@@ -103,7 +103,7 @@ public class DashboardController extends BeanController{
                 temp.put(t, count);
             }
         }catch(SQLException e){}
-        dashboard.setUnresolved_type(sortByValues(temp));
+        dashboard.setUnresolved_type(sortByValues(temp, true));
     }
     
     public void getUnresolvedPriority(){
@@ -118,7 +118,7 @@ public class DashboardController extends BeanController{
                 temp.put(p, count);
             }
         }catch(SQLException e){}
-        dashboard.setUnresolved_priority(sortByValues(temp));
+        dashboard.setUnresolved_priority(sortByValues(temp, true));
     }
     
     public void getResolvedType(){
@@ -133,7 +133,7 @@ public class DashboardController extends BeanController{
                 temp.put(t, count);
             }
         }catch(SQLException e){}
-        dashboard.setResolved_type(sortByValues(temp));
+        dashboard.setResolved_type(sortByValues(temp, true));
     }
     
     public void getResolvedPriority(){
@@ -148,7 +148,7 @@ public class DashboardController extends BeanController{
                 temp.put(p, count);
             }
         }catch(SQLException e){}
-        dashboard.setResolved_type(sortByValues(sortByValues(temp)));
+        dashboard.setResolved_type(sortByValues(sortByValues(temp, true)));
     }
     
     public void getProductivePPL(){
@@ -163,7 +163,7 @@ public class DashboardController extends BeanController{
                 temp.put(s, count);
             }
         }catch(SQLException e){}
-        dashboard.setProductive_ppl(sortByValues(temp));
+        dashboard.setProductive_ppl(sortByValues(temp, true));
     }
     
     public void getNonProductivePPL(){
@@ -222,4 +222,24 @@ public class DashboardController extends BeanController{
        } 
        return sortedHashMap;
   }
+    
+    public HashMap sortByValues(HashMap map, boolean asc){
+        List list = new LinkedList(map.entrySet());
+       // Defined Custom Comparator here
+       Collections.sort(list, new Comparator() {
+            public int compare(Object o1, Object o2) {
+               return ((Comparable) ((Map.Entry) (o1)).getValue())
+                  .compareTo(((Map.Entry) (o2)).getValue())*-1;
+            }
+       });
+
+       // Here I am copying the sorted list in HashMap
+       // using LinkedHashMap to preserve the insertion order
+       HashMap sortedHashMap = new LinkedHashMap();
+       for (Iterator it = list.iterator(); it.hasNext();) {
+              Map.Entry entry = (Map.Entry) it.next();
+              sortedHashMap.put(entry.getKey(), entry.getValue());
+       } 
+       return sortedHashMap;
+    }
 }
