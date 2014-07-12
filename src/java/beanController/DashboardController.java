@@ -30,6 +30,8 @@ public class DashboardController extends BeanController{
         getResolvedPriority();
         getProductivePPL();
         getNonProductivePPL();
+        getUnresolvedTotal();
+        getResolvedTotal();
     }
     
     public Dashboard getDashboard(){
@@ -155,5 +157,23 @@ public class DashboardController extends BeanController{
                 }
             }
         }catch(SQLException e){}
+    }
+    
+    public void getUnresolvedTotal(){
+        super.setpStmt("select count(*) as count from task where statusid=1 or statusid=2 or statusid=3");
+        ResultSet rs = super.execute();
+        try{
+        if(rs.next()){
+            dashboard.setTotal_unresolved_tasks(rs.getInt("count"));
+        }}catch(Exception e){}
+    }
+    
+    public void getResolvedTotal(){
+        super.setpStmt("select count(*) as count from task where statusid=4 or statusid=5");
+        ResultSet rs = super.execute();
+        try{
+        if(rs.next()){
+            dashboard.setTotal_resolved_tasks(rs.getInt("count"));
+        }}catch(Exception e){}
     }
 }
