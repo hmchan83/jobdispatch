@@ -5,6 +5,7 @@
  */
 package pageController;
 
+import bean.Dashboard;
 import beanController.DashboardController;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,8 +27,19 @@ public class dashboardPageController extends pageController {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         redirectWithAuth(request.getSession(false), response);
-        DashboardController dc = new DashboardController();
+        Dashboard d = new DashboardController().getDashboard();
         try {
+            request.setAttribute("high_workload_ppl", d.getHigh_workload_ppl());
+            request.setAttribute("low_workload_ppl", d.getLow_workload_ppl());
+            request.setAttribute("urgent_tasks", d.getUrgent_tasks());
+            request.setAttribute("resolved_priority", d.getResolved_priority());
+            request.setAttribute("unresolved_priority", d.getUnresolved_priority());
+            request.setAttribute("resolved_type", d.getResolved_type());
+            request.setAttribute("unresolved_type", d.getUnresolved_type());
+            request.setAttribute("productive_ppl", d.getProductive_ppl());
+            request.setAttribute("non_productive_ppl", d.getNon_productive_ppl());
+            request.setAttribute("total_resolved_tasks", d.getTotal_resolved_tasks());
+            request.setAttribute("total_unresolved_tasks", d.getTotal_unresolved_tasks());
             dispatcher = request.getRequestDispatcher("/WEB-INF/dashboard.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {
@@ -40,28 +52,15 @@ public class dashboardPageController extends pageController {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

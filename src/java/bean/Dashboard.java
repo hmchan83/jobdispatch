@@ -20,6 +20,8 @@ public class Dashboard {
     private HashMap non_productive_ppl;
     
     public Dashboard(){
+        total_resolved_tasks = 0;
+        total_unresolved_tasks = 0;
         high_workload_ppl = new HashMap<Staff, Integer>();
         low_workload_ppl = new HashMap<Staff, Integer>();
         urgent_tasks = new HashMap<Task, Long>();
