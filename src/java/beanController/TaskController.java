@@ -99,8 +99,9 @@ public class TaskController extends BeanController {
                 t.setTaskID(insertedID.getInt(1));
             }
             LogController logCon = new LogController();
-            logCon.logCreateTask(t, t.getAssignee(), t.getReporter(), current);
-            logCon.logAssignTask(t, t.getAssignee(), t.getReporter(), current);
+            logCon.logTask(new StatusController().getStatus("New"),t, t.getAssignee(), t.getReporter(), current);
+            //logCon.logCreateTask(t, t.getAssignee(), t.getReporter(), current);
+            //logCon.logAssignTask(t, t.getAssignee(), t.getReporter(), current);
         }catch(SQLException ex){
             return false;
         }
