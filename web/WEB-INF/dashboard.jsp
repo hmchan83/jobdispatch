@@ -53,12 +53,12 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 advices-container">
                     <h3>advices</h3>
-                    <div class="jobs-first-container advices table-responsive">
-                        <div class="italic-heading FS18">work on these jobs first</div>
+                    <div class="task-first-container advices table-responsive">
+                        <div class="italic-heading FS18">work on these tasks first</div>
                         <table class="table table-hover">
                             <thead>
-                                <th>Job ID</th>
-                                <th>Job title</th>
+                                <th>Task ID</th>
+                                <th>Task title</th>
                                 <th>Priority</th>
                                 <th>Unresolved for</th>
                             </thead>
