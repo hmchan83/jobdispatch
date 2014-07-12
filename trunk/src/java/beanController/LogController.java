@@ -63,11 +63,11 @@ public class LogController extends BeanController{
     }
     
     public boolean logReportTask(Task task, Staff assignee, Staff reporter, Timestamp date){
-        return updateSQL(setLog("complete", task, assignee, reporter, date));
+        return updateSQL(setLog("report", task, assignee, reporter, date));
     }
     
     public boolean logCloseTask(Task task, Staff assignee, Staff reporter, Timestamp date){
-        return updateSQL(setLog("complete", task, assignee, reporter, date));
+        return updateSQL(setLog("close", task, assignee, reporter, date));
     }
     
     @SuppressWarnings("empty-statement")
