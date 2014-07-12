@@ -77,9 +77,16 @@
             function update_prompt(question, field){
                 bootbox.prompt(question, function(result) {                
                 if (result === null) {                                                                       
-                } else {                  
+                } else { 
+                    changeStatus("Assigned",result);
                 }
               });
+            }
+            function changeStatus(newStatus,reporterid){
+                document.getElementById("NewStatus").value=newStatus;
+                if(reporterid!='')
+                document.getElementById("Reporterid").value=reporterid;
+                document.getElementById('statuschange').submit();
             }
         </script>
     </head>
@@ -93,13 +100,18 @@
 >Created on <jsp:getProperty name="task" property="date" /></div>
             </div>
             <div class="button-section">
-                <% if(task.getStatus().getStatusID()==2){ %>
-                <button class="btn btn-default btn-primary"><span class="glyphicon glyphicon-play"></span> Start progress</button>
-                <% }else if (task.getStatus().getStatusID()==3){ %>
-                <button class="btn btn-default btn-success"><span class="glyphicon glyphicon-ok"></span> Complete</button>
-                <% }else if (task.getStatus().getStatusID()==4){ %>
-                <button class="btn btn-default btn-warning" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
-                <% } %>
+                <form action="taskdetail?action=change&taskid=<jsp:getProperty name="task" property="taskID" />" method="post" id="statuschange">
+                    <input type="hidden" value="" name="NewStatus" id="NewStatus" />
+                    <jsp:useBean id="CurrentUser" class="bean.LoginStaff" scope="session" />
+                    <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="Reporterid" id="Reporterid" />
+                    <% if(task.getStatus().getStatusID()==2){ %>
+                    <button class="btn btn-default btn-primary" value="Started" name="newstatus" onclick="changeStatus('Started','')"><span class="glyphicon glyphicon-play"></span> Start progress</button>
+                    <% }else if (task.getStatus().getStatusID()==3){ %>
+                    <button class="btn btn-default btn-success" value="Completed" name="newstatus" onclick="changeStatus('Completed','')"><span class="glyphicon glyphicon-ok"></span> Complete</button>
+                    <% }else if (task.getStatus().getStatusID()==4){ %>
+                    <button type="button" class="btn btn-default btn-warning" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
+                    <% } %>
+                </from>
             </div>
 
             <div class="task-basic-info task-info">
@@ -144,7 +156,7 @@
                     <div class="commentblock-comment"><%=c.getComment()%></div>
                 </div>
                 <% }%>
-                <form action="taskdetail?taskid=<jsp:getProperty name="task" property="taskID" />" method="post">
+                <form action="taskdetail?action=comment&taskid=<jsp:getProperty name="task" property="taskID" />" method="post">
                 <div class="commentarea">
                     <textarea class="form-control" rows="5" name="com_content"></textarea>
                     <button class="btn btn-default btn-info MT10" onclick="this.form.submit()">Comment</button>

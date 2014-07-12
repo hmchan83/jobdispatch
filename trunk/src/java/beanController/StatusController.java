@@ -43,6 +43,15 @@ public class StatusController extends BeanController {
         }
         return null;
     }
+    
+    public Status getStatus(String StatusName) {
+        for (Status t : statusList) {
+            if (t.getStatusName().equals(StatusName)) {
+                return t;
+            }
+        }
+        return null;
+    }
 
     public void addStatus(Status status) {
         try {

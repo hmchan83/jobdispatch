@@ -2,6 +2,7 @@ package beanController;
 
 import bean.Log;
 import bean.Staff;
+import bean.Status;
 import bean.Task;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,6 +45,25 @@ public class LogController extends BeanController{
         }finally{
             try{super.getpStmt().close();}catch(Exception e){}
         }
+    }
+    
+    public boolean logTask(Status status,Task task, Staff assignee, Staff reporter, Timestamp date){
+        switch(status.getStatusName()){
+            case "Started":
+                return logStartTask(task,assignee,reporter,date);
+            case "Completed":
+                if(logCompleteTask(task,assignee,reporter,date)){
+                    if(logReportTask(task,assignee,reporter,date)){
+                        return true;
+                    }
+                }
+            return false;
+            case "New":
+                return logCreateTask(task,assignee,reporter,date);
+            case "Assigned":
+                return logAssignTask(task,assignee,reporter,date);
+        }
+        return false;
     }
     
     public boolean logCreateTask(Task task, Staff assignee, Staff reporter, Timestamp date){     

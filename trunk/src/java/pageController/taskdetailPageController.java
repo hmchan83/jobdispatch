@@ -3,11 +3,15 @@ package pageController;
 import bean.Comment;
 import bean.Task;
 import bean.LoginStaff;
+import bean.Staff;
 import beanController.CommentController;
+import beanController.LogController;
 import beanController.StaffController;
+import beanController.StatusController;
 import beanController.TaskController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,12 +74,25 @@ public class taskdetailPageController extends pageController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String content = request.getParameter("com_content");
+        String action = request.getParameter("action");
         int taskid = Integer.parseInt(request.getParameter("taskid"));
         HttpSession session = request.getSession(false);
-        CommentController comcon = new CommentController();
-        if(!comcon.newComment(taskid, content, ((LoginStaff)session.getAttribute("CurrentUser")).getStaffID())){
+        if(action.equals("comment")){
+            String content = request.getParameter("com_content");           
+            CommentController comcon = new CommentController();
+            if(!comcon.newComment(taskid, content, ((LoginStaff)session.getAttribute("CurrentUser")).getStaffID())){
             
+            }
+        }else if(action.equals("change")){
+            String newstatus = request.getParameter("NewStatus");
+            String reporter = request.getParameter("Reporterid");
+            TaskController taskCon= new TaskController();
+            LogController logCon= new LogController();
+            StaffController staffCon = new StaffController();
+            Task task = taskCon.get(taskid);
+            StatusController statusCon=new StatusController();           
+            taskCon.updateStatus(taskid,statusCon.getStatus(newstatus));
+            logCon.logTask(statusCon.getStatus(newstatus),task,((Staff)session.getAttribute("CurrentUser")),staffCon.getStaff(reporter),new Timestamp(System.currentTimeMillis()));
         }
         processRequest(request, response);
     }

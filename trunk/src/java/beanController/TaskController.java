@@ -48,6 +48,10 @@ public class TaskController extends BeanController {
         }
     }
 
+    public Boolean updateStatus(int taskID, Status newvalue){
+        return updateStatus(taskID,newvalue.getStatusID());
+    }
+    
     public Boolean updateStatus(int taskID, int newvalue){
         try{
             super.setpStmt("UPDATE Task SET StatusID = ? Where TaskID = ?");
@@ -96,6 +100,7 @@ public class TaskController extends BeanController {
             }
             LogController logCon = new LogController();
             logCon.logCreateTask(t, t.getAssignee(), t.getReporter(), current);
+            logCon.logAssignTask(t, t.getAssignee(), t.getReporter(), current);
         }catch(SQLException ex){
             return false;
         }
