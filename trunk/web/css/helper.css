@@ -8,6 +8,8 @@
 .txt-center{text-align: center;}
 
 .IB{display: inline-block;}
+.ABS{position: absolute;}
+.REL{position: relative;}
 
 .P0{padding: 0px;}
 .PL0{padding-left: 0px;}
