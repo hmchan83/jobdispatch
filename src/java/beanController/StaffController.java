@@ -40,10 +40,12 @@ public class StaffController extends BeanController {
             super.getpStmt().setInt(1, id);
             ResultSet rs = super.execute();
             if(rs.next()){
+                UserRoleController roleCon = new UserRoleController();
                 s.setStaffID(rs.getInt("StaffID"));
                 s.setRealName(rs.getString("RealName"));
                 s.setUserName(rs.getString("Username"));
-                s.setRoleID(rs.getInt("RoleID"));
+                //s.setRoleID(rs.getInt("RoleID"));
+                s.setRole(roleCon.getRole(rs.getInt("RoleID")));
                 s.seteMail(rs.getString("Email"));
                 s.setTel(rs.getInt("ContactNumber"));
             }
@@ -60,10 +62,12 @@ public class StaffController extends BeanController {
             super.getpStmt().setString(1, username);
             ResultSet rs = super.execute();
             if(rs.next()){
+                UserRoleController roleCon = new UserRoleController();
                 s.setStaffID(rs.getInt("StaffID"));
                 s.setRealName(rs.getString("RealName"));
                 s.setUserName(rs.getString("Username"));
-                s.setRoleID(rs.getInt("RoleID"));
+                s.setRole(roleCon.getRole(rs.getInt("RoleID")));
+                //s.setRoleID(rs.getInt("RoleID"));
                 s.seteMail(rs.getString("Email"));
                 s.setTel(rs.getInt("ContactNumber"));
             }else
@@ -81,8 +85,8 @@ public class StaffController extends BeanController {
             try{
                 super.getpStmt().setString(1, s.getRealName());
                 super.getpStmt().setString(2, s.getUserName());
-                super.getpStmt().setInt(4, s.getRoleID());
-                super.getpStmt().setInt(5, s.getDeptID());
+                super.getpStmt().setInt(4, s.getRole().getRoleID());
+                super.getpStmt().setInt(5, s.getDept().getDeptID());
                 super.getpStmt().setString(6, s.geteMail());
                 super.getpStmt().setInt(7, s.getTel());
                 return super.executeUpdate();

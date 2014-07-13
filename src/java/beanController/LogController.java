@@ -52,17 +52,12 @@ public class LogController extends BeanController{
             case "Started":
                 return logStartTask(task,assignee,reporter,date);
             case "Completed":
-                if(logCompleteTask(task,assignee,reporter,date)){
-                    if(logReportTask(task,assignee,reporter,date)){
-                        return true;
-                    }
-                }
-                return false;
+                return logCompleteTask(task,assignee,reporter,date);
             case "New": case "create":
                 if(logCreateTask(task,assignee,reporter,date)){
-                    if(logAssignTask(task,assignee,reporter,date)){
+                    //if(logAssignTask(task,assignee,reporter,date)){
                         return true;
-                    }                   
+                    //}                   
                 }
                 return false;
             case "Assigned":
@@ -93,6 +88,74 @@ public class LogController extends BeanController{
     
     public boolean logCloseTask(Task task, Staff assignee, Staff reporter, Timestamp date){
         return updateSQL(setLog("close", task, assignee, reporter, date));
+    }
+    
+    public Log getLastestLog(Task task){
+        return getLastestLog(task,"",null);
+    }
+    
+    public Log getLastestLog(Task task, String Logtype, Staff assignee){
+        Log log = new Log();
+        try {
+            String SQL="SELECT top 1 * FROM SystemLog WHERE TaskID=?";
+            if(!Logtype.isEmpty())
+                SQL+=" AND LogType=?";
+            if(assignee!=null)
+                SQL+=" AND AssigneeID=?";
+            SQL+=" order by Date DESC";
+            super.setpStmt(SQL);
+            int n=1;
+            super.getpStmt().setInt(n++, task.getTaskID());
+            if(!Logtype.isEmpty())
+                super.getpStmt().setString(n++,Logtype);
+            if(assignee!=null)
+                super.getpStmt().setInt(n++,assignee.getStaffID());
+            ResultSet rs = super.execute();
+            StaffController staffCon = new StaffController();
+            while (rs.next()) {
+                log.setLogType(rs.getString("LogType"));
+                log.setTask(task);
+                log.setDate(rs.getTimestamp("Date"));
+                log.setAssignee(staffCon.getStaff(rs.getInt("AssigneeID")));
+                log.setReporter(staffCon.getStaff(rs.getInt("ReporterID")));
+                log.setLogID(rs.getInt("LogID"));
+                return log;
+            }
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }        
+    }
+    
+    public Log getLastAssignLog(Task task){
+        return this.getLastestLog(task, "assign",null);
+    }
+    
+    public Log getLastAssignLogByassignee(Task task,Staff assignee){
+        return this.getLastestLog(task, "assign", assignee);
+    }
+    
+    public Log getCreateLog(Task task){
+        Log log = new Log();
+        try {
+            super.setpStmt("SELECT top 1 * FROM SystemLog WHERE Logtype=? AND TaskID=?");
+            super.getpStmt().setString(1, "create");
+            super.getpStmt().setInt(2, task.getTaskID());
+            ResultSet rs = super.execute();
+            StaffController staffCon = new StaffController();
+            while (rs.next()) {
+                log.setLogType(rs.getString("LogType"));
+                log.setTask(task);
+                log.setDate(rs.getTimestamp("Date"));
+                log.setAssignee(staffCon.getStaff(rs.getInt("AssigneeID")));
+                log.setReporter(staffCon.getStaff(rs.getInt("ReporterID")));
+                log.setLogID(rs.getInt("LogID"));
+                return log;
+            }
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }        
     }
     
     @SuppressWarnings("empty-statement")

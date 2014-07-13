@@ -1,6 +1,6 @@
 <%@page import="bean.Task"%>
 <%@page import="java.util.ArrayList"%>
-<% ArrayList<Task> tasks = (ArrayList<Task>)session.getAttribute("tasklist"); %>
+<% ArrayList<Task> tasks = (ArrayList<Task>)session.getAttribute("unreportedtasklist"); %>
 <div class="taskmenu ib">
     <div class="title-bar block">
         These tasks are finished, but not yet reported

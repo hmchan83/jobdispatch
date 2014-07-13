@@ -1,6 +1,7 @@
 package pageController;
 
 import bean.Comment;
+import bean.Log;
 import bean.Task;
 import bean.LoginStaff;
 import bean.Staff;
@@ -37,6 +38,10 @@ public class taskdetailPageController extends pageController {
                 TaskController taskcon = new TaskController();
                 Task detail = taskcon.getTaskDetail(taskid);
                 request.setAttribute("task", detail);
+                
+                LogController logCon = new LogController();
+                Log lastestLog = logCon.getLastestLog(detail);
+                request.setAttribute("LastLog",lastestLog);
                 
                 CommentController comcon = new CommentController();
                 ArrayList<Comment> commentList = comcon.getComments(taskid);
@@ -85,14 +90,15 @@ public class taskdetailPageController extends pageController {
             }
         }else if(action.equals("change")){
             String newstatus = request.getParameter("NewStatus");
-            String reporter = request.getParameter("Reporterid");
+            String reporter = request.getParameter("reporterid");
+            String assignee = request.getParameter("assigneeid");
             TaskController taskCon= new TaskController();
             LogController logCon= new LogController();
             StaffController staffCon = new StaffController();
             Task task = taskCon.get(taskid);
             StatusController statusCon=new StatusController();           
-            taskCon.updateStatus(taskid,statusCon.getStatus(newstatus));
-            logCon.logTask(statusCon.getStatus(newstatus),task,((Staff)session.getAttribute("CurrentUser")),staffCon.getStaff(reporter),new Timestamp(System.currentTimeMillis()));
+            taskCon.updateStatus(taskid,statusCon.getStatus(newstatus),staffCon.getStaff(assignee),staffCon.getStaff(reporter));
+            //logCon.logTask(statusCon.getStatus(newstatus),task,((Staff)session.getAttribute("CurrentUser")),staffCon.getStaff(reporter),new Timestamp(System.currentTimeMillis()));
         }
         processRequest(request, response);
     }

@@ -24,6 +24,7 @@ public class Task{
     private Staff assignee;
     private Staff reporter;
     private String date;
+    private Staff creator;
 
     public Task() {
     }
@@ -104,7 +105,12 @@ public class Task{
         this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t);
     }
 
+    public Staff getCreator() {
+        return creator;
+    }
 
-    
-    
+    public void setCreator(Staff creator) {
+        this.creator = creator;
+    }
+   
 }
