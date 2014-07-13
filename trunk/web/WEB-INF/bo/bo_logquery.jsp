@@ -28,50 +28,45 @@
                 <form class="form-horizontal" role="form" action="" method="POST">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="staffid" class="col-sm-3 col-md-3 control-label">Staff ID</label>
+                            <label for="logid" class="col-sm-3 col-md-3 control-label">Log ID</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="number" class="form-control" name="staffid" required/>
+                                <input type="number" class="form-control" name="logid"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="col-sm-3 col-md-3 control-label">User Name</label>
+                            <label for="logtype" class="col-sm-3 col-md-3 control-label">Log Type</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="username" required/>
+                                <input type="text" class="form-control" name="logtype"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="realname" class="col-sm-3 col-md-3 control-label">Real Name</label>
+                            <label for="taskid" class="col-sm-3 col-md-3 control-label">Task ID</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="realname" required/>
+                                <input type="number" class="form-control" name="taskid"/>
                             </div>
                         </div>
                         
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="email" class="col-sm-3 col-md-3 control-label">Email</label>
+                            <label for="assigneeid" class="col-sm-3 col-md-3 control-label">Assignee ID</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="email" class="form-control" name="email" required/>
+                                <input type="number" class="form-control" name="assigneeid"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="role" class="col-sm-3 col-md-3 control-label">Role</label>
+                            <label for="reporterid" class="col-sm-3 col-md-3 control-label">Reporter ID</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="role" required/>
+                                <input type="number" class="form-control" name="reporterid"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="department" class="col-sm-3 col-md-3 control-label">Department</label>
+                            <label for="date" class="col-sm-3 col-md-3 control-label">Date</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="department" required/>
+                                <input type="date" class="form-control" name="date"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="telno" class="col-sm-3 col-md-3 control-label">Tel No.</label>
-                            <div class="col-sm-9 col-md-9">
-                                <input type="number" class="form-control" name="telno" required/>
-                            </div>
-                        </div>
+        
                     </div>
                     <div class="col-sm-12 col-md-12 MT20 txt-center">
                         <div class="form-group row">
@@ -85,26 +80,22 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Staff ID</th>
-                            <th>User Name</th>
-                            <th>Real Name</th>
-                            <th>Role</th>
-                            <th>Department</th>
-                            <th>Email</th>
-                            <th>Tel No</th>
-                            <th></th>
+                            <th>Log ID</th>
+                            <th>Log Type</th>
+                            <th>Task ID</th>
+                            <th>Assignee ID</th>
+                            <th>Reporter ID</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Staff ID</td>
-                            <td>User Name</td>
+                            <td>1</td>
+                            <td>create</td>
                             <td>Real Name</td>
-                            <td>Role</td>
-                            <td>Department</td>
-                            <td>Email</td>
-                            <td>Tel No</td>
-                            <td><input type="submit" class="btn btn-default btn-danger" value="retire"></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>2014-07-11 23:59:59.000</td>
                         </tr>
                     </tbody>
                 </table>
