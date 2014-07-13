@@ -36,6 +36,7 @@ public class tasksPageController extends pageController {
             TaskListController tlc = new TaskListController();
             LoginStaff s = (LoginStaff)session.getAttribute("CurrentUser");
             session.setAttribute("tasklist", tlc.getTasksByStaff(s.getStaffID()));
+            session.setAttribute("unreportedtasklist", tlc.getUnreportTasksByStaff(s.getStaffID()));
             request.setAttribute("tasktypelist", new TaskTypeController().getTypeList());
             request.setAttribute("taskprioritylist", new PriorityController().getPriorityList());
             dispatcher = request.getRequestDispatcher("/WEB-INF/tasks.jsp");

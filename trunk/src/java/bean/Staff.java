@@ -8,8 +8,8 @@ public class Staff{
     private int staffID;
     private String realName;
     private String userName;
-    private int roleID;
-    private int deptID;
+    private UserRole role;
+    private Department  dept;
     private String eMail;
     private int tel;
 
@@ -40,20 +40,20 @@ public class Staff{
         this.userName = userName;
     }
 
-    public int getRoleID() {
-        return roleID;
+    public UserRole getRole() {
+        return role;
     }
 
-    public void setRoleID(int roleID) {
-        this.roleID = roleID;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
-    public int getDeptID() {
-        return deptID;
+    public Department getDept() {
+        return dept;
     }
 
-    public void setDeptID(int deptID) {
-        this.deptID = deptID;
+    public void setDept(Department dept) {
+        this.dept = dept;
     }
 
     public String geteMail() {
