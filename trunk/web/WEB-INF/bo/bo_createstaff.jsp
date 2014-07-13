@@ -28,12 +28,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="col-sm-3 col-md-3 control-label">Password</label>
-                            <div class="col-sm-9 col-md-9">
-                                <input type="password" class="form-control" name="password" required/>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="realname" class="col-sm-3 col-md-3 control-label">Real Name</label>
                             <div class="col-sm-9 col-md-9">
                                 <input type="text" class="form-control" name="realname" required/>
