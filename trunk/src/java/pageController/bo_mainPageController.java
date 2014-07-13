@@ -20,6 +20,7 @@ public class bo_mainPageController extends pageController {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         try {
+            bo_redirectWithAuth(request.getSession(false), response);
             dispatcher = request.getRequestDispatcher("/WEB-INF/bo/bo_main.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {

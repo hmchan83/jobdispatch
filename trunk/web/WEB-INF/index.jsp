@@ -26,14 +26,31 @@
             }
         </style>
         <script>
+            ki = 0;
+            ks = [38, 40, 38, 40, 37, 39, 65, 66];
             window.onload = function() {
                 if (<%=request.getAttribute("invalid_login")%>) {
                     var l = 20;
                     for (var i = 0; i < 10; i++)
                         $("#login-form").animate({'margin-left': "+=" + (l = -l) + 'px'}, 50);
                 }
+
+                $(document).bind("keydown", function(e) {
+                    key = e.keyCode;
+                    if(ks[ki]==key)
+                        ki++;
+                    else
+                        ki=0;
+                    if(ki==ks.length){
+                        $(".navbar").removeClass("navbar-default");
+                        $(".navbar").addClass("navbar-inverse");
+                        $("#login-form").attr("action", "bo_index");
+                        alert("cheat activated");
+                        ki=0;
+                    }
+                });
             }
-            function hashPW(){
+            function hashPW() {
                 var hash = CryptoJS.MD5($('input[name="real_password"]').val());
                 $('input[name="password"]').val(hash);
             }

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Joseph
  */
-public class bo_staffQueryPageController extends HttpServlet {
+public class bo_staffQueryPageController extends pageController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +33,7 @@ public class bo_staffQueryPageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         try {
+            bo_redirectWithAuth(request.getSession(false), response);
             dispatcher = request.getRequestDispatcher("/WEB-INF/bo/bo_staffquery.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {

@@ -34,6 +34,7 @@ public class bo_createStaffPageController extends pageController {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         try {
+            bo_redirectWithAuth(request.getSession(false), response);
             dispatcher = request.getRequestDispatcher("/WEB-INF/bo/bo_createstaff.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {

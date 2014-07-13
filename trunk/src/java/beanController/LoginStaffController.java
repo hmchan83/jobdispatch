@@ -28,13 +28,13 @@ public class LoginStaffController extends BeanController{
         
     }
     
-    public boolean Verify(String username, String Pw){
+    public boolean Verify(String username, String pw){
         try{
             super.setpStmt("SELECT StaffID, RealName, Username, Pwd, RoleID, DeptID, Email, ContactNumber FROM Staff Where Username = ?");
             super.getpStmt().setString(1, username);
             ResultSet rs= super.execute();
             if(rs.next()){
-                if(Pw.equals(rs.getString(4))){
+                if(pw.equals(rs.getString(4))){
                     UserRoleController rolecon = new UserRoleController();
                     DepartmentController deptcon = new DepartmentController();
                     LoginStaff tmp = new LoginStaff();
@@ -53,6 +53,13 @@ public class LoginStaffController extends BeanController{
             }           
         }catch (SQLException ex){
             return false;
+        }
+        return false;
+    }
+    
+    public boolean VerifyAdmin(String username, String pw){
+        if(Verify(username, pw) && this.currentUser != null){
+            return currentUser.getRole().getRoleName().toLowerCase().equals("admin");
         }
         return false;
     }
