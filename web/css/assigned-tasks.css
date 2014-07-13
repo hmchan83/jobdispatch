@@ -1,32 +1,35 @@
-.assigned-tasks{
+.taskmenu{
     border: 1px solid #F5F5F5;
     font-size: 14px;
     margin-bottom: 30px;
+    height: 300px;
+    overflow-x: hidden;
+    max-width: 100%;
 } 
 
-.assigned-tasks div{
+.taskmenu div{
     padding-left: 10px;
     line-height: 35px;
     vertical-align: middle;
 }
 
-.assigned-tasks .task-title{
+.taskmenu .task-title{
     white-space: nowrap;
     overflow: hidden;
     text-overflow : ellipsis;
 }
 
-.assigned-tasks .tasks{
+.taskmenu .tasks{
     background-color: white;
 }
 
-.assigned-tasks .title-bar{
+.taskmenu .title-bar{
     background-color: #F6F6F6;
     padding-left: 15px;
     font-weight: 600;
     font-style: italic;
 }
 
-.assigned-tasks .task-list-detail a:hover{
+.taskmenu .task-list-detail a:hover{
     cursor: pointer;
 }

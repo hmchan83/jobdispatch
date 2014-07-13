@@ -3,7 +3,7 @@
 <% ArrayList<Task> tasks = (ArrayList<Task>)session.getAttribute("tasklist"); %>
 <div class="taskmenu ib">
     <div class="title-bar block">
-        You have these tasks unfinished
+        These tasks are finished, but not yet reported
     </div>
     <div class="tasks">
         <% for(Task t : tasks){ %>
