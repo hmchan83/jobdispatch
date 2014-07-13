@@ -9,7 +9,7 @@ public class Staff{
     private String realName;
     private String userName;
     private int roleID;
-    private int  deptID;
+    private int deptID;
     private String eMail;
     private int tel;
 

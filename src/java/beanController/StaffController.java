@@ -7,6 +7,7 @@
 package beanController;
 
 import bean.Department;
+import bean.LoginStaff;
 import bean.Staff;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -71,5 +72,24 @@ public class StaffController extends BeanController {
         } catch (SQLException ex) {
             return null;
         }
+    }
+    
+    public boolean createStaff(Staff s){
+        if(getStaff(s.getUserName()) == null){
+            this.s = s;
+            super.setpStmt("INSERT INTO STAFF(RealName, Username, Pwd, RoleID, DeptID, Email, ContactNumber) VALUES(?, ?, 'd41d8cd98f00b204e9800998ecf8427e', ?, ?, ?, ?)");
+            try{
+                super.getpStmt().setString(1, s.getRealName());
+                super.getpStmt().setString(2, s.getUserName());
+                super.getpStmt().setInt(4, s.getRoleID());
+                super.getpStmt().setInt(5, s.getDeptID());
+                super.getpStmt().setString(6, s.geteMail());
+                super.getpStmt().setInt(7, s.getTel());
+                return super.executeUpdate();
+            }catch(SQLException ex){
+                return false;
+            }
+        }
+        return false;
     }
 }
