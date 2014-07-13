@@ -6,13 +6,25 @@
 
 package pageController;
 
+import bean.Priority;
+import bean.Status;
+import bean.Task;
+import bean.TaskType;
+import beanController.PriorityController;
+import beanController.StatusController;
+import beanController.TaskListController;
+import beanController.TaskTypeController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.util.ParameterMap;
 
 /**
  *
@@ -20,11 +32,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class bo_taskQueryController extends pageController {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
+        ArrayList<TaskType> types = new TaskTypeController().getTypeList();
+        ArrayList<Priority> priority = new PriorityController().getPriorityList();
+        ArrayList<Status> status = new StatusController().getStatusList();
         try {
+            request.setAttribute("tasktype", types);
+            request.setAttribute("taskpriority", priority);
+            request.setAttribute("taskstatus", status);
             bo_redirectWithAuth(request.getSession(false), response);
             dispatcher = request.getRequestDispatcher("/WEB-INF/bo/bo_taskquery.jsp");
             dispatcher.forward(request, response);
@@ -32,33 +50,12 @@ public class bo_taskQueryController extends pageController {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Map<String, String[]> pMap = request.getParameterMap();
+        TaskListController tlc = new TaskListController();
+        ArrayList<Task> tasks = tlc.getTasksByMap(pMap);
+        doGet(request, response);
     }
 
     /**
