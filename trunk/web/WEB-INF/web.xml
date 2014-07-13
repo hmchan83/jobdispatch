@@ -32,6 +32,26 @@
         <servlet-name>404</servlet-name>
         <jsp-file>/WEB-INF/404.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>bo_mainPageController</servlet-name>
+        <servlet-class>pageController.bo_mainPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bo_createStaffPageController</servlet-name>
+        <servlet-class>pageController.bo_createStaffPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bo_staffQueryPageController</servlet-name>
+        <servlet-class>pageController.bo_staffQueryPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bo_taskQueryController</servlet-name>
+        <servlet-class>pageController.bo_taskQueryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bo_taskDetailPageController</servlet-name>
+        <servlet-class>pageController.bo_taskDetailPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>indexPageController</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -63,6 +83,26 @@
     <servlet-mapping>
         <servlet-name>404</servlet-name>
         <url-pattern>/404</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_mainPageController</servlet-name>
+        <url-pattern>/bo_main</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_createStaffPageController</servlet-name>
+        <url-pattern>/bo_createStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_staffQueryPageController</servlet-name>
+        <url-pattern>/bo_staffQuery</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_taskQueryController</servlet-name>
+        <url-pattern>/bo_taskQuery</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_taskDetailPageController</servlet-name>
+        <url-pattern>/bo_taskDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
