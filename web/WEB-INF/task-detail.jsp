@@ -96,8 +96,7 @@
             <div class="task-heading">
                 <div class="task-id"></div>
                 <div class="task-title"><h2><jsp:getProperty name="task" property="taskID" /> - <jsp:getProperty name="task" property="taskName" /></h2></div>
-                <div class="task-creation-time"
->Created on <jsp:getProperty name="task" property="date" /></div>
+                <div class="task-creation-time">Created on <jsp:getProperty name="task" property="date" /></div>
             </div>
             <div class="button-section">
                 <form action="taskdetail?action=change&taskid=<jsp:getProperty name="task" property="taskID" />" method="post" id="statuschange">
@@ -109,9 +108,10 @@
                     <% }else if (task.getStatus().getStatusID()==3){ %>
                     <button class="btn btn-default btn-success" value="Completed" name="newstatus" onclick="changeStatus('Completed','')"><span class="glyphicon glyphicon-ok"></span> Complete</button>
                     <% }else if (task.getStatus().getStatusID()==4){ %>
-                    <button type="button" class="btn btn-default btn-warning" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
+                    <button class="btn btn-default btn-warning" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
                     <% } %>
-                </from>
+                    <button class="btn btn-default btn-info"><span class="glyphicon glyphicon-hand-up"></span> Report</button>
+                </form>
             </div>
 
             <div class="task-basic-info task-info">

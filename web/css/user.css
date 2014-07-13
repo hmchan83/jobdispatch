@@ -1,12 +1,16 @@
  .staff-photo{
-    width: 108px;
+    width: 120px;
     margin: 0 auto;
 }
 
 .staff-photo img{
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border: 4px #F5F5F5 solid;
+}
+
+.staff-photo img:hover{
+    cursor: pointer;
 }
 
 .staff-data div{
