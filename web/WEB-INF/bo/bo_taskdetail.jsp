@@ -33,30 +33,7 @@
                             <tr>
                                 <td><input type="number" name="tasktypeid" /></td>
                                 <td><input type="text" name="tasktypetitle" /></td>
-                                <td><input type="submit" class="btn btn-default btn-warning" value="Create"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <h3>Edit Task Status</h3>
-                    <table class="table table-hover">
-                        <thead>
-                            <th>Task Status ID</th>
-                            <th>Task Status</th>
-                            <th></th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>New</td>
-                                <!--if the status is being used by certain task, delete button is not allowed to show-->
-                                <td><input type="submit" class="btn btn-default btn-danger" value="delete"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="number" name="taskstatusid" /></td>
-                                <td><input type="text" name="taskstatustitle" /></td>
-                                <td><input type="submit" class="btn btn-default btn-warning" value="Create"></td>
+                                <td><input type="submit" class="btn btn-default btn-warning" value="create"></td>
                             </tr>
                         </tbody>
                     </table>

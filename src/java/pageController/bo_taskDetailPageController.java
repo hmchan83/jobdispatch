@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Joseph
  */
-public class bo_taskDetailPageController extends HttpServlet {
+public class bo_taskDetailPageController extends pageController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,6 +34,7 @@ public class bo_taskDetailPageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         try {
+            bo_redirectWithAuth(request.getSession(false), response);
             dispatcher = request.getRequestDispatcher("/WEB-INF/bo/bo_taskdetail.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {

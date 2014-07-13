@@ -1,5 +1,6 @@
 package pageController;
 
+import bean.LoginStaff;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -25,6 +26,13 @@ public abstract class pageController extends HttpServlet {
     }
     protected void redirectWithAuth(HttpSession session, HttpServletResponse response) throws ServletException, IOException{
         if(!authentication(session))
+            response.sendRedirect("index");
+    }
+    protected boolean authAdmin(HttpSession session){
+        return authentication(session) && ((LoginStaff)session.getAttribute("CurrentUser")).getRole().getRoleName().toLowerCase().equals("admin");
+    }
+    protected void bo_redirectWithAuth(HttpSession session, HttpServletResponse response) throws ServletException, IOException{
+        if(!authAdmin(session))
             response.sendRedirect("index");
     }
 

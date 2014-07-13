@@ -52,6 +52,10 @@
         <servlet-name>bo_taskDetailPageController</servlet-name>
         <servlet-class>pageController.bo_taskDetailPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>bo_indexPageController</servlet-name>
+        <servlet-class>pageController.bo_indexPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>indexPageController</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>bo_taskDetailPageController</servlet-name>
         <url-pattern>/bo_taskDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_indexPageController</servlet-name>
+        <url-pattern>/bo_index</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
