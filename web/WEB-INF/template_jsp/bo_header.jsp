@@ -25,6 +25,18 @@
                 </ul>
             </li>
             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Company  <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="bo_structControl">Structure Control</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Log  <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="bo_logQuery">Log Query</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin  <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="logout">Logout</a></li>

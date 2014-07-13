@@ -56,6 +56,14 @@
         <servlet-name>bo_indexPageController</servlet-name>
         <servlet-class>pageController.bo_indexPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>bo_structControlPageController</servlet-name>
+        <servlet-class>pageController.bo_structControlPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bo_logQueryPageController</servlet-name>
+        <servlet-class>pageController.bo_logQueryPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>indexPageController</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>bo_indexPageController</servlet-name>
         <url-pattern>/bo_index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_structControlPageController</servlet-name>
+        <url-pattern>/bo_structControl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_logQueryPageController</servlet-name>
+        <url-pattern>/bo_logQuery</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

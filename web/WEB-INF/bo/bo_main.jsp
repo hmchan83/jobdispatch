@@ -29,6 +29,19 @@
                     <a href="bo_staffQuery" class="btn btn-default btn-info btn-lg btn-block"><span class="glyphicon glyphicon-search"></span> Staff Query</a>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-5 jumbotron control-list tasks-control">
+                    <h2>Company Control</h2>
+                    <br/>
+                    <a href="bo_structControl" class="btn btn-default btn-info btn-lg btn-block"><span class="glyphicon glyphicon-briefcase"></span> Structure Control</a>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-5 jumbotron control-list users-control">
+                    <h2>View Log</h2>
+                    <br/>
+                    <a href="bo_logQuery" class="btn btn-default btn-info btn-lg btn-block"><span class="glyphicon glyphicon-search"></span> Log Query</a>
+                </div>
+            </div>
         </div>
     </body>
 </html>
