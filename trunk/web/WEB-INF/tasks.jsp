@@ -144,14 +144,13 @@
                 </div>
             </div>
         </div>
-        <jsp:include page="template_jsp/header.jsp" flush="true">
-            <jsp:param name="username" value="Joseph" />
-        </jsp:include>
+        <jsp:include page="template_jsp/header.jsp" flush="true" />
         <div class="container">
             <div class="row fill">
                 <div class="col-sm-4 col-md-4 task-list-container">
                     <button class="btn btn-default btn-danger btn-lg btn-block" data-toggle="modal" data-target="#new_task_popup"><span class="glyphicon glyphicon-plus"></span> Create Task</button>
                     <jsp:include page="template_jsp/assigned_tasks.jsp" flush="true" />
+                    <jsp:include page="template_jsp/unreported_tasks.jsp" flush="true" />
                 </div>
                 <div class="col-sm-8 col-md-8 task-detail-container">
                     <iframe src="taskdetail"></iframe>

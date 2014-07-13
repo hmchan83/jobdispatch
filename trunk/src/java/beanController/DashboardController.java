@@ -124,7 +124,7 @@ public class DashboardController extends BeanController{
     public void getResolvedType(){
         TaskTypeController ttc = new TaskTypeController();
         HashMap temp = new HashMap();
-        super.setpStmt("select count(*) as count, typeid from task where (statusid=4 or statusid=5) group by typeid order by count desc");
+        super.setpStmt("select count(*) as count, typeid from task where (statusid=4) group by typeid order by count desc");
         ResultSet rs = super.execute();
         try{
             while(rs.next()){
@@ -139,7 +139,7 @@ public class DashboardController extends BeanController{
     public void getResolvedPriority(){
         PriorityController pc = new PriorityController();
         HashMap temp = new HashMap();
-        super.setpStmt("select count(*) as count, priorityid from task where (statusid=4 or statusid=5) group by priorityid order by count desc");
+        super.setpStmt("select count(*) as count, priorityid from task where (statusid=4) group by priorityid order by count desc");
         ResultSet rs = super.execute();
         try{
             while(rs.next()){
@@ -195,7 +195,7 @@ public class DashboardController extends BeanController{
     }
     
     public void getResolvedTotal(){
-        super.setpStmt("select count(*) as count from task where statusid=4 or statusid=5");
+        super.setpStmt("select count(*) as count from task where statusid=4");
         ResultSet rs = super.execute();
         try{
         if(rs.next()){

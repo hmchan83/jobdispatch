@@ -7,11 +7,6 @@
         <title>JSP Page</title>
         <%@include file="style_jsp/default_header_style.jsp" %>
         <link href="css/assigned-tasks.css" rel="stylesheet" type="text/css"/>
-        <style>
-            .task-container{
-                margin-top: 20px;
-            }
-        </style>
         <link rel="stylesheet" href="css/user.css" />
         <script>           
             $(document).ready(function(){
@@ -29,10 +24,11 @@
                     <jsp:include page="template_jsp/user.jsp" flush="true" />
                 </div>
                 <div class="col-md-7 task-container">
-                    <div class="welcome-msg block">
+                    <div class="welcome-msg block MB20">
                         <h1>Welcome! <jsp:getProperty name="CurrentUser" property="realName" /></h1>
                     </div>
                     <jsp:include page="template_jsp/assigned_tasks.jsp" flush="true" />
+                    <jsp:include page="template_jsp/unreported_tasks.jsp" flush="true" />
                 </div>
             </div>
         </div>
