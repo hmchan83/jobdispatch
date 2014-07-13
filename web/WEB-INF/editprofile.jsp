@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-md-3 control-label"></label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="submit" class="btn btn-primary" />
+                                <input type="submit" class="btn btn-primary" value="Submit"/>
                             </div>
                         </div>
                     </form>
