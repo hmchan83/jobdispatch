@@ -101,7 +101,7 @@ public class DashboardController extends BeanController {
     public void getUnresolvedType() {
         TaskTypeController ttc = new TaskTypeController();
         HashMap temp = new HashMap();
-        super.setpStmt("select count(*) as count, typeid from task where (statusid=1 or statusid=2 or statusid=3) group by typeid order by count desc");
+        super.setpStmt("SELECT TaskType.typeid, IsNull(Temp.TempCount,0) AS count From TaskType Left Join (select count(*) as TempCount, typeid from task where (statusid=1 or statusid=2 or statusid=3) group by typeid ) Temp On TaskType.TypeID=Temp.TypeID order by count desc");
         ResultSet rs = super.execute();
         try {
             while (rs.next()) {
@@ -117,7 +117,7 @@ public class DashboardController extends BeanController {
     public void getUnresolvedPriority() {
         PriorityController pc = new PriorityController();
         HashMap temp = new HashMap();
-        super.setpStmt("select count(*) as count, priorityid from task where (statusid=1 or statusid=2 or statusid=3) group by priorityid order by count desc");
+        super.setpStmt("SELECT TaskPriority.priorityid, IsNull(Temp.TempCount,0) AS count FROM TaskPriority Left Join (SELECT COUNT(*) AS TempCount, PriorityID FROM task WHERE (statusid=1 or statusid=2 or statusid=3) GROUP BY PriorityID) Temp ON TaskPriority.PriorityID=Temp.PriorityID ORDER BY count DESC");
         ResultSet rs = super.execute();
         try {
             while (rs.next()) {
@@ -133,7 +133,7 @@ public class DashboardController extends BeanController {
     public void getResolvedType() {
         TaskTypeController ttc = new TaskTypeController();
         HashMap temp = new HashMap();
-        super.setpStmt("select count(*) as count, typeid from task where (statusid=4) group by typeid order by count desc");
+        super.setpStmt("SELECT TaskType.typeid, IsNull(Temp.TempCount,0) AS count From TaskType Left Join (select count(*) as TempCount, typeid from task where (statusid=4 or statusid=7) group by typeid ) Temp On TaskType.TypeID=Temp.TypeID order by count desc");
         ResultSet rs = super.execute();
         try {
             while (rs.next()) {
@@ -149,7 +149,7 @@ public class DashboardController extends BeanController {
     public void getResolvedPriority() {
         PriorityController pc = new PriorityController();
         HashMap temp = new HashMap();
-        super.setpStmt("select count(*) as count, priorityid from task where (statusid=4) group by priorityid order by count desc");
+        super.setpStmt("SELECT TaskPriority.priorityid, IsNull(Temp.TempCount,0) AS count FROM TaskPriority Left Join (SELECT COUNT(*) AS TempCount, PriorityID FROM task WHERE (statusid=4 or statusid=7) GROUP BY PriorityID) Temp ON TaskPriority.PriorityID=Temp.PriorityID ORDER BY count desc");
         ResultSet rs = super.execute();
         try {
             while (rs.next()) {
@@ -159,7 +159,7 @@ public class DashboardController extends BeanController {
             }
         } catch (SQLException e) {
         }
-        dashboard.setResolved_type(sortByValues(sortByValues(temp, true)));
+        dashboard.setResolved_priority(sortByValues(temp, true));
     }
 
     public void getProductivePPL() {
@@ -210,7 +210,7 @@ public class DashboardController extends BeanController {
     }
 
     public void getResolvedTotal() {
-        super.setpStmt("select count(*) as count from task where statusid=4");
+        super.setpStmt("select count(*) as count from task where statusid=4 or statusid=7");
         ResultSet rs = super.execute();
         try {
             if (rs.next()) {
@@ -240,7 +240,7 @@ public class DashboardController extends BeanController {
         return sortedHashMap;
     }
 
-    public HashMap sortByValues(HashMap map, boolean asc) {
+    public HashMap sortByValues(HashMap map, boolean desc) {
         List list = new LinkedList(map.entrySet());
         // Defined Custom Comparator here
         Collections.sort(list, new Comparator() {
