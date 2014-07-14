@@ -44,8 +44,7 @@ public class bo_createStaffPageController extends pageController {
             throws ServletException, IOException {
         Map<String, String[]> pMap = request.getParameterMap();
         StaffController sc = new StaffController();
-        request.setAttribute("create_success", sc.createStaff(pMap));
-        
+        request.setAttribute("create_success", sc.createStaff(pMap)); 
     }
 
     /**
