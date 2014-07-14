@@ -25,6 +25,7 @@ public class mainPageController extends pageController {
             TaskListController tlc = new TaskListController();
             LoginStaff s = (LoginStaff) session.getAttribute("CurrentUser");
             ArrayList<Task> tasks = tlc.getTasksByStaff(s.getStaffID());
+            session.setAttribute("unreportedtasklist", tlc.getUnreportTasksByStaff(s.getStaffID()));
             session.setAttribute("tasklist", tasks);
             dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
             dispatcher.forward(request, response);
