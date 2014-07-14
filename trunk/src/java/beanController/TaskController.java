@@ -50,6 +50,23 @@ public class TaskController extends BeanController {
             return null;
         }
     }
+    
+    public Task getTaskBasic(int taskID){
+         try {
+            t = new Task();
+            super.setpStmt("SELECT TaskID, TaskName FROM Task Where TaskID = ?");
+            super.getpStmt().setInt(1, taskID);
+            ResultSet rs = super.execute();
+
+            while (rs.next()) {
+                t.setTaskID(rs.getInt("TaskID")); //TaskID
+                t.setTaskName(rs.getString("TaskName")); //TaskName
+            }
+            return t;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
 
     public Boolean updateStatus(int taskID, Status newvalue, Staff assignee, Staff reporter){
         return updateStatus(taskID,newvalue.getStatusID(), assignee, reporter);
