@@ -25,7 +25,25 @@ public class TaskListController extends BeanController {
             ResultSet rs = super.execute();
             Task tmp;
             while (rs.next()) {
-                tmp = tc.getTaskDetail(rs.getInt(1));
+                tmp = tc.getTaskBasic(rs.getInt(1));
+                tasks.add(tmp);
+            }
+        } catch (SQLException ex) {
+            return null;
+        }
+        return tasks;
+    }
+    
+    public ArrayList<Task> getTop10TasksByStaff(int staffID) {
+        ArrayList<Task> tasks = new ArrayList<>();
+        TaskController tc = new TaskController();
+        super.setpStmt("SELECT top 10 TaskID FROM Task WHERE AssigneeID=? AND (StatusID=1 OR StatusID=2 OR StatusID=3) ORDER BY TaskID desc, PriorityID asc");
+        try {
+            super.getpStmt().setInt(2, staffID);
+            ResultSet rs = super.execute();
+            Task tmp;
+            while (rs.next()) {
+                tmp = tc.getTaskBasic(rs.getInt(1));
                 tasks.add(tmp);
             }
         } catch (SQLException ex) {
@@ -36,15 +54,14 @@ public class TaskListController extends BeanController {
     
     public ArrayList<Task> getUnreportTasksByStaff(int staffID) {
         ArrayList<Task> tasks = new ArrayList<>();
-        super.setpStmt("SELECT TaskID, TaskName FROM Task Where AssigneeID=? AND (StatusID=4) ORDER BY TaskID desc, PriorityID asc");
+        TaskController tc = new TaskController();
+        super.setpStmt("SELECT TaskID FROM Task Where AssigneeID=? AND (StatusID=4) ORDER BY TaskID desc, PriorityID asc");
         try {
             super.getpStmt().setInt(1, staffID);
             ResultSet rs = super.execute();
             Task tmp;
             while (rs.next()) {
-                tmp = new Task();
-                tmp.setTaskID(rs.getInt(1));
-                tmp.setTaskName(rs.getString(2));
+                tmp = tc.getTaskBasic(rs.getInt(1));
                 tasks.add(tmp);
             }
         } catch (SQLException ex) {
