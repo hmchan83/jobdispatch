@@ -13,10 +13,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author Joseph
  */
-public class bo_indexPageController extends HttpServlet {
+public class bo_indexPageController extends pageController {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(!authAdmin(request.getSession(false)))
+            request.getRequestDispatcher("/WEB-INF/bo/bo_index.jsp").forward(request, response);
+        else
+            response.sendRedirect("bo_main");
     }
 
 
@@ -37,7 +41,7 @@ public class bo_indexPageController extends HttpServlet {
             }
         }else{
             request.setAttribute("invalid_login", true);
-            request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+            doGet(request, response);
         }
     }
 
