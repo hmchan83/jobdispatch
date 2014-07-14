@@ -1,4 +1,9 @@
+<%@page import="bean.Department"%>
+<%@page import="bean.UserRole"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%ArrayList<UserRole> roles = (ArrayList<UserRole>)request.getAttribute("userrole");%>
+<%ArrayList<Department> departments = (ArrayList<Department>)request.getAttribute("departments");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +25,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6 staff-detail-container">
                     <h3 class="txt-center MB20">Create Staff</h3>
-                    <form class="form-horizontal" role="form" action="editprofile" method="POST" onsubmit="hashPW()">
+                    <form class="form-horizontal" role="form" action="bo_createStaff" method="POST" onsubmit="hashPW()">
                         <div class="form-group">
                             <label for="username" class="col-sm-3 col-md-3 control-label">User Name</label>
                             <div class="col-sm-9 col-md-9">
@@ -36,13 +41,21 @@
                         <div class="form-group">
                             <label for="role" class="col-sm-3 col-md-3 control-label">Role</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="role" required/>
+                                <select name="role" class="form-control">
+                                    <%for(UserRole ur : roles){%>
+                                    <option value="<%=ur.getRoleID()%>"><%=ur%></option>
+                                    <%}%>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="department" class="col-sm-3 col-md-3 control-label">Department</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="department" required/>
+                                <select name="department" class="form-control">
+                                    <%for(Department d : departments){%>
+                                    <option value="<%=d.getDeptID()%>"><%=d%></option>
+                                    <%}%>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
