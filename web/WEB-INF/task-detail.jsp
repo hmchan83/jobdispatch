@@ -1,4 +1,5 @@
-<%@page import="bean.Comment"%>
+<%@page import="bean.Task"%>
+<%@page import="bean.LoginStaff"%>
 <%@page import="bean.Comment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -98,25 +99,28 @@
                 <div class="task-title"><h2><jsp:getProperty name="task" property="taskID" /> - <jsp:getProperty name="task" property="taskName" /></h2></div>
                 <div class="task-creation-time">Created on <jsp:getProperty name="task" property="date" /></div>
             </div>
-            <div class="button-section">
-                <form action="taskdetail?action=change&taskid=<jsp:getProperty name="task" property="taskID" />" method="post" id="statuschange">
-                    <input type="hidden" value="" name="NewStatus" id="NewStatus" />
-                    <jsp:useBean id="CurrentUser" class="bean.LoginStaff" scope="session" />
-                    <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="assigneeid" id="assigneeid" />
-                    <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="reporterid" id="reporterid" />
-                    <% if(task.getStatus().getStatusID()==2){ //Assigned %>
-                    <button class="btn btn-default btn-primary" type="button" value="Started" name="newstatus" onclick="changeStatus('Started','')"><span class="glyphicon glyphicon-play"></span> Start progress</button>
-                    <button class="btn btn-default btn-warning" type="button" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
-                    <% }else if (task.getStatus().getStatusID()==3){ //Started %>
-                    <button class="btn btn-default btn-success" type="button" value="Completed" name="newstatus" onclick="changeStatus('Completed','')"><span class="glyphicon glyphicon-ok"></span> Complete</button>
-                    <% }else if (task.getStatus().getStatusID()==4 && task.getAssignee().getUserName().equals(task.getReporter().getUserName())){ //Completed %>
-                    <button class="btn btn-default btn-danger btn-lg" type="button"  onclick="changeStatus('Closed','')"><span class="glyphicon glyphicon-remove"></span> Closed</button>
-                    <% }else if (task.getStatus().getStatusID()==4){ // %>
-                    <button class="btn btn-default btn-info" type="button" onclick="changeStatus('Completed','')"><span class="glyphicon glyphicon-hand-up"></span> Report</button>
-                    <% }%>
-                    
-                </form>
-            </div>
+            
+            <jsp:useBean id="CurrentUser" class="bean.LoginStaff" scope="session" />
+            <% if(task.getAssignee().getUserName().equals(CurrentUser.getUserName())){ %>
+                <div class="button-section">
+                    <form action="taskdetail?action=change&taskid=<jsp:getProperty name="task" property="taskID" />" method="post" id="statuschange">
+                        <input type="hidden" value="" name="NewStatus" id="NewStatus" />                        
+                        <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="assigneeid" id="assigneeid" />
+                        <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="reporterid" id="reporterid" />
+                        <% if(task.getStatus().getStatusID()==2){ //Assigned %>
+                        <button class="btn btn-default btn-primary" type="button" value="Started" name="newstatus" onclick="changeStatus('Started','')"><span class="glyphicon glyphicon-play"></span> Start progress</button>
+                        <button class="btn btn-default btn-warning" type="button" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
+                        <% }else if (task.getStatus().getStatusID()==3){ //Started %>
+                        <button class="btn btn-default btn-success" type="button" value="Completed" name="newstatus" onclick="changeStatus('Completed','')"><span class="glyphicon glyphicon-ok"></span> Complete</button>
+                        <% }else if (task.getStatus().getStatusID()==4 && task.getAssignee().getUserName().equals(task.getReporter().getUserName())){ //Completed %>
+                        <button class="btn btn-default btn-danger btn-lg" type="button"  onclick="changeStatus('Closed','')"><span class="glyphicon glyphicon-remove"></span> Closed</button>
+                        <% }else if (task.getStatus().getStatusID()==4){ // %>
+                        <button class="btn btn-default btn-info" type="button" onclick="changeStatus('Completed','')"><span class="glyphicon glyphicon-hand-up"></span> Report</button>
+                        <% }%>
+
+                    </form>
+                </div>
+            <% } %>
 
             <div class="task-basic-info task-info">
                 <div class="IB W50">
