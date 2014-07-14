@@ -26,8 +26,16 @@
             }
         </style>
         <script>
+            $(document).ready(function(){
+                if (<%=request.getAttribute("invalid_login")%>) {
+                    var l = 20;
+                    for (var i = 0; i < 10; i++)
+                        $("#login-form").animate({'margin-left': "+=" + (l = -l) + 'px'}, 50);
+                }
+            });
+            
             function hashPW() {
-                var hash = CryptoJS.MD5($('input[name="real_password"]').val());
+                var hash = CryptoJS.MD5($('input[name="password"]').val());
                 $('input[name="password"]').val(hash);
             }
         </script>
@@ -42,7 +50,7 @@
             </div><!--/.nav-collapse -->
         </div>
         <div class="container">
-            <form class="form-signin div-center" id="login-form" role="form" action="index" method="POST" onsubmit="hashPW()">
+            <form class="form-signin div-center" id="login-form" role="form" action="bo_index" method="POST" onsubmit="hashPW()">
                 <h4 class="form-signin-heading">Please sign in</h4>
                 <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="">
                 <input type="password" class="form-control" name="password" placeholder="Password" required>
