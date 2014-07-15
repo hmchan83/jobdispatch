@@ -33,11 +33,11 @@ public class bo_staffQueryResultPageController extends pageController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter("retire")!=null && request.getParameter("retire")!=""){
+        if(!isNullOrEmpty(request.getParameter("retire"))){
             int StaffID = Integer.parseInt(request.getParameter("retire"));
             new StaffController().retireStaff(StaffID);
         }
-        if(request.getParameter("hire")!=null && request.getParameter("hire")!=""){
+        if(!isNullOrEmpty(request.getParameter("hire"))){
             int StaffID = Integer.parseInt(request.getParameter("hire"));
             new StaffController().hireStaff(StaffID);
         }

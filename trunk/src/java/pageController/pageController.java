@@ -35,12 +35,11 @@ public abstract class pageController extends HttpServlet {
         if(!authAdmin(session))
             response.sendRedirect("index");
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
+    protected boolean isNullOrEmpty(String s){
+        return s==null || s.equals("");
+    }
+    
     @Override
     public String getServletInfo() {
         return "Short description";
