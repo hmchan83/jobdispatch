@@ -103,9 +103,9 @@ public class TaskListController extends BeanController {
         String temp = SQL.toLowerCase();
         boolean hasWhere = temp.contains("where");
         if (hasWhere) {
-            SQL += " AND " + key + " = ?";
+            temp += " AND " + key + " = ?";
         } else {
-            SQL += " WHERE " + key + " = ?";
+            temp += " WHERE " + key + " = ?";
         }
         return temp;
     }
