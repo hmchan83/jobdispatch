@@ -4,14 +4,16 @@ package bean;
  *
  * @author Marcus
  */
-public class Staff{
+public class Staff {
+
     private int staffID;
     private String realName;
     private String userName;
     private UserRole role;
-    private Department  dept;
+    private Department dept;
     private String eMail;
     private int tel;
+    private boolean retired;
 
     public Staff() {
     }
@@ -71,10 +73,18 @@ public class Staff{
     public void setTel(int tel) {
         this.tel = tel;
     }
-    
+
+    public boolean isRetired() {
+        return retired;
+    }
+
+    public void setRetired(boolean retired) {
+        this.retired = retired;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return realName;
-    } 
-    
+    }
+
 }
