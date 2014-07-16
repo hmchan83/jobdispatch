@@ -28,20 +28,24 @@
             }
         </style>
         <script>
-            $(document).ready(function(){
+            function changeURL(){
                var url = $(".result_block").data("url")+"?";
                $(".form-horizontal .col-md-6 input").each(function(){
                   url += $(this).attr("name") + "=" + $(this).val() + "&"; 
                });
+               $(".form-horizontal .col-md-6 select").each(function(){
+                  url += $(this).attr("name") + "=" + $(this).val() + "&"; 
+               });
                $(".result_block").attr("src", url);
-            });
+               return false
+            }
         </script>
     </head>
     <body>
         <jsp:include page="../template_jsp/bo_header.jsp" flush="true" />
         <div class="container">
             <div class="filter_block MB20 PT20 row">
-                <form class="form-horizontal" role="form" action="" method="POST">
+                <form class="form-horizontal" role="form" onsubmit="return changeURL()">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="staffid" class="col-sm-3 col-md-3 control-label">Staff ID</label>
