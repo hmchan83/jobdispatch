@@ -1,4 +1,6 @@
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%ArrayList<String> logtype = (ArrayList<String>) request.getAttribute("logtypelist");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,17 +17,36 @@
                 background-color: #F5F5F5;
                 border-radius: 5px;
             }
-            
+
             td{
                 vertical-align: middle !important;
             }
+            
+            .result_block{
+                border: none;
+                width: 100%;
+                min-height: 100%;
+            }
         </style>
+        <script>
+            function changeURL(){
+               var url = $(".result_block").data("url")+"?";
+               $(".form-horizontal .col-md-6 input").each(function(){
+                  url += $(this).attr("name") + "=" + $(this).val() + "&"; 
+               });
+               $(".form-horizontal .col-md-6 select").each(function(){
+                  url += $(this).attr("name") + "=" + $(this).val() + "&"; 
+               });
+               $(".result_block").attr("src", url);
+               return false
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="../template_jsp/bo_header.jsp" flush="true" />
         <div class="container">
             <div class="filter_block MB20 PT20 row">
-                <form class="form-horizontal" role="form" action="" method="POST">
+                <form class="form-horizontal" role="form" onsubmit="return changeURL()">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="logid" class="col-sm-3 col-md-3 control-label">Log ID</label>
@@ -36,7 +57,12 @@
                         <div class="form-group">
                             <label for="logtype" class="col-sm-3 col-md-3 control-label">Log Type</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="logtype"/>
+                                <select name="logtype" class="form-control">
+                                    <option value="" selected>all</option>
+                                    <%for (String s : logtype) {%>
+                                    <option value="<%=s%>"><%=s%></option>
+                                    <%}%>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -45,7 +71,7 @@
                                 <input type="number" class="form-control" name="taskid"/>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -59,14 +85,7 @@
                             <div class="col-sm-9 col-md-9">
                                 <input type="number" class="form-control" name="reporterid"/>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="date" class="col-sm-3 col-md-3 control-label">Date</label>
-                            <div class="col-sm-9 col-md-9">
-                                <input type="date" class="form-control" name="date"/>
-                            </div>
-                        </div>
-        
+                        </div>       
                     </div>
                     <div class="col-sm-12 col-md-12 MT20 txt-center">
                         <div class="form-group row">
@@ -76,30 +95,8 @@
                     </div>
                 </form>
             </div>
-            <div class="result_block">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Log ID</th>
-                            <th>Log Type</th>
-                            <th>Task ID</th>
-                            <th>Assignee ID</th>
-                            <th>Reporter ID</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>create</td>
-                            <td>Real Name</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2014-07-11 23:59:59.000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <iframe class="result_block" src="" data-url="bo_logQueryResult">
+            </iframe>
         </div>
     </body>
 </html>

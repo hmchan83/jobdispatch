@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -173,5 +175,67 @@ public class LogController extends BeanController{
         } catch (SQLException ex) {
             return null;
         }
+    }
+    
+    public ArrayList<String> getLogTypeList(){
+        ArrayList<String> s = new ArrayList<>();
+        s.add("create");
+        s.add("assign");
+        s.add("start");
+        s.add("complete");
+        s.add("report");
+        s.add("close");
+        return s;
+    }
+    
+    public ArrayList<Log> getLogsByMap(Map<String, String[]> map) {
+        ArrayList<Log> logs = new ArrayList<>();
+        String SQL = "SELECT * FROM Systemlog";
+        boolean hasFilter = false;
+        for (Map.Entry<String, String[]> entry : map.entrySet()) {
+            if (!(entry.getValue().length == 0 || entry.getValue()[0].equals(""))) {
+                SQL = addFilter(SQL, entry.getKey());
+                hasFilter = true;
+            }
+        }
+        super.setpStmt(SQL);
+        try {
+            if (hasFilter) {
+                int counter = 1;
+                for (Map.Entry<String, String[]> entry : map.entrySet()) {
+                    if (!entry.getValue()[0].equals("")) {
+                        super.getpStmt().setString(counter, entry.getValue()[0]);
+                        counter++;
+                    }
+                }
+            }
+            ResultSet rs = super.execute();
+            TaskController tc = new TaskController();
+            StaffController sc = new StaffController();
+            Log temp;
+            while (rs.next()) {
+                temp = new Log();
+                temp.setLogID(rs.getInt("LogID"));
+                temp.setLogType(rs.getString("LogType"));
+                temp.setTask(tc.getTaskBasic(rs.getInt("TaskID")));
+                temp.setReporter(sc.getStaffBasic(rs.getInt("ReporterID")));
+                temp.setAssignee(sc.getStaffBasic(rs.getInt("AssigneeID")));
+                temp.setDate(rs.getTimestamp("Date"));
+                logs.add(temp);
+            }
+        } catch (SQLException e) {
+        }
+        return logs;
+    }
+
+    public String addFilter(String SQL, String key) {
+        String temp = SQL.toLowerCase();
+        boolean hasWhere = temp.contains("where");
+        if (hasWhere) {
+            temp += " AND " + key + " = ?";
+        } else {
+            temp += " WHERE " + key + " = ?";
+        }
+        return temp;
     }
 }

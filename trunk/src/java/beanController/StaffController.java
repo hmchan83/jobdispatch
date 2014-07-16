@@ -81,6 +81,22 @@ public class StaffController extends BeanController {
             return null;
         }
     }
+    
+    public Staff getStaffBasic(int id) {
+        s = new Staff();
+        super.setpStmt("SELECT top 1 StaffID, RealName FROM Staff where StaffId = ?");
+        try {
+            super.getpStmt().setInt(1, id);
+            ResultSet rs = super.execute();
+            if (rs.next()) {
+                s.setStaffID(rs.getInt("StaffID"));
+                s.setRealName(rs.getString("RealName"));
+            }
+            return s;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
 
     public boolean createStaff(Staff s) {
         if (getStaff(s.getUserName()) == null) {
@@ -135,7 +151,7 @@ public class StaffController extends BeanController {
             }
             ResultSet rs = super.execute();
             while (rs.next()) {
-                staffs.add(getStaff(rs.getInt(1)));
+                staffs.add(getStaff(rs.getInt("StaffID")));
             }
         } catch (SQLException e) {
         }
