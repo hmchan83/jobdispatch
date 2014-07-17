@@ -108,10 +108,6 @@ public class TaskController extends BeanController {
         }        
     }
     
-    public void modifyTask(int taskID, Task newInfo) {//Update a Task
-
-    }
-    
     public boolean createTask(ParameterMap pMap){
         t = new Task();
         if(pMap.containsKey("tasktitle"))   t.setTaskName((String)pMap.get("tasktitle"));

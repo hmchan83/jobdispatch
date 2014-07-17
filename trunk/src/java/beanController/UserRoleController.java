@@ -56,7 +56,7 @@ public class UserRoleController extends BeanController {
 
     public void addRole(UserRole role) {
         try {
-            super.setpStmt("insert into userrole(roleid, rolename) values(?, ?)");
+            super.setpStmt("Insert INTO UserRole (RoleID,RoleName) VALUES (?,?)");
             super.getpStmt().setInt(1, role.getRoleID());
             super.getpStmt().setString(2, role.getRoleName());
             super.executeUpdate();
@@ -74,10 +74,10 @@ public class UserRoleController extends BeanController {
             super.executeUpdate();
             ResultSet insertedID = super.getpStmt().getGeneratedKeys();
             if (insertedID.next()) {
-                UserRole NewPriority = new UserRole();
-                NewPriority.setRoleID(insertedID.getInt(1));
-                NewPriority.setRoleName(Name);
-                roleList.add(NewPriority);
+                UserRole NewRole = new UserRole();
+                NewRole.setRoleID(insertedID.getInt(1));
+                NewRole.setRoleName(Name);
+                roleList.add(NewRole);
             }
         } catch (SQLException ex) {
             super.error(ex);

@@ -37,7 +37,7 @@
                   url += $(this).attr("name") + "=" + $(this).val() + "&"; 
                });
                $(".result_block").attr("src", url);
-               return false
+               return false;
             }
         </script>
     </head>
