@@ -58,34 +58,36 @@
                 </div>
                 <div class="col-md-6">
                     <h3>Edit Role</h3>
-                    <table class="table table-hover sortable">
-                        <thead>
-                        <th data-defaultsort='asc'>Role ID</th>
-                        <th>Role Title</th>
-                        <th></th>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <td><input type="number" name="roleid" /></td>
-                                <td><input type="text" name="roletitle" /></td>
-                                <td><input type="submit" class="btn btn-default btn-warning" value="create"></td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <%for (Map.Entry<UserRole, Boolean> r : rolemap.entrySet()) {%>
-                            <tr>
-                                <td><%=r.getKey().getRoleID()%></td>
-                                <td><%=r.getKey()%></td>
-                                <!--if there are employees in certain role, can't delete role, delete button is not allowed to show-->
-                                <td>
-                                    <%if (r.getValue() == Boolean.TRUE) {%>
-                                    <input type="submit" class="btn btn-default btn-danger" value="delete">
-                                    <% } %>
-                                </td>
-                            </tr>
-                            <%}%>
-                        </tbody>
-                    </table>
+                    <form action="bo_structControl" method="POST">
+                        <table class="table table-hover sortable">
+                            <thead>
+                            <th data-defaultsort='asc'>Role ID</th>
+                            <th>Role Title</th>
+                            <th></th>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <td><input type="number" name="roleid" /></td>
+                                    <td><input type="text" name="roletitle" /></td>
+                                    <td><input type="submit" class="btn btn-default btn-warning" value="create"></td>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <%for (Map.Entry<UserRole, Boolean> r : rolemap.entrySet()) {%>
+                                <tr>
+                                    <td><%=r.getKey().getRoleID()%></td>
+                                    <td><%=r.getKey()%></td>
+                                    <!--if there are employees in certain role, can't delete role, delete button is not allowed to show-->
+                                    <td>
+                                        <%if (r.getValue() == Boolean.TRUE) {%>
+                                        <input type="submit" class="btn btn-default btn-danger" value="delete">
+                                        <% } %>
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
