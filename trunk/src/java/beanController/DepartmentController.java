@@ -80,8 +80,13 @@ public class DepartmentController extends BeanController {
         }
     }
 
-    public void dropDept() {
-
+    public void delDept(int ID) {
+        super.setpStmt("DELETE FROM DEPARTMENT WHERE DEPTID=?");
+        try{
+            super.getpStmt().setInt(1, ID);
+            super.execute();
+        }catch(SQLException e)
+        {}
     }
     
     public HashMap<Department, Boolean> getDeptMap(){

@@ -6,6 +6,7 @@
 
 package pageController;
 
+import bean.Department;
 import bean.UserRole;
 import beanController.DepartmentController;
 import beanController.UserRoleController;
@@ -36,12 +37,25 @@ public class bo_structControlPageController extends pageController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("roleid")!=null && request.getParameter("rolename")!=null){
+        if(request.getParameter("create_role")!=null && request.getParameter("create_role").equals("1")){
             UserRole ur = new UserRole();
             ur.setRoleID(Integer.parseInt(request.getParameter("roleid")));
             ur.setRoleName(request.getParameter("rolename"));
             new UserRoleController().addRole(ur);
         }
+        if(request.getParameter("del_role")!=null && request.getParameter("del_role").equals("1")){
+            new UserRoleController().delRole(Integer.parseInt(request.getParameter("roleid")));
+        }
+        if(request.getParameter("del_dept")!=null && request.getParameter("del_dept").equals("1")){
+            new DepartmentController().delDept(Integer.parseInt(request.getParameter("deptid")));
+        }
+        if(request.getParameter("create_dept")!=null && request.getParameter("create_dept").equals("1")){
+            Department d = new Department();
+            d.setDeptID(Integer.parseInt(request.getParameter("deptid")));
+            d.setDeptName(request.getParameter("deptname"));
+            new DepartmentController().addDept(d);
+        }
+        response.sendRedirect("bo_structControl");
     }
 
     /**
