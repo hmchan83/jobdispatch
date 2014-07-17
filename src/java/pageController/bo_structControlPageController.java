@@ -6,12 +6,11 @@
 
 package pageController;
 
+import beanController.DepartmentController;
 import beanController.UserRoleController;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,6 +25,7 @@ public class bo_structControlPageController extends pageController {
             throws ServletException, IOException {
         bo_redirectWithAuth(request.getSession(false), response);
         request.setAttribute("rolemap", new UserRoleController().getRoleMap());
+        request.setAttribute("deptmap", new DepartmentController().getDeptMap());
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bo/bo_structcontrol.jsp");
         try{
             rd.forward(request, response);

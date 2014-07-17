@@ -1,7 +1,9 @@
+<%@page import="bean.Department"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="bean.UserRole"%>
 <%HashMap<UserRole, Boolean> rolemap = (HashMap<UserRole, Boolean>) request.getAttribute("rolemap");%>
+<%HashMap<Department, Boolean> deptmap = (HashMap<Department, Boolean>) request.getAttribute("deptmap");%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +16,7 @@
         <link href="css/bootstrap-sortable.css" rel="stylesheet" type="text/css" />
         <style>
             td{
+                height: 51px;
                 vertical-align: middle !important;
             }
         </style>
@@ -24,24 +27,32 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3>Edit Department</h3>
-                    <table class="table table-hover">
+                    <table class="table table-hover sortable">
                         <thead>
-                        <th>Department ID</th>
+                        <th data-defaultsort='asc'>Department ID</th>
                         <th>Department Title</th>
                         <th></th>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Retest</td>
-                                <!--if there are employees in certain department, can't delete department, delete button is not allowed to show-->
-                                <td><input type="submit" class="btn btn-default btn-danger" value="delete"></td>
-                            </tr>
+                        <tfoot>
                             <tr>
                                 <td><input type="number" name="departmentid" /></td>
                                 <td><input type="text" name="departmenttitle" /></td>
                                 <td><input type="submit" class="btn btn-default btn-warning" value="create"></td>
                             </tr>
+                        </tfoot>
+                        <tbody>
+                            <%for (Map.Entry<Department, Boolean> d : deptmap.entrySet()) {%>
+                            <tr>
+                                <td><%=d.getKey().getDeptID()%></td>
+                                <td><%=d.getKey()%></td>
+                                <!--if there are employees in certain department, can't delete department, delete button is not allowed to show-->
+                                <td>
+                                    <%if (d.getValue() == Boolean.TRUE) {%>
+                                    <input type="submit" class="btn btn-default btn-danger" value="delete">
+                                    <%}%>
+                                </td>
+                            </tr>
+                            <%}%>
                         </tbody>
                     </table>
                 </div>
@@ -49,7 +60,7 @@
                     <h3>Edit Role</h3>
                     <table class="table table-hover sortable">
                         <thead>
-                        <th>Role ID</th>
+                        <th data-defaultsort='asc'>Role ID</th>
                         <th>Role Title</th>
                         <th></th>
                         </thead>
