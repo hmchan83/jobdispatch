@@ -10,6 +10,7 @@ import bean.Department;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -81,6 +82,23 @@ public class DepartmentController extends BeanController {
 
     public void dropDept() {
 
+    }
+    
+    public HashMap<Department, Boolean> getDeptMap(){
+        ArrayList<Department> temp = getDeptList();
+        HashMap<Department, Boolean> deptmap = new HashMap<>();
+        setpStmt("SELECT TOP 1 StaffID FROM STAFF WHERE DeptID = ? AND Retired=0");
+        for(Department d : temp){
+            try{
+                getpStmt().setInt(1, d.getDeptID());
+                ResultSet rs = execute();
+                if(rs.next())
+                    deptmap.put(d, Boolean.FALSE);
+                else
+                    deptmap.put(d, Boolean.TRUE);
+            }catch(SQLException e){}
+        }
+        return deptmap;
     }
 
     //Lazy
