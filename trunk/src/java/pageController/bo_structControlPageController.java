@@ -6,6 +6,7 @@
 
 package pageController;
 
+import bean.UserRole;
 import beanController.DepartmentController;
 import beanController.UserRoleController;
 import java.io.IOException;
@@ -35,7 +36,12 @@ public class bo_structControlPageController extends pageController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        if(request.getParameter("roleid")!=null && request.getParameter("rolename")!=null){
+            UserRole ur = new UserRole();
+            ur.setRoleID(Integer.parseInt(request.getParameter("roleid")));
+            ur.setRoleName(request.getParameter("rolename"));
+            new UserRoleController().addRole(ur);
+        }
     }
 
     /**
