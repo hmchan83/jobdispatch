@@ -6,6 +6,7 @@
 
 package pageController;
 
+import beanController.UserRoleController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,45 +21,21 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class bo_structControlPageController extends pageController {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher dispatcher;
-        try {
-            bo_redirectWithAuth(request.getSession(false), response);
-            dispatcher = request.getRequestDispatcher("/WEB-INF/bo/bo_structcontrol.jsp");
-            dispatcher.forward(request, response);
-        } catch (Exception e) {
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        bo_redirectWithAuth(request.getSession(false), response);
+        request.setAttribute("rolemap", new UserRoleController().getRoleMap());
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bo/bo_structcontrol.jsp");
+        try{
+            rd.forward(request, response);
+        }catch(Exception e){}
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

@@ -10,6 +10,7 @@ import bean.UserRole;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -78,6 +79,23 @@ public class UserRoleController extends BeanController{
         } catch (SQLException ex) {
             super.error(ex);
         }
+    }
+    
+    public HashMap<UserRole, Boolean> getRoleMap(){
+        ArrayList<UserRole> temp = getRoleList();
+        HashMap<UserRole, Boolean> rolemap = new HashMap<>();
+        setpStmt("SELECT TOP 1 StaffID FROM STAFF WHERE RoleID = ? AND Retired=0");
+        for(UserRole r : temp){
+            try{
+                getpStmt().setInt(1, r.getRoleID());
+                ResultSet rs = execute();
+                if(rs.next())
+                    rolemap.put(r, Boolean.FALSE);
+                else
+                    rolemap.put(r, Boolean.TRUE);
+            }catch(SQLException e){}
+        }
+        return rolemap;
     }
 
     //Lazy
