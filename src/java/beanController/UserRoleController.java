@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beanController;
 
 import bean.UserRole;
@@ -16,44 +15,48 @@ import java.util.HashMap;
  *
  * @author Marcus
  */
-public class UserRoleController extends BeanController{
-        private static ArrayList<UserRole> roleList = null;
+public class UserRoleController extends BeanController {
+
+    private static ArrayList<UserRole> roleList = null;
 
     public UserRoleController() {
         super();
-        if(roleList == null){
+        if (roleList == null) {
             roleList = new ArrayList<>();
-            try {
-                super.setpStmt("SELECT RoleID, RoleName FROM UserRole Order By RoleID");
-                ResultSet rs = super.execute();
-                UserRole tmp;
-                while (rs.next()) {
-                    tmp = new UserRole();
-                    tmp.setRoleID(rs.getInt(1));
-                    tmp.setRoleName(rs.getString(2));
-                    roleList.add(tmp);
-                }
-            } catch (SQLException ex) {
-                super.error(ex);
-            }
+            roleList = getRoleList();
         }
     }
 
     public ArrayList<UserRole> getRoleList() {
-        return UserRoleController.roleList;
+        ArrayList<UserRole> templist = new ArrayList<>();
+        try {
+            super.setpStmt("SELECT RoleID, RoleName FROM UserRole Order By RoleID");
+            ResultSet rs = super.execute();
+            UserRole tmp;
+            while (rs.next()) {
+                tmp = new UserRole();
+                tmp.setRoleID(rs.getInt("RoleID"));
+                tmp.setRoleName(rs.getString("RoleName"));
+                templist.add(tmp);
+            }
+        } catch (SQLException ex) {
+            super.error(ex);
+        }
+        return templist;
     }
 
     public UserRole getRole(int ID) {
         for (UserRole t : roleList) {
-            if (t.getRoleID() == ID)
+            if (t.getRoleID() == ID) {
                 return t;
+            }
         }
         return null;
     }
 
     public void addRole(UserRole role) {
         try {
-            super.setpStmt("Insert INTO UserRole (RoleID,RoleName) VALUES (?,?)");
+            super.setpStmt("insert into userrole(roleid, rolename) values(?, ?)");
             super.getpStmt().setInt(1, role.getRoleID());
             super.getpStmt().setString(2, role.getRoleName());
             super.executeUpdate();
@@ -68,7 +71,7 @@ public class UserRoleController extends BeanController{
         try {
             super.setpStmt("Insert INTO UserRole (RoleName) VALUES (?)");
             super.getpStmt().setString(1, Name);
-            super.executeUpdate();            
+            super.executeUpdate();
             ResultSet insertedID = super.getpStmt().getGeneratedKeys();
             if (insertedID.next()) {
                 UserRole NewPriority = new UserRole();
@@ -80,20 +83,31 @@ public class UserRoleController extends BeanController{
             super.error(ex);
         }
     }
-    
-    public HashMap<UserRole, Boolean> getRoleMap(){
+
+    public void delRole(int roleid) {
+        try {
+            super.setpStmt("DELETE FROM UserRole WHERE roleid = ?");
+            super.getpStmt().setInt(1, roleid);
+            super.executeUpdate();
+        } catch (SQLException ex) {
+        }
+    }
+
+    public HashMap<UserRole, Boolean> getRoleMap() {
         ArrayList<UserRole> temp = getRoleList();
         HashMap<UserRole, Boolean> rolemap = new HashMap<>();
         setpStmt("SELECT TOP 1 StaffID FROM STAFF WHERE RoleID = ? AND Retired=0");
-        for(UserRole r : temp){
-            try{
+        for (UserRole r : temp) {
+            try {
                 getpStmt().setInt(1, r.getRoleID());
                 ResultSet rs = execute();
-                if(rs.next())
+                if (rs.next()) {
                     rolemap.put(r, Boolean.FALSE);
-                else
+                } else {
                     rolemap.put(r, Boolean.TRUE);
-            }catch(SQLException e){}
+                }
+            } catch (SQLException e) {
+            }
         }
         return rolemap;
     }

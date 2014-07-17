@@ -20,8 +20,49 @@
                 vertical-align: middle !important;
             }
         </style>
+        <script>
+            function delRole(roleid){
+                $("#delRoleForm input[name='roleid']").val(roleid);
+                $("#delRoleForm").submit();
+            }
+            
+            function createRole(roleid, rolename){
+                $("#createRoleForm input[name='roleid']").val(roleid);
+                $("#createRoleForm input[name='rolename']").val(rolename);
+                $("#createRoleForm").submit();
+            }
+            
+            function createDept(deptid, deptname){
+                $("#createDeptForm input[name='deptid']").val(deptid);
+                $("#createDeptForm input[name='deptname']").val(deptname);
+                $("#createDeptForm").submit();
+            }
+            
+            function delDept(deptid){
+                $("#delDeptForm input[name='deptid']").val(deptid);
+                $("#delDeptForm").submit();
+            }
+        </script>
     </head>
     <body>
+        <form id="createRoleForm" action="bo_structControl" method="POST" style="display: none;">
+            <input type="hidden" name="roleid" />
+            <input type="hidden" name="rolename" />
+            <input type="hidden" name="create_role" value="1" />
+        </form>
+        <form id="delRoleForm" action="bo_structControl" method="POST" style="display: none;">
+            <input type="hidden" name="roleid" />
+            <input type="hidden" name="del_role" value="1" />
+        </form>
+        <form id="delDeptForm" action="bo_structControl" method="POST" style="display: none;">
+            <input type="hidden" name="deptid" />
+            <input type="hidden" name="del_dept" value="1" />
+        </form>
+        <form id="createDeptForm" action="bo_structControl" method="POST" style="display: none;">
+            <input type="hidden" name="deptid" />
+            <input type="hidden" name="deptname" />
+            <input type="hidden" name="create_dept" value="1" />
+        </form>
         <jsp:include page="../template_jsp/bo_header.jsp" flush="true" />
         <div class="container">
             <div class="row">
@@ -35,9 +76,9 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <td><input type="number" name="departmentid" /></td>
-                                <td><input type="text" name="departmenttitle" /></td>
-                                <td><input type="submit" class="btn btn-default btn-warning" value="create"></td>
+                                <td><input type="number" id="temp_deptid" /></td>
+                                <td><input type="text" id="temp_deptname" /></td>
+                                <td><button class="btn btn-default btn-warning" onclick="createDept($('#temp_deptid').val(), $('#temp_deptname').val())">create</button></td>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -48,7 +89,7 @@
                                 <!--if there are employees in certain department, can't delete department, delete button is not allowed to show-->
                                 <td>
                                     <%if (d.getValue() == Boolean.TRUE) {%>
-                                    <input type="submit" class="btn btn-default btn-danger" value="delete">
+                                    <button class="btn btn-default btn-danger" onclick="delDept(<%=d.getKey().getDeptID()%>)">delete</button>
                                     <%}%>
                                 </td>
                             </tr>
@@ -58,36 +99,34 @@
                 </div>
                 <div class="col-md-6">
                     <h3>Edit Role</h3>
-                    <form action="bo_structControl" method="POST">
-                        <table class="table table-hover sortable">
-                            <thead>
-                            <th data-defaultsort='asc'>Role ID</th>
-                            <th>Role Title</th>
-                            <th></th>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <td><input type="number" name="roleid" /></td>
-                                    <td><input type="text" name="roletitle" /></td>
-                                    <td><input type="submit" class="btn btn-default btn-warning" value="create"></td>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <%for (Map.Entry<UserRole, Boolean> r : rolemap.entrySet()) {%>
-                                <tr>
-                                    <td><%=r.getKey().getRoleID()%></td>
-                                    <td><%=r.getKey()%></td>
-                                    <!--if there are employees in certain role, can't delete role, delete button is not allowed to show-->
-                                    <td>
-                                        <%if (r.getValue() == Boolean.TRUE) {%>
-                                        <input type="submit" class="btn btn-default btn-danger" value="delete">
-                                        <% } %>
-                                    </td>
-                                </tr>
-                                <%}%>
-                            </tbody>
-                        </table>
-                    </form>
+                    <table class="table table-hover sortable">
+                        <thead>
+                        <th data-defaultsort='asc'>Role ID</th>
+                        <th>Role Title</th>
+                        <th></th>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td><input type="number" id="temp_roleid"/></td>
+                                <td><input type="text" id="temp_rolename"/></td>
+                                <td><button class="btn btn-default btn-warning" onclick="createRole($('#temp_roleid').val(), $('#temp_rolename').val())">create</button></td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <%for (Map.Entry<UserRole, Boolean> r : rolemap.entrySet()) {%>
+                            <tr>
+                                <td><%=r.getKey().getRoleID()%></td>
+                                <td><%=r.getKey()%></td>
+                                <!--if there are employees in certain role, can't delete role, delete button is not allowed to show-->
+                                <td>
+                                    <%if (r.getValue() == Boolean.TRUE) {%>
+                                    <button class="btn btn-default btn-danger" onclick="delRole(<%=r.getKey().getRoleID()%>)">delete</button>
+                                    <% } %>
+                                </td>
+                            </tr>
+                            <%}%>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
