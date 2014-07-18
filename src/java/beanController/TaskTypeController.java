@@ -3,6 +3,7 @@ package beanController;
 import java.util.ArrayList;
 import bean.*;
 import java.sql.*;
+import java.util.HashMap;
 
 /**
  *
@@ -14,20 +15,22 @@ public class TaskTypeController extends BeanController {
 
     public TaskTypeController() {
         super();
-        typeList = new ArrayList<>();
-        try {
-            super.setpStmt("SELECT TypeID, TypeName FROM TaskType Order By TypeID");
-            ResultSet rs = super.execute();
-            TaskType tmp;
-            while (rs.next()) {
-                tmp = new TaskType();
-                tmp.setTypeID(rs.getInt(1));
-                tmp.setTypeName(rs.getString(2));
-                typeList.add(tmp);
+        //if(typeList == null){
+            typeList = new ArrayList<>();
+            try {
+                super.setpStmt("SELECT TypeID, TypeName FROM TaskType Order By TypeID");
+                ResultSet rs = super.execute();
+                TaskType tmp;
+                while (rs.next()) {
+                    tmp = new TaskType();
+                    tmp.setTypeID(rs.getInt(1));
+                    tmp.setTypeName(rs.getString(2));
+                    typeList.add(tmp);
+                }
+            } catch (SQLException ex) {
+                super.error(ex);
             }
-        } catch (SQLException ex) {
-            super.error(ex);
-        }
+        //}
     }
 
     public ArrayList<TaskType> getTypeList() {
@@ -71,6 +74,26 @@ public class TaskTypeController extends BeanController {
         } catch (SQLException ex) {
             super.error(ex);
         }
+    }
+    
+        public HashMap<TaskType, Boolean> getTaskTypeMap(){
+        ArrayList<TaskType> temp = getTypeList();
+        HashMap<TaskType, Boolean> typemap = new HashMap<>();
+        setpStmt("SELECT COUNT(taskID) FROM Task WHERE TypeID = ?");
+        for(TaskType t : temp){
+            try{
+                getpStmt().setInt(1, t.getTypeID());
+                ResultSet rs = execute();
+                if(rs.next())
+                    if(rs.getInt(1)>0)
+                        typemap.put(t, Boolean.FALSE);
+                    else
+                        typemap.put(t, Boolean.TRUE);
+                else
+                    typemap.put(t, Boolean.TRUE);
+            }catch(SQLException e){}
+        }
+        return typemap;
     }
 
     public void dropTaskType() {

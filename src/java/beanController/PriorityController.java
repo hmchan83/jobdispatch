@@ -15,19 +15,21 @@ public class PriorityController extends BeanController {
 
     public PriorityController() {
         super();
-        priorityList = new ArrayList<>();
-        try {
-            super.setpStmt("SELECT PriorityID, PriorityName FROM TaskPriority Order By PriorityID");
-            ResultSet rs = super.execute();
-            Priority tmp;
-            while (rs.next()) {
-                tmp = new Priority();
-                tmp.setPriorityID(rs.getInt(1));
-                tmp.setPriorityName(rs.getString(2));
-                priorityList.add(tmp);
+        if(priorityList==null){
+            priorityList = new ArrayList<>();
+            try {
+                super.setpStmt("SELECT PriorityID, PriorityName FROM TaskPriority Order By PriorityID");
+                ResultSet rs = super.execute();
+                Priority tmp;
+                while (rs.next()) {
+                    tmp = new Priority();
+                    tmp.setPriorityID(rs.getInt(1));
+                    tmp.setPriorityName(rs.getString(2));
+                    priorityList.add(tmp);
+                }
+            } catch (SQLException ex) {
+                super.error(ex);
             }
-        } catch (SQLException ex) {
-            super.error(ex);
         }
     }
 
