@@ -1,3 +1,4 @@
+<jsp:useBean id="CurrentUser" class="bean.LoginStaff" scope="session" />
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -37,7 +38,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin  <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><jsp:getProperty name="CurrentUser" property="userName" />  <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="logout">Logout</a></li>
                 </ul>

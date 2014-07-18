@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                         <% for (Task t : tasks) { %>
-                        <tr>
+                        <tr onclick="window.open('taskdetail?taskid=<%=t.getTaskID()%>')" style="cursor: pointer">
                             <td><%=t.getTaskID()%></td>
                             <td><%=t.getTaskName()%></td>
                             <td><%=t.getTaskType()%></td>
