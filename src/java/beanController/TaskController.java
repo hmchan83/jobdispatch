@@ -37,8 +37,8 @@ public class TaskController extends BeanController {
                 t.setStatus(statusCon.getStatus(rs.getInt("StatusID"))); //Status
                 t.setPriority(priorityCon.getPriority(rs.getInt("PriorityID")));
                 t.setDescription(rs.getString("TaskDescription"));
-                t.setAssignee(staffCon.getStaff(rs.getInt("AssigneeID")));
-                t.setReporter(staffCon.getStaff(rs.getInt("ReporterID")));
+                t.setAssignee(staffCon.getStaffAdvanced(rs.getInt("AssigneeID")));
+                t.setReporter(staffCon.getStaffAdvanced(rs.getInt("ReporterID")));
                 Log createLog = logCon.getCreateLog(t);
                 String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(createLog.getTime());
                 //String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(logCon.getTaskCreatTime(rs.getInt("TaskID")));
