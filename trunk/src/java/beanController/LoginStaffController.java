@@ -1,8 +1,10 @@
 package beanController;
 
 import bean.LoginStaff;
+import bean.Staff;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 import org.apache.catalina.util.ParameterMap;
 
@@ -68,6 +70,30 @@ public class LoginStaffController extends BeanController{
         return currentUser;
     }
     
+    public LoginStaff getStaff(int id){
+        LoginStaff s = new LoginStaff();
+        super.setpStmt("SELECT top 1 * FROM Staff where StaffId = ?");
+        try {
+            super.getpStmt().setInt(1, id);
+            ResultSet rs = super.execute();
+            if (rs.next()) {
+                UserRoleController roleCon = new UserRoleController();
+                s.setStaffID(rs.getInt("StaffID"));
+                s.setRealName(rs.getString("RealName"));
+                s.setUserName(rs.getString("Username"));
+                s.setPassword(rs.getString("Pwd"));
+                s.setRole(roleCon.getRole(rs.getInt("RoleID")));
+                s.setDept(new DepartmentController().getDept(rs.getInt("DeptID")));
+                s.seteMail(rs.getString("Email"));
+                s.setTel(rs.getInt("ContactNumber"));
+                s.setRetired(rs.getBoolean("Retired"));
+            }
+            return s;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+    
     public LoginStaff get(){
         return this.getUser();
     }
@@ -91,5 +117,45 @@ public class LoginStaffController extends BeanController{
             return false;
         }
         return true;
+    }
+    
+    public boolean updateStaffByMap(Map<String, String[]> map){
+        String SQL = "Update STAFF SET";
+        boolean hasSetter = false;
+        String staffid = map.get("staffid")[0];
+        for (Map.Entry<String, String[]> entry : map.entrySet()) {
+            if (!(entry.getValue().length == 0 || entry.getValue()[0].equals("")) && !(entry.getKey().equals("staffid") || entry.getKey().equals("username"))) {
+                SQL = addSetter(SQL, entry.getKey());
+                hasSetter = true;
+            }
+        }
+        SQL += " where staffID = ?";
+        super.setpStmt(SQL);
+        try {
+            if (hasSetter) {
+                int counter = 1;
+                for (Map.Entry<String, String[]> entry : map.entrySet()) {
+                    if (!(entry.getValue().length == 0 || entry.getValue()[0].equals("")) && !(entry.getKey().equals("staffid") || entry.getKey().equals("username"))) {
+                        super.getpStmt().setString(counter, entry.getValue()[0]);
+                        counter++;
+                    }
+                }
+                super.getpStmt().setString(counter, staffid);
+            }
+            return super.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return false;
+    }
+    
+    public String addSetter(String SQL, String key) {
+        String temp = SQL.toLowerCase();
+        boolean hadSet = temp.contains("?");
+        if (hadSet) {
+            temp += ", " + key + " = ?";
+        } else {
+            temp += " " + key + " = ?";
+        }
+        return temp;
     }
 }
