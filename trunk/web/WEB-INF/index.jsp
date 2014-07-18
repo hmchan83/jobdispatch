@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="style_jsp/default_header_style.jsp" %>
-        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+        <script src="js/md5.js"></script>
         <style>
             /*Custom style of this webpage*/
             .form-signin{

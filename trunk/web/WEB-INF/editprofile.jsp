@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="style_jsp/default_header_style.jsp" %>
-        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+        <script src="js/md5.js"></script>
         <link rel="stylesheet" href="css/user.css" />
         <style>
             label{
