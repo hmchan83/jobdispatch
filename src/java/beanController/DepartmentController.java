@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beanController;
 
 import bean.Department;
@@ -17,11 +16,12 @@ import java.util.HashMap;
  * @author Marcus
  */
 public class DepartmentController extends BeanController {
-        private static ArrayList<Department> deptList = null;
+
+    private static ArrayList<Department> deptList = null;
 
     public DepartmentController() {
         super();
-        if(deptList==null){
+        if (deptList == null) {
             deptList = new ArrayList<>();
             try {
                 super.setpStmt("SELECT DeptID, DeptName FROM Department Order By DeptID");
@@ -58,7 +58,7 @@ public class DepartmentController extends BeanController {
             super.getpStmt().setInt(1, Type.getDeptID());
             super.getpStmt().setString(2, Type.getDeptName());
             super.executeUpdate();
-           deptList.add(Type);
+            deptList.add(Type);
         } catch (SQLException ex) {
             super.error(ex);
         }
@@ -84,26 +84,30 @@ public class DepartmentController extends BeanController {
 
     public void delDept(int ID) {
         super.setpStmt("DELETE FROM DEPARTMENT WHERE DEPTID=?");
-        try{
+        try {
             super.getpStmt().setInt(1, ID);
             super.execute();
-        }catch(SQLException e)
-        {}
+            Department temp = get(ID);
+            deptList.remove(temp);
+        } catch (SQLException e) {
+        }
     }
-    
-    public HashMap<Department, Boolean> getDeptMap(){
+
+    public HashMap<Department, Boolean> getDeptMap() {
         ArrayList<Department> temp = getDeptList();
         HashMap<Department, Boolean> deptmap = new HashMap<>();
         setpStmt("SELECT TOP 1 StaffID FROM STAFF WHERE DeptID = ? AND Retired=0");
-        for(Department d : temp){
-            try{
+        for (Department d : temp) {
+            try {
                 getpStmt().setInt(1, d.getDeptID());
                 ResultSet rs = execute();
-                if(rs.next())
+                if (rs.next()) {
                     deptmap.put(d, Boolean.FALSE);
-                else
+                } else {
                     deptmap.put(d, Boolean.TRUE);
-            }catch(SQLException e){}
+                }
+            } catch (SQLException e) {
+            }
         }
         return deptmap;
     }

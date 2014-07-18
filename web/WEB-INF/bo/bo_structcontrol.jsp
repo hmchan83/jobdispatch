@@ -26,14 +26,12 @@
                 $("#delRoleForm").submit();
             }
             
-            function createRole(roleid, rolename){
-                $("#createRoleForm input[name='roleid']").val(roleid);
+            function createRole(rolename){
                 $("#createRoleForm input[name='rolename']").val(rolename);
                 $("#createRoleForm").submit();
             }
             
-            function createDept(deptid, deptname){
-                $("#createDeptForm input[name='deptid']").val(deptid);
+            function createDept(deptname){
                 $("#createDeptForm input[name='deptname']").val(deptname);
                 $("#createDeptForm").submit();
             }
@@ -76,9 +74,9 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <td><input type="number" id="temp_deptid" /></td>
+                                <td></td>
                                 <td><input type="text" id="temp_deptname" /></td>
-                                <td><button class="btn btn-default btn-warning" onclick="createDept($('#temp_deptid').val(), $('#temp_deptname').val())">create</button></td>
+                                <td><button class="btn btn-default btn-warning" onclick="createDept($('#temp_deptname').val())">create</button></td>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -107,9 +105,9 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <td><input type="number" id="temp_roleid"/></td>
+                                <td></td>
                                 <td><input type="text" id="temp_rolename"/></td>
-                                <td><button class="btn btn-default btn-warning" onclick="createRole($('#temp_roleid').val(), $('#temp_rolename').val())">create</button></td>
+                                <td><button class="btn btn-default btn-warning" onclick="createRole($('#temp_rolename').val())">create</button></td>
                             </tr>
                         </tfoot>
                         <tbody>
