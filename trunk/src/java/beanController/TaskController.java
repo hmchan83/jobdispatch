@@ -67,6 +67,32 @@ public class TaskController extends BeanController {
             return null;
         }
     }
+    
+    public Task getTaskAdvanced(int taskID){
+        try{
+            t = new Task();
+            super.setpStmt("SELECT TaskID, TaskName, TypeID, StatusID, PriorityID, TaskDescription, AssigneeID, ReporterID FROM Task Where TaskID = ?");
+            super.getpStmt().setInt(1, taskID);
+            ResultSet rs = super.execute();
+            TaskTypeController taskTypeCon = new TaskTypeController();
+            StatusController statusCon = new StatusController();
+            PriorityController priorityCon = new PriorityController();
+            StaffController staffCon = new StaffController();
+            while (rs.next()) {
+                t.setTaskID(rs.getInt("TaskID")); //TaskID
+                t.setTaskName(rs.getString("TaskName")); //TaskName
+                t.setTaskType(taskTypeCon.getTaskType(rs.getInt("TypeID"))); //TaskType
+                t.setStatus(statusCon.getStatus(rs.getInt("StatusID"))); //Status
+                t.setPriority(priorityCon.getPriority(rs.getInt("PriorityID")));
+                t.setDescription(rs.getString("TaskDescription"));
+                t.setAssignee(staffCon.getStaff(rs.getInt("AssigneeID")));
+                t.setReporter(staffCon.getStaff(rs.getInt("ReporterID")));
+            }
+            return t;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
 
     public Boolean updateStatus(int taskID, Status newvalue, Staff assignee, Staff reporter){
         return updateStatus(taskID,newvalue.getStatusID(), assignee, reporter);
@@ -84,7 +110,7 @@ public class TaskController extends BeanController {
                 Status newStatus = statusCon.getStatus(newvalue);
                 if(newStatus.getStatusName().equals("Assigned")){
                     assignTask(this.get(taskID),reporter,assignee);
-                }else if(newStatus.getStatusName().equals("Completed")){
+                }else if(newStatus.getStatusName().equals("Completed") || newStatus.getStatusName().equals("Report")){
                     Staff passignee = logCon.getLastAssignLogByassignee(this.get(taskID),assignee).getReporter(); // the lastest reporter will be the new assignee
                     Log preporterlog = logCon.getLastAssignLogByassignee(this.get(taskID),passignee); // the lastest reporter will be the new assignee
                     Staff preporter;

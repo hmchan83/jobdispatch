@@ -21,19 +21,21 @@ public class DepartmentController extends BeanController {
 
     public DepartmentController() {
         super();
-        deptList = new ArrayList<>();
-        try {
-            super.setpStmt("SELECT DeptID, DeptName FROM Department Order By DeptID");
-            ResultSet rs = super.execute();
-            Department tmp;
-            while (rs.next()) {
-                tmp = new Department();
-                tmp.setDeptID(rs.getInt(1));
-                tmp.setDeptName(rs.getString(2));
-                deptList.add(tmp);
+        if(deptList==null){
+            deptList = new ArrayList<>();
+            try {
+                super.setpStmt("SELECT DeptID, DeptName FROM Department Order By DeptID");
+                ResultSet rs = super.execute();
+                Department tmp;
+                while (rs.next()) {
+                    tmp = new Department();
+                    tmp.setDeptID(rs.getInt(1));
+                    tmp.setDeptName(rs.getString(2));
+                    deptList.add(tmp);
+                }
+            } catch (SQLException ex) {
+                super.error(ex);
             }
-        } catch (SQLException ex) {
-            super.error(ex);
         }
     }
 

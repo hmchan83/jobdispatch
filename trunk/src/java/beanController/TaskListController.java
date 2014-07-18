@@ -86,13 +86,15 @@ public class TaskListController extends BeanController {
             if(hasFilter){
                 int counter = 1;
                 for (Map.Entry<String, String[]> entry : pMap.entrySet()) {
-                    super.getpStmt().setString(counter, entry.getValue()[0]);
-                    counter++;
+                    if (!entry.getValue()[0].equals("")) {
+                        super.getpStmt().setString(counter, entry.getValue()[0]);
+                        counter++;
+                    }
                 }
             }
             ResultSet rs = super.execute();
             while (rs.next()) {
-                tasks.add(tc.get(rs.getInt(1)));
+                tasks.add(tc.getTaskAdvanced(rs.getInt(1)));
             }
         } catch (SQLException e) {
         }

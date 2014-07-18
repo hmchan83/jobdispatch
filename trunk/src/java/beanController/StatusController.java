@@ -15,19 +15,21 @@ public class StatusController extends BeanController {
 
     public StatusController() {
         super();
-        statusList = new ArrayList<>();
-        try {
-            super.setpStmt("SELECT StatusID, StatusName FROM TaskStatus Order By StatusID");
-            ResultSet rs = super.execute();
-            Status tmp;
-            while (rs.next()) {
-                tmp = new Status();
-                tmp.setStatusID(rs.getInt("StatusID"));
-                tmp.setStatusName(rs.getString("StatusName"));
-                statusList.add(tmp);
+        if(statusList==null){
+            statusList = new ArrayList<>();
+            try {
+                super.setpStmt("SELECT StatusID, StatusName FROM TaskStatus Order By StatusID");
+                ResultSet rs = super.execute();
+                Status tmp;
+                while (rs.next()) {
+                    tmp = new Status();
+                    tmp.setStatusID(rs.getInt("StatusID"));
+                    tmp.setStatusName(rs.getString("StatusName"));
+                    statusList.add(tmp);
+                }
+            } catch (SQLException ex) {
+                super.error(ex);
             }
-        } catch (SQLException ex) {
-            super.error(ex);
         }
     }
 

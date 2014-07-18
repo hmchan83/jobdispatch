@@ -69,6 +69,10 @@
         <servlet-class>pageController.bo_staffQueryResultPageController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>bo_taskQueryResultPageController</servlet-name>
+        <servlet-class>pageController.bo_taskQueryResultPageController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>bo_logQueryResultPageController</servlet-name>
         <servlet-class>pageController.bo_logQueryResultPageController</servlet-class>
     </servlet>
@@ -123,6 +127,10 @@
     <servlet-mapping>
         <servlet-name>bo_taskDetailPageController</servlet-name>
         <url-pattern>/bo_taskDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_taskQueryResultPageController</servlet-name>
+        <url-pattern>/bo_taskQueryResult</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>bo_indexPageController</servlet-name>

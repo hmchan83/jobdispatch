@@ -6,8 +6,12 @@
 
 package pageController;
 
+import bean.TaskType;
+import beanController.TaskTypeController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +38,9 @@ public class bo_taskDetailPageController extends pageController {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         try {
+            TaskTypeController tasktypeCon = new TaskTypeController();
+            HashMap<TaskType, Boolean> tasktype= tasktypeCon.getTaskTypeMap();
+            request.setAttribute("tasktype", tasktype);
             bo_redirectWithAuth(request.getSession(false), response);
             dispatcher = request.getRequestDispatcher("/WEB-INF/bo/bo_taskdetail.jsp");
             dispatcher.forward(request, response);
