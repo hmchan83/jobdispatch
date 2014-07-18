@@ -55,7 +55,7 @@ public class LogController extends BeanController{
                 return logStartTask(task,assignee,reporter,date);
             case "Completed":
                 return logCompleteTask(task,assignee,reporter,date);
-            case "Report":
+            case "Reported":
                 return logReportTask(task,assignee,reporter,date);
             case "Closed":
                 return logCloseTask(task,assignee,reporter,date);
