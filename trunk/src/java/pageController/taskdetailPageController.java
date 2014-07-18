@@ -90,8 +90,8 @@ public class taskdetailPageController extends pageController {
             }
         }else if(action.equals("change")){
             String newstatus = request.getParameter("NewStatus");
-            String reporter = request.getParameter("reporterid");
-            String assignee = request.getParameter("assigneeid");
+            String reporter = request.getParameter("reportername");
+            String assignee = request.getParameter("assigneename");
             TaskController taskCon= new TaskController();
             LogController logCon= new LogController();
             StaffController staffCon = new StaffController();

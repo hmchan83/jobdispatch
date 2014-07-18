@@ -18,17 +18,17 @@
             }
         </style>
         <script type="text/javascript">
-            function createType(tasktypetitle){
+            function createType(tasktypetitle) {
                 $("#createTypeForm input[name='typename']").val(tasktypetitle);
                 $("#createTypeForm").submit();
             }
-            
-            function delType(tasktypeid){
+
+            function delType(tasktypeid) {
                 $("#delTypeForm input[name='typeid']").val(tasktypeid);
                 $("#delTypeForm").submit();
             }
-            
-         </script>
+
+        </script>
     </head>
     <body>
         <form id="createTypeForm" action="bo_taskDetail" method="POST" style="display: none;">
@@ -46,27 +46,29 @@
                     <h3>Edit Task Type</h3>
                     <table class="table table-hover sortable">
                         <thead>
-                            <th data-defaultsort='asc'>Task Type ID</th>
-                            <th>Task Type</th>
-                            <th></th>
+                        <th data-defaultsort='asc'>Task Type ID</th>
+                        <th>Task Type</th>
+                        <th></th>
                         </thead>
-                        <tfoot>                            <tr>
+                        <tfoot>                            
+                            <tr>
                                 <td> </td>
                                 <td><input type="text" id="tasktypetitle" /></td>
-                                <td><input type="button" class="btn btn-default btn-warning" value="create"  onclick="createType( $('#tasktypetitle').val())"></td>
-                            </tr>  </tfoot>
+                                <td><input type="button" class="btn btn-default btn-warning" value="create"  onclick="createType($('#tasktypetitle').val())"></td>
+                            </tr> 
+                        </tfoot>
                         <tbody>
-                            <% for (Map.Entry<TaskType, Boolean> t : tasktype.entrySet()) { %>
+                            <% for (Map.Entry<TaskType, Boolean> t : tasktype.entrySet()) {%>
                             <tr>
                                 <td><%=t.getKey().getTypeID()%></td>
                                 <td><%=t.getKey().getTypeName()%></td>
                                 <!--if the type is being used by certain task, delete button is not allowed to show-->
                                 <td>
                                     <%if (t.getValue() == Boolean.TRUE) {%>
-                                    <input type="submit" class="btn btn-default btn-danger" value="delete" onclick="delType( '<%=t.getKey().getTypeID()%>')">
+                                    <input type="submit" class="btn btn-default btn-danger" value="delete" onclick="delType('<%=t.getKey().getTypeID()%>')">
                                     <%}%></td>
                             </tr>
-                            <% } %>                          
+                            <% }%>                          
                         </tbody>
                     </table>
                 </div>

@@ -86,7 +86,7 @@
             function changeStatus(newStatus,assignee){
                 document.getElementById("NewStatus").value=newStatus;
                 if(assignee!='')
-                document.getElementById("assigneeid").value=assignee;
+                document.getElementById("assigneename").value=assignee;
                 document.getElementById('statuschange').submit();
             }
         </script>
@@ -105,8 +105,8 @@
                 <div class="button-section">
                     <form action="taskdetail?action=change&taskid=<jsp:getProperty name="task" property="taskID" />" method="post" id="statuschange">
                         <input type="hidden" value="" name="NewStatus" id="NewStatus" />                        
-                        <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="assigneeid" id="assigneeid" />
-                        <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="reporterid" id="reporterid" />
+                        <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="assigneename" id="assigneename" />
+                        <input type="hidden" value="<jsp:getProperty name="CurrentUser" property="userName" />" name="reportername" id="reportername" />
                         <% if(task.getStatus().getStatusID()==2){ //Assigned %>
                         <button class="btn btn-default btn-primary" type="button" value="Started" name="newstatus" onclick="changeStatus('Started','')"><span class="glyphicon glyphicon-play"></span> Start progress</button>
                         <button class="btn btn-default btn-warning" type="button" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>

@@ -97,6 +97,23 @@ public class StaffController extends BeanController {
             return null;
         }
     }
+    
+    public Staff getStaffAdvanced(int id) {
+        s = new Staff();
+        super.setpStmt("SELECT top 1 StaffID, UserName, RealName FROM Staff where StaffId = ?");
+        try {
+            super.getpStmt().setInt(1, id);
+            ResultSet rs = super.execute();
+            if (rs.next()) {
+                s.setStaffID(rs.getInt("StaffID"));
+                s.setUserName(rs.getString("UserName"));
+                s.setRealName(rs.getString("RealName"));
+            }
+            return s;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
 
     public boolean createStaff(Staff s) {
         if (getStaff(s.getUserName()) == null) {
