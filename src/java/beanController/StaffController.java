@@ -101,7 +101,7 @@ public class StaffController extends BeanController {
     public boolean createStaff(Staff s) {
         if (getStaff(s.getUserName()) == null) {
             this.s = s;
-            super.setpStmt("INSERT INTO STAFF(RealName, Username, Pwd, RoleID, DeptID, Email, ContactNumber) VALUES(?, ?, 'fcea920f7412b5da7be0cf42b8c93759', ?, ?, ?, ?)"); //pwd=1234567
+            super.setpStmt("INSERT INTO STAFF(RealName, Username, Pwd, RoleID, DeptID, Email, ContactNumber, Retired) VALUES(?, ?, 'fcea920f7412b5da7be0cf42b8c93759', ?, ?, ?, ?, 0)"); //pwd=1234567
             try {
                 super.getpStmt().setString(1, s.getRealName());
                 super.getpStmt().setString(2, s.getUserName());
@@ -109,12 +109,13 @@ public class StaffController extends BeanController {
                 super.getpStmt().setInt(4, s.getDept().getDeptID());
                 super.getpStmt().setString(5, s.geteMail());
                 super.getpStmt().setInt(6, s.getTel());
-                return super.executeUpdate();
+                super.executeUpdate();
+                return true;
             } catch (SQLException ex) {
                 return false;
             }
-        }
-        return false;
+        }else
+            return false;
     }
 
     public boolean createStaff(Map<String, String[]> map) {
