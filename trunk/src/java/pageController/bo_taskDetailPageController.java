@@ -74,6 +74,14 @@ public class bo_taskDetailPageController extends pageController {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(request.getParameter("create_type")!=null && request.getParameter("create_type").equals("1")){
+           //TaskType tt = new TaskType();
+            //tt.setTypeID(Integer.parseInt(request.getParameter("tasktypeid")));
+            String tt=request.getParameter("typename");
+            new TaskTypeController().addTaskType(tt);
+        }if(request.getParameter("del_type")!=null && request.getParameter("del_type").equals("1")){
+            new TaskTypeController().dropTaskType(Integer.parseInt(request.getParameter("typeid")));
+        }
         processRequest(request, response);
     }
 

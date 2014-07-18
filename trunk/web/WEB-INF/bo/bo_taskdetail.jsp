@@ -17,8 +17,28 @@
                 vertical-align: middle !important;
             }
         </style>
+        <script type="text/javascript">
+            function createType(tasktypetitle){
+                $("#createTypeForm input[name='typename']").val(tasktypetitle);
+                $("#createTypeForm").submit();
+            }
+            
+            function delType(tasktypeid){
+                $("#delTypeForm input[name='typeid']").val(tasktypeid);
+                $("#delTypeForm").submit();
+            }
+            
+         </script>
     </head>
     <body>
+        <form id="createTypeForm" action="bo_taskDetail" method="POST" style="display: none;">
+            <input type="hidden" name="typename" />
+            <input type="hidden" name="create_type" value="1" />
+        </form>
+        <form id="delTypeForm" action="bo_taskDetail" method="POST" style="display: none;">
+            <input type="hidden" name="typeid" />
+            <input type="hidden" name="del_type" value="1" />
+        </form>
         <jsp:include page="../template_jsp/bo_header.jsp" flush="true" />
         <div class="container">
             <div class="row">
@@ -31,9 +51,9 @@
                             <th></th>
                         </thead>
                         <tfoot>                            <tr>
-                                <td><input type="number" name="tasktypeid" /></td>
-                                <td><input type="text" name="tasktypetitle" /></td>
-                                <td><input type="submit" class="btn btn-default btn-warning" value="create"></td>
+                                <td> </td>
+                                <td><input type="text" id="tasktypetitle" /></td>
+                                <td><input type="button" class="btn btn-default btn-warning" value="create"  onclick="createType( $('#tasktypetitle').val())"></td>
                             </tr>  </tfoot>
                         <tbody>
                             <% for (Map.Entry<TaskType, Boolean> t : tasktype.entrySet()) { %>
@@ -43,7 +63,7 @@
                                 <!--if the type is being used by certain task, delete button is not allowed to show-->
                                 <td>
                                     <%if (t.getValue() == Boolean.TRUE) {%>
-                                    <input type="submit" class="btn btn-default btn-danger" value="delete">
+                                    <input type="submit" class="btn btn-default btn-danger" value="delete" onclick="delType( '<%=t.getKey().getTypeID()%>')">
                                     <%}%></td>
                             </tr>
                             <% } %>                          

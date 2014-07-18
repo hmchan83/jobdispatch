@@ -61,7 +61,7 @@ public class TaskTypeController extends BeanController {
 
     public void addTaskType(String Name) {
         try {
-            super.setpStmt("Insert INTO TaskType (TaskName) VALUES (?)");
+            super.setpStmt("Insert INTO TaskType (TypeName) VALUES (?)");
             super.getpStmt().setString(1, Name);
             super.executeUpdate();
             TaskType NewType = new TaskType();
@@ -96,8 +96,14 @@ public class TaskTypeController extends BeanController {
         return typemap;
     }
 
-    public void dropTaskType() {
-
+    public void dropTaskType(int TypeID) {
+        super.setpStmt("DELETE FROM TaskType WHERE TypeID=?");
+        try{
+            super.getpStmt().setInt(1, TypeID);
+            super.execute();
+            
+        }catch(SQLException e)
+        {}
     }
 
     //Lazy
