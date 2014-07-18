@@ -115,7 +115,7 @@
                         <% }else if (task.getStatus().getStatusID()==4 && task.getAssignee().getUserName().equals(task.getReporter().getUserName())){ //Completed %>
                         <button class="btn btn-default btn-danger btn-lg" type="button"  onclick="changeStatus('Closed','')"><span class="glyphicon glyphicon-remove"></span> Closed</button>
                         <% }else if (task.getStatus().getStatusID()==4){ // %>
-                        <button class="btn btn-default btn-info" type="button" onclick="changeStatus('Report','')"><span class="glyphicon glyphicon-hand-up"></span> Report</button>
+                        <button class="btn btn-default btn-info" type="button" onclick="changeStatus('Reported','')"><span class="glyphicon glyphicon-hand-up"></span> Report</button>
                         <% }%>
 
                     </form>

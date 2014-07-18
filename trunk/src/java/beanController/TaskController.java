@@ -110,7 +110,7 @@ public class TaskController extends BeanController {
                 Status newStatus = statusCon.getStatus(newvalue);
                 if(newStatus.getStatusName().equals("Assigned")){
                     assignTask(this.get(taskID),reporter,assignee);
-                }else if(newStatus.getStatusName().equals("Completed") || newStatus.getStatusName().equals("Report")){
+                }else if(newStatus.getStatusName().equals("Completed") || newStatus.getStatusName().equals("Reported")){
                     Staff passignee = logCon.getLastAssignLogByassignee(this.get(taskID),assignee).getReporter(); // the lastest reporter will be the new assignee
                     Log preporterlog = logCon.getLastAssignLogByassignee(this.get(taskID),passignee); // the lastest reporter will be the new assignee
                     Staff preporter;
