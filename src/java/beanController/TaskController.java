@@ -85,8 +85,8 @@ public class TaskController extends BeanController {
                 t.setStatus(statusCon.getStatus(rs.getInt("StatusID"))); //Status
                 t.setPriority(priorityCon.getPriority(rs.getInt("PriorityID")));
                 t.setDescription(rs.getString("TaskDescription"));
-                t.setAssignee(staffCon.getStaff(rs.getInt("AssigneeID")));
-                t.setReporter(staffCon.getStaff(rs.getInt("ReporterID")));
+                t.setAssignee(staffCon.getStaffBasic(rs.getInt("AssigneeID")));
+                t.setReporter(staffCon.getStaffBasic(rs.getInt("ReporterID")));
             }
             return t;
         } catch (SQLException ex) {
@@ -141,8 +141,8 @@ public class TaskController extends BeanController {
         t.setStatus(new StatusController().getStatus(2));  
         if(pMap.containsKey("taskpriority"))    t.setPriority(new PriorityController().getPriority(Integer.parseInt((String)pMap.get("taskpriority")))); 
         if(pMap.containsKey("taskdescription")) t.setDescription((String)pMap.get("taskdescription"));
-        if(pMap.containsKey("assigneeid"))   t.setAssignee(new StaffController().getStaff((Integer)pMap.get("assigneeid")));
-        if(pMap.containsKey("reporterid"))   t.setReporter(new StaffController().getStaff((Integer)pMap.get("reporterid")));
+        if(pMap.containsKey("assigneeid"))   t.setAssignee(new StaffController().getStaffBasic((Integer)pMap.get("assigneeid")));
+        if(pMap.containsKey("reporterid"))   t.setReporter(new StaffController().getStaffBasic((Integer)pMap.get("reporterid")));
         Timestamp current = new Timestamp(System.currentTimeMillis());
         t.setTime(current);
         super.setpStmt("INSERT INTO task (TaskName, TypeID, StatusID, PriorityID, TaskDescription, AssigneeID, ReporterID) values(?, ?, ?, ?, ?, ?, ?)");

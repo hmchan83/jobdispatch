@@ -55,7 +55,7 @@ public class TaskListController extends BeanController {
     public ArrayList<Task> getUnreportTasksByStaff(int staffID) {
         ArrayList<Task> tasks = new ArrayList<>();
         TaskController tc = new TaskController();
-        super.setpStmt("SELECT TaskID FROM Task Where AssigneeID=? AND (StatusID=4) ORDER BY TaskID desc, PriorityID asc");
+        super.setpStmt("SELECT TaskID FROM Task Where AssigneeID=? AND (StatusID = 4 OR StatusID=8) ORDER BY TaskID desc, PriorityID asc");
         try {
             super.getpStmt().setInt(1, staffID);
             ResultSet rs = super.execute();
