@@ -38,10 +38,7 @@ public class bo_structControlPageController extends pageController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getParameter("create_role")!=null && request.getParameter("create_role").equals("1")){
-            UserRole ur = new UserRole();
-            ur.setRoleID(Integer.parseInt(request.getParameter("roleid")));
-            ur.setRoleName(request.getParameter("rolename"));
-            new UserRoleController().addRole(ur);
+            new UserRoleController().addRole(request.getParameter("rolename"));
         }
         if(request.getParameter("del_role")!=null && request.getParameter("del_role").equals("1")){
             new UserRoleController().delRole(Integer.parseInt(request.getParameter("roleid")));
@@ -50,10 +47,7 @@ public class bo_structControlPageController extends pageController {
             new DepartmentController().delDept(Integer.parseInt(request.getParameter("deptid")));
         }
         if(request.getParameter("create_dept")!=null && request.getParameter("create_dept").equals("1")){
-            Department d = new Department();
-            d.setDeptID(Integer.parseInt(request.getParameter("deptid")));
-            d.setDeptName(request.getParameter("deptname"));
-            new DepartmentController().addDept(d);
+            new DepartmentController().addDept(request.getParameter("deptname"));
         }
         response.sendRedirect("bo_structControl");
     }
