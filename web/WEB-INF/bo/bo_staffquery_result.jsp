@@ -47,7 +47,7 @@
 
                 <tbody>
                     <% for (Staff s : staffs) {%>
-                    <tr class="<%if(s.isRetired()){%>danger<%}%>">
+                    <tr class="<%if(s.isRetired()){%>danger<%}%>" onclick="window.open('bo_editStaff?staffid=<%=s.getStaffID()%>')" style="cursor: pointer;">
                         <td><%=s.getStaffID()%></td>
                         <td><%=s.getUserName()%></td>
                         <td><%=s.getRealName()%></td>

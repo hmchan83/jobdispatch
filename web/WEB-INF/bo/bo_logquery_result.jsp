@@ -28,7 +28,7 @@
                         <tr>
                             <td><%=log.getLogID()%></td>
                             <td><%=log.getLogType()%></td>
-                            <td><%=log.getTask().getTaskID()%></td>
+                            <td onclick="window.open('taskdetail?taskid=<%=log.getTask().getTaskID()%>')" style="cursor: pointer"><%=log.getTask().getTaskID()%></td>
                             <td><%=log.getAssignee()%>  (<%=log.getAssignee().getStaffID()%>)</td>
                             <td><%=log.getReporter()%>  (<%=log.getReporter().getStaffID()%>)</td>
                             <td><%=log.getTime()%></td>

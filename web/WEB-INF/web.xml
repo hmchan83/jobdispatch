@@ -76,6 +76,10 @@
         <servlet-name>bo_logQueryResultPageController</servlet-name>
         <servlet-class>pageController.bo_logQueryResultPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>bo_editStaffController</servlet-name>
+        <servlet-class>pageController.bo_editStaffController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>indexPageController</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>bo_logQueryResultPageController</servlet-name>
         <url-pattern>/bo_logQueryResult</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_editStaffController</servlet-name>
+        <url-pattern>/bo_editStaff</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
