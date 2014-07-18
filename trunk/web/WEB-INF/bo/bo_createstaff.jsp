@@ -2,14 +2,16 @@
 <%@page import="bean.UserRole"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%ArrayList<UserRole> roles = (ArrayList<UserRole>)request.getAttribute("userrole");%>
-<%ArrayList<Department> departments = (ArrayList<Department>)request.getAttribute("departments");%>
+<%ArrayList<UserRole> roles = (ArrayList<UserRole>) request.getAttribute("userrole");%>
+<%ArrayList<Department> departments = (ArrayList<Department>) request.getAttribute("departments");%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <%@include file="../style_jsp/default_header_style.jsp" %>
+        <link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/pnotify.custom.min.js"></script>
         <style>
             label{
                 color: #666666;
@@ -17,6 +19,25 @@
                 font-style: italic;
             }
         </style>
+        <script>
+            $(document).ready(displayMessage);
+            function displayMessage() {
+                var create_success = "${requestScope.create_success}";
+                if (create_success == "true")
+                    new PNotify({
+                        title: 'Staff Created Successfully',
+                        text: '',
+                        type: 'success'
+                    });
+                else if(create_success == "false"){
+                    new PNotify({
+                        title: "Staff can't be created",
+                        text: 'Something went wrong',
+                        type: 'error'
+                    });
+                }
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="../template_jsp/bo_header.jsp" flush="true" />
@@ -42,7 +63,7 @@
                             <label for="role" class="col-sm-3 col-md-3 control-label">Role</label>
                             <div class="col-sm-9 col-md-9">
                                 <select name="role" class="form-control">
-                                    <%for(UserRole ur : roles){%>
+                                    <%for (UserRole ur : roles) {%>
                                     <option value="<%=ur.getRoleID()%>"><%=ur%></option>
                                     <%}%>
                                 </select>
@@ -52,7 +73,7 @@
                             <label for="department" class="col-sm-3 col-md-3 control-label">Department</label>
                             <div class="col-sm-9 col-md-9">
                                 <select name="department" class="form-control">
-                                    <%for(Department d : departments){%>
+                                    <%for (Department d : departments) {%>
                                     <option value="<%=d.getDeptID()%>"><%=d%></option>
                                     <%}%>
                                 </select>
