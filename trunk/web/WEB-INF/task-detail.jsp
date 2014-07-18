@@ -113,7 +113,7 @@
                         <% }else if (task.getStatus().getStatusID()==3){ //Started %>
                         <button class="btn btn-default btn-success" type="button" value="Completed" name="newstatus" onclick="changeStatus('Completed','')"><span class="glyphicon glyphicon-ok"></span> Complete</button>
                         <% }else if  ((task.getStatus().getStatusID()==4 || task.getStatus().getStatusID()==8) && task.getAssignee().getUserName().equals(task.getReporter().getUserName())){ //Completed %>
-                        <button class="btn btn-default btn-danger btn-lg" type="button"  onclick="changeStatus('Closed','')"><span class="glyphicon glyphicon-remove"></span> Closed</button>
+                        <button class="btn btn-default btn-danger btn-lg" type="button"  onclick="changeStatus('Closed','')"><span class="glyphicon glyphicon-remove"></span> Close</button>
                         <% }else if (task.getStatus().getStatusID()==4 || task.getStatus().getStatusID()==8){ // %>
                         <button class="btn btn-default btn-info" type="button" onclick="changeStatus('Reported','')"><span class="glyphicon glyphicon-hand-up"></span> Report</button>
                         <% }%>
