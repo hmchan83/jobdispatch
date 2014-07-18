@@ -5,16 +5,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <%@include file="style_jsp/default_header_style.jsp" %>
-        <link href="css/assigned-tasks.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="css/user.css" />
-        <script>           
-            $(document).ready(function(){
-                $(".task-list-detail a").each(function(){
-                    $(this).attr("href", "tasks?taskid="+$(this).data("taskid"));
+        <script>
+            $(document).ready(function() {
+                $(".task-list-detail a").each(function() {
+                    $(this).attr("href", "tasks?taskid=" + $(this).data("taskid"));
                 });
             });
         </script>
+        <link href="css/assigned-tasks.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/user.css" />
+        <%@include file="style_jsp/default_header_style.jsp" %>
     </head>
     <body>
         <jsp:include page="template_jsp/header.jsp" flush="true" />

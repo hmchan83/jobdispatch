@@ -68,6 +68,24 @@ public class TaskController extends BeanController {
         }
     }
     
+    public Task getTaskSimple(int taskID){
+        try{
+            t = new Task();
+            super.setpStmt("SELECT TaskID, TaskName, PriorityID FROM Task Where TaskID = ?");
+            super.getpStmt().setInt(1, taskID);
+            ResultSet rs = super.execute();
+            PriorityController priorityCon = new PriorityController();
+            while (rs.next()) {
+                t.setTaskID(rs.getInt("TaskID")); //TaskID
+                t.setTaskName(rs.getString("TaskName")); //TaskName
+                t.setPriority(priorityCon.getPriority(rs.getInt("PriorityID")));
+            }
+            return t;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+    
     public Task getTaskAdvanced(int taskID){
         try{
             t = new Task();
