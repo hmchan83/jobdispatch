@@ -1,9 +1,4 @@
-<%@page import="bean.Department"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.Map"%>
-<%@page import="bean.UserRole"%>
-<%HashMap<UserRole, Boolean> rolemap = (HashMap<UserRole, Boolean>) request.getAttribute("rolemap");%>
-<%HashMap<Department, Boolean> deptmap = (HashMap<Department, Boolean>) request.getAttribute("deptmap");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -80,18 +75,18 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            <%for (Map.Entry<Department, Boolean> d : deptmap.entrySet()) {%>
+                            <c:forEach items="${requestScope.deptmap}" var="dept">
                             <tr>
-                                <td><%=d.getKey().getDeptID()%></td>
-                                <td><%=d.getKey()%></td>
+                                <td>${dept.key.deptID}</td>
+                                <td>${dept.key}</td>
                                 <!--if there are employees in certain department, can't delete department, delete button is not allowed to show-->
                                 <td>
-                                    <%if (d.getValue() == Boolean.TRUE) {%>
-                                    <button class="btn btn-default btn-danger" onclick="delDept(<%=d.getKey().getDeptID()%>)">delete</button>
-                                    <%}%>
+                                    <c:if test="${dept.value}">
+                                    <button class="btn btn-default btn-danger" onclick="delDept(${dept.key.deptID})">delete</button>
+                                    </c:if>
                                 </td>
                             </tr>
-                            <%}%>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -111,18 +106,18 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            <%for (Map.Entry<UserRole, Boolean> r : rolemap.entrySet()) {%>
+                            <c:forEach items="${requestScope.rolemap}" var="role">
                             <tr>
-                                <td><%=r.getKey().getRoleID()%></td>
-                                <td><%=r.getKey()%></td>
+                                <td>${role.key.roleID}</td>
+                                <td>${role.key}</td>
                                 <!--if there are employees in certain role, can't delete role, delete button is not allowed to show-->
                                 <td>
-                                    <%if (r.getValue() == Boolean.TRUE) {%>
-                                    <button class="btn btn-default btn-danger" onclick="delRole(<%=r.getKey().getRoleID()%>)">delete</button>
-                                    <% } %>
+                                    <c:if test="${role.value}">
+                                    <button class="btn btn-default btn-danger" onclick="delRole(${role.key.roleID})">delete</button>
+                                    </c:if>
                                 </td>
                             </tr>
-                            <%}%>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>

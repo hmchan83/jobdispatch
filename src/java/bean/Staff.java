@@ -74,7 +74,7 @@ public class Staff {
         this.tel = tel;
     }
 
-    public boolean isRetired() {
+    public boolean getRetired() {
         return retired;
     }
 

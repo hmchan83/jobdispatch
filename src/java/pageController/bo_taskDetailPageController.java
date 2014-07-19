@@ -24,54 +24,28 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class bo_taskDetailPageController extends pageController {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispatcher;
         try {
+            bo_redirectWithAuth(request.getSession(false), response);
             TaskTypeController tasktypeCon = new TaskTypeController();
             HashMap<TaskType, Boolean> tasktype= tasktypeCon.getTaskTypeMap();
-            request.setAttribute("tasktype", tasktype);
-            bo_redirectWithAuth(request.getSession(false), response);
+            request.setAttribute("typemap", tasktype);
             dispatcher = request.getRequestDispatcher("/WEB-INF/bo/bo_taskdetail.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
+   @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getParameter("create_type")!=null && request.getParameter("create_type").equals("1")){

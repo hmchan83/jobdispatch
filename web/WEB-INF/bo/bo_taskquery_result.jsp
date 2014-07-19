@@ -1,6 +1,4 @@
-<%@page import="bean.Task"%>
-<%@page import="java.util.ArrayList"%>
-<%ArrayList<Task> tasks = (ArrayList<Task>) request.getAttribute("result");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,17 +38,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (Task t : tasks) { %>
-                        <tr onclick="window.open('taskdetail?taskid=<%=t.getTaskID()%>')" style="cursor: pointer">
-                            <td><%=t.getTaskID()%></td>
-                            <td><%=t.getTaskName()%></td>
-                            <td><%=t.getTaskType()%></td>
-                            <td><%=t.getPriority()%></td>
-                            <td><%=t.getStatus()%></td>
-                            <td><%=t.getAssignee()%></td>
-                            <td><%=t.getReporter()%></td>
+                        <c:forEach items="${requestScope.result}" var="task">
+                        <tr onclick="window.open('taskdetail?taskid=${task.taskID}')" style="cursor: pointer">
+                            <td>${task.taskID}</td>
+                            <td>${task.taskName}</td>
+                            <td>${task.taskType}</td>
+                            <td>${task.priority}</td>
+                            <td>${task.status}</td>
+                            <td>${task.assignee}</td>
+                            <td>${task.reporter}</td>
                         </tr>
-                        <% } %>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

@@ -38,7 +38,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><jsp:getProperty name="CurrentUser" property="userName" />  <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${CurrentUser.userName}  <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="logout">Logout</a></li>
                 </ul>

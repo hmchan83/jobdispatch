@@ -21,7 +21,6 @@
                     var hash = CryptoJS.MD5($('input[name="password"]').val());
                     $('input[name="password"]').val(hash);
                 }
-                alert(hash);
             }
         </script>
     </head>
@@ -39,13 +38,13 @@
                         <div class="form-group">
                             <label for="staffid" class="col-sm-3 col-md-3 control-label">Staff ID</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="staffid" readonly required value="<jsp:getProperty name="CurrentUser" property="staffID" />"/>
+                                <input type="text" class="form-control" name="staffid" readonly required value="${CurrentUser.staffID}"/>
                             </div>
                         </div> 
                         <div class="form-group">
                             <label for="username" class="col-sm-3 col-md-3 control-label">UserName</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="text" class="form-control" name="username" readonly required value="<jsp:getProperty name="CurrentUser" property="userName" />"/>
+                                <input type="text" class="form-control" name="username" readonly required value="${CurrentUser.userName}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -57,13 +56,13 @@
                         <div class="form-group">
                             <label for="email" class="col-sm-3 col-md-3 control-label">Email</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="email" class="form-control" name="email" required value="<jsp:getProperty name="CurrentUser" property="eMail" />"/>
+                                <input type="email" class="form-control" name="email" required value="${CurrentUser.eMail}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="telno" class="col-sm-3 col-md-3 control-label">Tel No.</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="number" class="form-control" name="telno" required value="<jsp:getProperty name='CurrentUser' property='tel' />"/>
+                                <input type="number" class="form-control" name="telno" required value="${CurrentUser.tel}"/>
                             </div>
                         </div>
                         <div class="form-group">

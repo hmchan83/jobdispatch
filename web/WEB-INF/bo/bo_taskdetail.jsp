@@ -1,7 +1,4 @@
-<%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="bean.TaskType"%>
-<%HashMap<TaskType, Boolean> tasktype = (HashMap<TaskType, Boolean>) request.getAttribute("tasktype");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -58,17 +55,18 @@
                             </tr> 
                         </tfoot>
                         <tbody>
-                            <% for (Map.Entry<TaskType, Boolean> t : tasktype.entrySet()) {%>
+                            <c:forEach items="${requestScope.typemap}" var="type">
                             <tr>
-                                <td><%=t.getKey().getTypeID()%></td>
-                                <td><%=t.getKey().getTypeName()%></td>
+                                <td>${type.key.typeID}</td>
+                                <td>${type.key.typeName}</td>
                                 <!--if the type is being used by certain task, delete button is not allowed to show-->
                                 <td>
-                                    <%if (t.getValue() == Boolean.TRUE) {%>
-                                    <input type="submit" class="btn btn-default btn-danger" value="delete" onclick="delType('<%=t.getKey().getTypeID()%>')">
-                                    <%}%></td>
+                                    <c:if test="${type.value}">
+                                    <input type="submit" class="btn btn-default btn-danger" value="delete" onclick="delType('${type.key.typeID}')">
+                                    </c:if>
+                                </td>
                             </tr>
-                            <% }%>                          
+                            </c:forEach>                        
                         </tbody>
                     </table>
                 </div>
