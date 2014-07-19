@@ -4,9 +4,9 @@
 </div>
 <div class="staff-data block">
     <div class="staff-name block txt-center">
-        <h2><jsp:getProperty name="CurrentUser" property="realName" /></h2>
+        <h2>${CurrentUser.realName}</h2>
     </div>
     <div class="staff-role block txt-center">
-        <jsp:getProperty name="CurrentUser" property="role"/> of <jsp:getProperty name="CurrentUser" property="dept"/>
+        ${CurrentUser.role} of ${CurrentUser.dept}
     </div>
 </div>

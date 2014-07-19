@@ -33,7 +33,7 @@ public abstract class pageController extends HttpServlet {
     }
     protected void bo_redirectWithAuth(HttpSession session, HttpServletResponse response) throws ServletException, IOException{
         if(!authAdmin(session))
-            response.sendRedirect("index");
+            response.sendRedirect("bo_index");
     }
     
     protected boolean isNullOrEmpty(String s){

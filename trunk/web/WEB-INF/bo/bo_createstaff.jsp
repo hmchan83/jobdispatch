@@ -1,9 +1,5 @@
-<%@page import="bean.Department"%>
-<%@page import="bean.UserRole"%>
-<%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%ArrayList<UserRole> roles = (ArrayList<UserRole>) request.getAttribute("userrole");%>
-<%ArrayList<Department> departments = (ArrayList<Department>) request.getAttribute("departments");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -63,9 +59,9 @@
                             <label for="role" class="col-sm-3 col-md-3 control-label">Role</label>
                             <div class="col-sm-9 col-md-9">
                                 <select name="role" class="form-control">
-                                    <%for (UserRole ur : roles) {%>
-                                    <option value="<%=ur.getRoleID()%>"><%=ur%></option>
-                                    <%}%>
+                                    <c:forEach items="${requestScope.userrole}" var="role">
+                                    <option value="${role.roleID}">${role}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -73,9 +69,9 @@
                             <label for="department" class="col-sm-3 col-md-3 control-label">Department</label>
                             <div class="col-sm-9 col-md-9">
                                 <select name="department" class="form-control">
-                                    <%for (Department d : departments) {%>
-                                    <option value="<%=d.getDeptID()%>"><%=d%></option>
-                                    <%}%>
+                                    <c:forEach items="${requestScope.departments}" var="dept">
+                                    <option value="${dept.deptID}">${dept}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>

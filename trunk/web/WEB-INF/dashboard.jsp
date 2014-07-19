@@ -1,22 +1,5 @@
-<%@page import="bean.Status"%>
-<%@page import="bean.TaskType"%>
-<%@page import="bean.Priority"%>
-<%@page import="bean.Staff"%>
-<%@page import="java.util.Map"%>
-<%@page import="bean.Task"%>
-<%@page import="java.util.HashMap"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% HashMap<Task, Integer> urgent_tasks = (HashMap<Task, Integer>) request.getAttribute("urgent_tasks"); %>
-<% HashMap<Staff, Integer> high_workload_ppl = (HashMap<Staff, Integer>) request.getAttribute("high_workload_ppl"); %>
-<% HashMap<Staff, Integer> low_workload_ppl = (HashMap<Staff, Integer>) request.getAttribute("low_workload_ppl"); %>
-<% HashMap<Staff, Integer> productive_ppl = (HashMap<Staff, Integer>) request.getAttribute("productive_ppl"); %>
-<% HashMap<Staff, Integer> non_productive_ppl = (HashMap<Staff, Integer>) request.getAttribute("non_productive_ppl"); %>
-<% HashMap<Priority, Integer> resolved_priority = (HashMap<Priority, Integer>) request.getAttribute("resolved_priority"); %>
-<% HashMap<Priority, Integer> unresolved_priority = (HashMap<Priority, Integer>) request.getAttribute("unresolved_priority"); %>
-<% HashMap<TaskType, Integer> resolved_type = (HashMap<TaskType, Integer>) request.getAttribute("resolved_type"); %>
-<% HashMap<TaskType, Integer> unresolved_type = (HashMap<TaskType, Integer>) request.getAttribute("unresolved_type"); %>
-<% Integer total_unresolved_tasks = (Integer)request.getAttribute("total_unresolved_tasks"); %>
-<% Integer total_resolved_tasks = (Integer)request.getAttribute("total_resolved_tasks"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,6 +17,13 @@
         <link href="css/bootstrap-sortable.css" rel="stylesheet" type="text/css" />
         <%@include file="style_jsp/default_header_style.jsp" %>
         <script src="js/bootstrap-sortable.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".percentcalc").each(function(){
+                  $(this).text(parseInt($(this).prev().text()/$(this).data("total")*100)+"%");
+                })
+            })
+        </script>
     </head>
     <body>
         <jsp:include page="template_jsp/header.jsp" flush="true" />
@@ -52,13 +42,13 @@
                         <th>percentage</th>   
                         </thead>
                         <tbody>
-                            <%for (Map.Entry<Priority, Integer> entry : resolved_priority.entrySet()) {%>
-                            <tr>
-                                <td><%=entry.getKey()%></td>
-                                <td><%=entry.getValue()%></td>
-                                <td><%=(total_resolved_tasks==0)? 0 : entry.getValue() *100 / total_resolved_tasks %>%</td>
-                            </tr>
-                            <%}%>
+                            <c:forEach items="${requestScope.resolved_priority}" var="priority">
+                                <tr>
+                                    <td>${priority.key}</td>
+                                    <td class="num_value">${priority.value}</td>
+                                    <td class="percentcalc" data-total="${requestScope.total_resolved_tasks}">0%</td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -71,13 +61,13 @@
                         <th>percentage</th>   
                         </thead>
                         <tobdy>
-                            <%for (Map.Entry<Priority, Integer> entry : unresolved_priority.entrySet()) {%>
+                            <c:forEach items="${requestScope.unresolved_priority}" var="priority">
                             <tr>
-                                <td><%=entry.getKey()%></td>
-                                <td><%=entry.getValue()%></td>
-                                <td><%=(total_unresolved_tasks==0)? 0 : entry.getValue()*100/total_unresolved_tasks %>%</td>
+                                <td>${priority.key}</td>
+                                <td class="num_value">${priority.value}</td>
+                                <td class="percentcalc" data-total="${requestScope.total_unresolved_tasks}">0%</td>
                             </tr>
-                            <%}%>
+                            </c:forEach>
                         </tobdy>
                     </table>
                 </div>
@@ -91,13 +81,15 @@
                         <th data-defaultsort='desc'>tasks</th>
                         <th>percentage</th>   
                         </thead>
-                        <%for (Map.Entry<TaskType, Integer> entry : resolved_type.entrySet()) {%>
-                        <tr>
-                            <td><%=entry.getKey()%></td>
-                            <td><%=entry.getValue()%></td>
-                            <td><%=(total_resolved_tasks==0)? 0 : entry.getValue()*100/total_resolved_tasks %>%</td>
-                        </tr>
-                        <%}%>
+                        <tbody>
+                            <c:forEach items="${requestScope.resolved_type}" var="type">
+                            <tr>
+                                <td>${type.key}</td>
+                                <td class="num_value">${type.value}</td>
+                                <td class="percentcalc" data-total="${requestScope.total_resolved_tasks}">0%</td>
+                            </tr>
+                            </c:forEach>
+                        </tbody>
                     </table>
                 </div>
                 <div class="unresolved-type-num num-stat table-responsive col-md-6">
@@ -108,13 +100,15 @@
                         <th data-defaultsort='desc'>tasks</th>
                         <th>percentage</th>   
                         </thead>
-                        <%for (Map.Entry<TaskType, Integer> entry : unresolved_type.entrySet()) {%>
-                        <tr>
-                            <td><%=entry.getKey()%></td>
-                            <td><%=entry.getValue()%></td>
-                            <td><%=(total_unresolved_tasks==0)? 0 : entry.getValue()*100/total_unresolved_tasks %>%</td>
-                        </tr>
-                        <%}%>
+                        <tbody>
+                            <c:forEach items="${requestScope.unresolved_type}" var="type">
+                            <tr>
+                                <td>${type.key}</td>
+                                <td class="num_value">${type.value}</td>
+                                <td class="percentcalc" data-total="${requestScope.total_resolved_tasks}">0%</td>
+                            </tr>
+                            </c:forEach>
+                        </tbody>
                     </table>
                 </div>    
             </div>
@@ -128,12 +122,14 @@
                         <th>employees</th>
                         <th  data-defaultsort='desc'>resolved tasks</th>
                         </thead>
-                        <%for (Map.Entry<Staff, Integer> entry : productive_ppl.entrySet()) {%>
-                        <tr>
-                            <td><%=entry.getKey()%></td>
-                            <td><%=entry.getValue()%></td>
-                        </tr>
-                        <%}%>
+                        <tbody>
+                            <c:forEach items="${requestScope.productive_ppl}" var="ppl">
+                            <tr>
+                                <td>${ppl.key}</td>
+                                <td>${ppl.value}</td>
+                            </tr>
+                            </c:forEach>
+                        </tbody>
                     </table>
                 </div>
                 <div class="unresolved-stat ppl-stat table-responsive col-md-6">
@@ -145,12 +141,14 @@
                         <th>employees</th>
                         <th data-defaultsort='asc'>resolved tasks</th>
                         </thead>
-                        <%for (Map.Entry<Staff, Integer> entry : non_productive_ppl.entrySet()) {%>
-                        <tr>
-                            <td><%=entry.getKey()%></td>
-                            <td><%=entry.getValue()%></td>
-                        </tr>
-                        <%}%>
+                        <tbody>
+                            <c:forEach items="${requestScope.non_productive_ppl}" var="ppl">
+                            <tr>
+                                <td>${ppl.key}</td>
+                                <td>${ppl.value}</td>
+                            </tr>
+                            </c:forEach>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -166,15 +164,16 @@
                             <th>Priority</th>
                             <th  data-defaultsort='desc'>Unresolved for</th>
                             </thead>
-
-                            <%for (Map.Entry<Task, Integer> entry : urgent_tasks.entrySet()) {%>
-                            <tr>
-                                <td><%=entry.getKey().getTaskID()%></td>
-                                <td><%=entry.getKey().getTaskName()%></td>
-                                <td><%=entry.getKey().getPriority()%></td>
-                                <td><%=entry.getValue()%> days</td>
-                            </tr>
-                            <%}%>
+                            <tbody>
+                                <c:forEach items="${requestScope.urgent_tasks}" var="task">
+                                <tr>
+                                    <td>${task.key.taskID}</td>
+                                    <td>${task.key.taskName}</td>
+                                    <td>${task.key.priority}</td>
+                                    <td>${task.value} days</td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
                         </table>
                     </div>
                     <div class="col-sm-6 col-md-6 PL0">
@@ -187,12 +186,14 @@
                                 <th>Name</th>
                                 <th data-defaultsort='desc'>Unresolved jobs assigned to them</th>
                                 </thead>
-                                <%for (Map.Entry<Staff, Integer> entry : high_workload_ppl.entrySet()) {%>
-                                <tr>
-                                    <td><%=entry.getKey().getRealName()%></td>
-                                    <td><%=entry.getValue()%></td>
-                                </tr>
-                                <%}%>
+                                <tbody>
+                                    <c:forEach items="${requestScope.high_workload_ppl}" var="ppl">
+                                    <tr>
+                                        <td>${ppl.key.realName}</td>
+                                        <td>${ppl.value}</td>
+                                    </tr>
+                                    </c:forEach>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -206,12 +207,14 @@
                                 <th>Name</th>
                                 <th data-defaultsort='desc'>Unresolved jobs assigned to them</th>
                                 </thead>
-                                <%for (Map.Entry<Staff, Integer> entry : low_workload_ppl.entrySet()) {%>
-                                <tr>
-                                    <td><%=entry.getKey().getRealName()%></td>
-                                    <td><%=entry.getValue()%></td>
-                                </tr>
-                                <%}%>
+                                <tbody>
+                                    <c:forEach items="${requestScope.low_workload_ppl}" var="ppl">
+                                    <tr>
+                                        <td>${ppl.key.realName}</td>
+                                        <td>${ppl.value}</td>
+                                    </tr>
+                                    </c:forEach>
+                                </tbody>
                             </table>
                         </div>
                     </div>

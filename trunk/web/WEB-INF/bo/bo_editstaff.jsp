@@ -1,11 +1,6 @@
-<%@page import="bean.LoginStaff"%>
-<%@page import="bean.UserRole"%>
-<%@page import="bean.Department"%>
-<%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="currentStaff" class="bean.LoginStaff" scope="request" />
-<%ArrayList<UserRole> roles = (ArrayList<UserRole>) request.getAttribute("userrole");%>
-<%ArrayList<Department> departments = (ArrayList<Department>) request.getAttribute("departments");%>
+<jsp:useBean id="CurrentStaff" class="bean.LoginStaff" scope="request" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,19 +37,19 @@
                 <div class="form-group">
                     <label for="staffid" class="col-sm-3 col-md-3 control-label">Staff ID</label>
                     <div class="col-sm-9 col-md-9">
-                        <input type="text" class="form-control" name="staffid" readonly required value="<jsp:getProperty name="currentStaff" property="staffID" />"/>
+                        <input type="text" class="form-control" name="staffid" readonly required value="${CurrentStaff.staffID}"/>
                     </div>
                 </div> 
                 <div class="form-group">
                     <label for="username" class="col-sm-3 col-md-3 control-label">User Name</label>
                     <div class="col-sm-9 col-md-9">
-                        <input type="text" class="form-control" name="username" readonly required value="<jsp:getProperty name="currentStaff" property="userName" />"/>
+                        <input type="text" class="form-control" name="username" readonly required value="${CurrentStaff.userName}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="realname" class="col-sm-3 col-md-3 control-label">Real Name</label>
                     <div class="col-sm-9 col-md-9">
-                        <input type="text" class="form-control" name="realname" required value="<jsp:getProperty name="currentStaff" property="realName" />"/>
+                        <input type="text" class="form-control" name="realname" required value="${CurrentStaff.realName}"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -68,9 +63,11 @@
                     <div class="col-sm-9 col-md-9">
                         <select name="roleid" class="form-control">
                             <option value="">All</option>
-                            <%for (UserRole ur : roles) {%>
-                            <option value="<%=ur.getRoleID()%>" <%if(((LoginStaff)request.getAttribute("currentStaff")).getRole().getRoleID()==ur.getRoleID()){%>selected<%}%>><%=ur%></option>
-                            <%}%>
+                            <c:forEach items="${requestScope.userrole}" var="role">   
+                            <option value="${role.roleID}" <c:if test="${CurrentStaff.role.roleID == role.roleID}"><c:out value="selected" /></c:if>>
+                                ${role}
+                            </option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -79,22 +76,24 @@
                     <div class="col-sm-9 col-md-9">
                         <select name="deptid" class="form-control">
                             <option value="">All</option>
-                            <%for (Department d : departments) {%>
-                            <option value="<%=d.getDeptID()%>" <%if(((LoginStaff)request.getAttribute("currentStaff")).getDept().getDeptID()==d.getDeptID()){%>selected<%}%>><%=d%></option>
-                            <%}%>
+                            <c:forEach items="${requestScope.departments}" var="dept">
+                            <option value="${dept.deptID}" <c:if test="${CurrentStaff.dept.deptID == dept.deptID}"><c:out value="selected" /></c:if>>
+                                ${dept}
+                            </option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-3 col-md-3 control-label">Email</label>
                     <div class="col-sm-9 col-md-9">
-                        <input type="email" class="form-control" name="email" value="<jsp:getProperty name="currentStaff" property="eMail" />"/>
+                        <input type="email" class="form-control" name="email" value="${CurrentStaff.eMail}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="contactnumber" class="col-sm-3 col-md-3 control-label">Tel No.</label>
                     <div class="col-sm-9 col-md-9">
-                        <input type="number" class="form-control" name="contactnumber" value="<jsp:getProperty name='currentStaff' property='tel' />"/>
+                        <input type="number" class="form-control" name="contactnumber" value="${CurrentStaff.tel}"/>
                     </div>
                 </div>
                 <div class="form-group">

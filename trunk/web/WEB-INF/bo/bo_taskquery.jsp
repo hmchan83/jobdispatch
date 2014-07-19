@@ -1,11 +1,4 @@
-<%@page import="bean.Status"%>
-<%@page import="bean.Priority"%>
-<%@page import="bean.TaskType"%>
-<%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%ArrayList<TaskType> types = (ArrayList<TaskType>) request.getAttribute("tasktype");%>
-<%ArrayList<Priority> priority = (ArrayList<Priority>) request.getAttribute("taskpriority");%>
-<%ArrayList<Status> status = (ArrayList<Status>) request.getAttribute("taskstatus");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -65,9 +58,9 @@
                             <div class="col-sm-9 col-md-9">
                                 <select name="typeid" class="form-control">
                                     <option value="" selected>All</option>
-                                    <%for (TaskType type : types) {%>
-                                    <option value="<%=type.getTypeID()%>"><%=type%></option>
-                                    <%}%>
+                                    <c:forEach items="${requestScope.tasktype}" var="type">
+                                    <option value="${type.typeID}">${type}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div> 
@@ -78,9 +71,9 @@
                             <div class="col-sm-9 col-md-9">
                                 <select name="priorityid" class="form-control">
                                     <option value="" selected>All</option>
-                                    <%for (Priority p : priority) {%>
-                                    <option value="<%=p.getPriorityID()%>"><%=p%></option>
-                                    <%}%>
+                                    <c:forEach items="${requestScope.taskpriority}" var="priority">
+                                    <option value="${priority.priorityID}">${priority}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -89,9 +82,9 @@
                             <div class="col-sm-9 col-md-9">
                                 <select name="statusid" class="form-control">
                                     <option value="" selected>All</option>
-                                    <%for (Status s : status) {%>
-                                    <option value="<%=s.getStatusID()%>"><%=s%></option>
-                                    <%}%>
+                                    <c:forEach items="${requestScope.taskstatus}" var="status">
+                                    <option value="${status.statusID}">${status}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>

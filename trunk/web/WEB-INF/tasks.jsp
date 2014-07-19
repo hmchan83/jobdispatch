@@ -1,6 +1,4 @@
-<%@page import="bean.Priority"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="bean.TaskType"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -107,9 +105,9 @@
                                 <label for="tasktype" class="col-sm-3 col-md-3 control-label">Task Type</label>
                                 <div class="col-sm-9 col-md-9">
                                     <select name="tasktype" class="form-control">
-                                        <%for (TaskType t : ((ArrayList<TaskType>)request.getAttribute("tasktypelist"))) {%>
-                                        <option value="<%=t.getTypeID()%>"><%=t.getTypeName()%></option>
-                                        <%}%>
+                                        <c:forEach items="${requestScope.tasktypelist}" var="tasktype">
+                                        <option value="${tasktype.typeID}">${tasktype.typeName}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -117,9 +115,9 @@
                                 <label for="taskpriority" class="col-sm-3 col-md-3 control-label">Task Priority</label>
                                 <div class="col-sm-9 col-md-9">
                                     <select name="taskpriority" class="form-control">
-                                        <%for (Priority p : (ArrayList<Priority>) request.getAttribute("taskprioritylist")) {%>
-                                        <option value="<%=p.getPriorityID()%>"><%=p.getPriorityName()%></option>
-                                        <%}%>
+                                        <c:forEach items="${requestScope.taskprioritylist}" var="taskpriority">
+                                        <option value="${taskpriority.priorityID}">${taskpriority.priorityName}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>

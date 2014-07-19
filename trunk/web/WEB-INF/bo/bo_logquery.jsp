@@ -1,6 +1,5 @@
-<%@page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%ArrayList<String> logtype = (ArrayList<String>) request.getAttribute("logtypelist");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -59,9 +58,9 @@
                             <div class="col-sm-9 col-md-9">
                                 <select name="logtype" class="form-control">
                                     <option value="" selected>all</option>
-                                    <%for (String s : logtype) {%>
-                                    <option value="<%=s%>"><%=s%></option>
-                                    <%}%>
+                                    <c:forEach items="${requestScope.logtypelist}" var="logtype">
+                                    <option value="${logtype}">${logtype}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>

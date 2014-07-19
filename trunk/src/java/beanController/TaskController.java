@@ -117,6 +117,7 @@ public class TaskController extends BeanController {
     }
     
     public Boolean updateStatus(int taskID, int newvalue, Staff assignee, Staff reporter){
+        if(assignee==null) return false;
         try{
             super.setpStmt("UPDATE Task SET StatusID = ? Where TaskID = ?");
             super.getpStmt().setInt(1, newvalue);

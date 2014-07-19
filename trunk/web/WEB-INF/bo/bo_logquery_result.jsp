@@ -1,7 +1,4 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="bean.Log"%>
-<%ArrayList<Log> logs = (ArrayList<Log>)request.getAttribute("result");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,30 +9,30 @@
     </head>
     <body>
         <div class="result_block">
-                <table class="table table-hover">
-                    <thead>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Log ID</th>
+                        <th>Log Type</th>
+                        <th>Task ID</th>
+                        <th>Assignee</th>
+                        <th>Reporter</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${requestScope.result}" var="log">
                         <tr>
-                            <th>Log ID</th>
-                            <th>Log Type</th>
-                            <th>Task ID</th>
-                            <th>Assignee</th>
-                            <th>Reporter</th>
-                            <th>Date</th>
+                            <td>${log.logID}</td>
+                            <td>${log.logType}</td>
+                            <td onclick="window.open('taskdetail?taskid=${log.task.taskID}')" style="cursor: pointer">${log.task.taskID}</td>
+                            <td>${log.assignee}  (${log.assignee.staffID})</td>
+                            <td>${log.reporter}  (${log.reporter.staffID})</td>
+                            <td>${log.date}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <%for(Log log : logs){%>
-                        <tr>
-                            <td><%=log.getLogID()%></td>
-                            <td><%=log.getLogType()%></td>
-                            <td onclick="window.open('taskdetail?taskid=<%=log.getTask().getTaskID()%>')" style="cursor: pointer"><%=log.getTask().getTaskID()%></td>
-                            <td><%=log.getAssignee()%>  (<%=log.getAssignee().getStaffID()%>)</td>
-                            <td><%=log.getReporter()%>  (<%=log.getReporter().getStaffID()%>)</td>
-                            <td><%=log.getTime()%></td>
-                        </tr>
-                        <%}%>
-                    </tbody>
-                </table>
-            </div>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>

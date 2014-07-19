@@ -18,7 +18,7 @@ public class bo_editStaffController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("currentStaff", new LoginStaffController().getStaff(Integer.parseInt(request.getParameter("staffid"))));
+        request.setAttribute("CurrentStaff", new LoginStaffController().getStaff(Integer.parseInt(request.getParameter("staffid"))));
         request.setAttribute("userrole", new UserRoleController().getRoleList());
         request.setAttribute("departments", new DepartmentController().getDeptList());
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/bo/bo_editstaff.jsp");
