@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="CurrentUser" class="bean.LoginStaff" scope="session" />
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">

@@ -80,6 +80,10 @@
         <servlet-name>bo_editStaffController</servlet-name>
         <servlet-class>pageController.bo_editStaffController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>bo_sqlPageController</servlet-name>
+        <servlet-class>pageController.bo_sqlPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>indexPageController</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -161,22 +165,26 @@
         <url-pattern>/bo_editStaff</url-pattern>
     </servlet-mapping>
     <filter>
-       <filter-name>ExpiresFilter</filter-name>
-       <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
-       <init-param>
-          <param-name>ExpiresByType text/css</param-name>
-          <param-value>access plus 10 minutes</param-value>
-       </init-param>
-       <init-param>
-          <param-name>ExpiresByType application/javascript</param-name>
-          <param-value>access plus 10 minutes</param-value>
-       </init-param>
+        <filter-name>ExpiresFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+        <init-param>
+            <param-name>ExpiresByType text/css</param-name>
+            <param-value>access plus 10 minutes</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ExpiresByType application/javascript</param-name>
+            <param-value>access plus 10 minutes</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
-       <filter-name>ExpiresFilter</filter-name>
-       <url-pattern>/*</url-pattern>
-       <dispatcher>REQUEST</dispatcher>
+        <filter-name>ExpiresFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
+    <servlet-mapping>
+        <servlet-name>bo_sqlPageController</servlet-name>
+        <url-pattern>/bo_sql</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             60

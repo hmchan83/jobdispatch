@@ -1,11 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css"/>
         <%@include file="style_jsp/default_header_style.jsp" %>
         <script src="js/md5.js"></script>
+        <script src="js/pnotify.custom.min.js"></script>
         <style>
             /*Custom style of this webpage*/
             .form-signin{
@@ -29,7 +30,7 @@
             ki = 0;
             ks = [38, 40, 38, 40, 37, 39, 65, 66];
             window.onload = function() {
-                if (<%=request.getAttribute("invalid_login")%>) {
+                if (${empty requestScope.invalid_login?"false":requestScope.invalid_login}) {
                     var l = 20;
                     for (var i = 0; i < 10; i++)
                         $("#login-form").animate({'margin-left': "+=" + (l = -l) + 'px'}, 50);
@@ -37,16 +38,20 @@
 
                 $(document).bind("keydown", function(e) {
                     key = e.keyCode;
-                    if(ks[ki]==key)
+                    if (ks[ki] == key)
                         ki++;
                     else
-                        ki=0;
-                    if(ki==ks.length){
+                        ki = 0;
+                    if (ki == ks.length) {
                         $(".navbar").removeClass("navbar-default");
                         $(".navbar").addClass("navbar-inverse");
                         $("#login-form").attr("action", "bo_index");
-                        alert("cheat activated");
-                        ki=0;
+                        new PNotify({
+                            title: 'BO mode activated',
+                            text: '',
+                            type: 'success'
+                        });
+                        ki = 0;
                     }
                 });
             }

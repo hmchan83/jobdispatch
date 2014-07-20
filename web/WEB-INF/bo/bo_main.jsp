@@ -10,6 +10,23 @@
                 background-color: #F5F5F5; 
             }
         </style>
+        <script>
+            ki = 0;
+            ks = [38, 38, 40, 40, 37, 37, 39, 39, 66, 65];
+            window.onload = function() {
+                $(document).bind("keydown", function(e) {
+                    key = e.keyCode;
+                    if(ks[ki]==key)
+                        ki++;
+                    else
+                        ki=0;
+                    if(ki==ks.length){
+                        alert("cheat activated");
+                        window.location.assign("bo_sql");
+                    }
+                });
+            }
+        </script>
     </head>
     <body>
         <jsp:include page="../template_jsp/bo_header.jsp" flush="true" />
