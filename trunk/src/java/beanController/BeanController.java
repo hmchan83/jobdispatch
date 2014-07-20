@@ -1,7 +1,8 @@
 package beanController;
 
-import java.sql.*;
 import bean.*;
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -41,7 +42,7 @@ public class BeanController {
 
     public void setpStmt(String pStmt) {
         try {
-            this.pStmt = con.prepareStatement(pStmt,Statement.RETURN_GENERATED_KEYS);
+            this.pStmt = con.prepareStatement(pStmt, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException ex) {
             error(ex);
         }
@@ -56,17 +57,54 @@ public class BeanController {
             return null;
         }
     }
-    
-    public boolean executeUpdate(){
-        try{
+
+    public boolean executeUpdate() {
+        try {
             int affectedrow = this.pStmt.executeUpdate();
-            if(affectedrow <= 0){
+            if (affectedrow <= 0) {
                 return false;
             }
             return true;
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             error(ex);
             return false;
+        }
+    }
+
+    public ArrayList executeStmt(String sql) {
+        ArrayList<ArrayList<String>> result = new ArrayList<>();
+        ResultSet temp;
+        ResultSetMetaData rsmd;
+        int rowCount = 0, columnCount;
+        try {
+            Statement s = con.createStatement();
+            temp = s.executeQuery(sql);
+            rsmd = temp.getMetaData();
+            columnCount = rsmd.getColumnCount();
+            result.add(new ArrayList<String>());
+            for (int i = 0; i < columnCount; i++) {
+                result.get(0).add(rsmd.getColumnLabel(i + 1));
+            }
+            while (temp.next()) {
+                rowCount++;
+                result.add(new ArrayList<String>());
+                for (int i = 1; i <= columnCount; i++) {
+                    result.get(rowCount).add(temp.getString(i));
+                }
+            }
+            return result;
+        } catch (SQLException e) {
+        }
+
+        return null;
+    }
+
+    public int executeStmtUpdate(String sql) {
+        try {
+            Statement s = con.createStatement();
+            return s.executeUpdate(sql);
+        }catch(SQLException e){
+            return 0;
         }
     }
 
