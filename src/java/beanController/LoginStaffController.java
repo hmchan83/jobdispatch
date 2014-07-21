@@ -1,12 +1,9 @@
 package beanController;
 
 import bean.LoginStaff;
-import bean.Staff;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Map;
-import org.apache.catalina.util.ParameterMap;
 
 /**
  *
@@ -24,10 +21,6 @@ public class LoginStaffController extends BeanController{
     public LoginStaffController(LoginStaff user){
         super();
         currentUser = user;
-    }
-    
-    void LoginStaff(){
-        
     }
     
     public boolean Verify(String username, String pw){

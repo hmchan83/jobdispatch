@@ -10,4 +10,10 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
+
+
+    .header-img{
+        width: 32px;
+        display: inline-block;
+    }
 </style>

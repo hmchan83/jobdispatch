@@ -12,6 +12,7 @@
 .REL{position: relative;}
 
 .P0{padding: 0px;}
+.P10{padding: 10px;}
 .PT20{padding-top: 20px;}
 .PL0{padding-left: 0px;}
 .PR0{padding-right: 0px;}
@@ -27,6 +28,10 @@
 .MB15{margin-bottom: 15px;}
 .MB20{margin-bottom: 20px;}
 .MB25{margin-bottom: 25px;}
+
+.MR10{margin-right: 10px;}
+.MR15{margin-right: 15px;}
+.MR20{margin-right: 20px;}
 
 .fill{min-height: 100%;}
 
