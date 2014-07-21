@@ -3,7 +3,7 @@
     margin: 0 auto;
 }
 
-.staff-photo img{
+.staff-photo img, object{
     width: 120px;
     height: 120px;
     border: 4px #F5F5F5 solid;

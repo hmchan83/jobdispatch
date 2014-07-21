@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Unnamed system</title>
         <link href="css/assigned-tasks.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="css/user.css" />
         <%@include file="style_jsp/default_header_style.jsp" %>
