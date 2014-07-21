@@ -16,10 +16,15 @@
             }
         </style>
         <script>
+            function submitForm(){
+                $("input[name='staffid']").val(${CurrentUser.staffID});
+                hashPW();
+            }
+            
             function hashPW() {
-                if ($('input[name="password"]').val().length !== 0) {
-                    var hash = CryptoJS.MD5($('input[name="password"]').val());
-                    $('input[name="password"]').val(hash);
+                if ($('input[name="pwd"]').val().length !== 0) {
+                    var hash = CryptoJS.MD5($('input[name="pwd"]').val());
+                    $('input[name="pwd"]').val(hash);
                 }
             }
         </script>
@@ -34,7 +39,7 @@
                     <jsp:include page="template_jsp/user.jsp" flush="true" />
                 </div>
                 <div class="col-md-7 staff-detail-container">
-                    <form class="form-horizontal" role="form" action="editprofile" method="POST" onsubmit="hashPW()">
+                    <form class="form-horizontal" role="form" action="editprofile" method="POST" onsubmit="submitForm()">
                         <div class="form-group">
                             <label for="staffid" class="col-sm-3 col-md-3 control-label">Staff ID</label>
                             <div class="col-sm-9 col-md-9">
@@ -50,7 +55,7 @@
                         <div class="form-group">
                             <label for="password" class="col-sm-3 col-md-3 control-label">Password</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="password" class="form-control" name="password" />
+                                <input type="password" class="form-control" name="pwd" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,7 +67,7 @@
                         <div class="form-group">
                             <label for="telno" class="col-sm-3 col-md-3 control-label">Tel No.</label>
                             <div class="col-sm-9 col-md-9">
-                                <input type="number" class="form-control" name="telno" required value="${CurrentUser.tel}"/>
+                                <input type="number" class="form-control" name="contactnumber" required value="${CurrentUser.tel}"/>
                             </div>
                         </div>
                         <div class="form-group">
