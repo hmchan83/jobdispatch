@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Create Staff</title>
         <%@include file="../style_jsp/default_header_style.jsp" %>
         <link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/pnotify.custom.min.js"></script>

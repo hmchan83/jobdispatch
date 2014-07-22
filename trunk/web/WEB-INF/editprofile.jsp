@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Edit Profile - ${CurrentUser.userName}</title>
         <%@include file="style_jsp/default_header_style.jsp" %>
         <script src="js/md5.js"></script>
         <link rel="stylesheet" href="css/user.css" />

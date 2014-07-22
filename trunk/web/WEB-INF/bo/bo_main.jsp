@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>BackOffice</title>
         <%@include file="../style_jsp/default_header_style.jsp" %>
         <style>
             .control-list{

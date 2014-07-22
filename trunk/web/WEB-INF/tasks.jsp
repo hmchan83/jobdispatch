@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tasks</title>
+        <title>Tasks for ${CurrentUser.userName}</title>
         <%@include file="style_jsp/default_header_style.jsp" %>
         <link href="css/assigned-tasks.css" rel="stylesheet" type="text/css"/>
         <link href="css/modalstyle.css" rel="stylesheet" type="text/css"/>
