@@ -45,6 +45,10 @@
 
 .FS18{font-size: 18px;}
 
+.italic{
+    font-style: italic;
+}
+
 .italic-heading{
     color: #666666;
     font-style: italic;
