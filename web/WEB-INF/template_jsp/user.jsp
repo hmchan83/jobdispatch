@@ -16,7 +16,6 @@
             if (url != "") {
                 $('#staff_photo_btn').removeClass('hide');
                 $('#readyToChangeSpan').removeClass('hide');
-                $('#reset_form_btn').removeClass('hide');
             }
         }
 
