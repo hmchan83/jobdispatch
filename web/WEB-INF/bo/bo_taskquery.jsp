@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Task Query</title>
         <%@include file="../style_jsp/default_header_style.jsp" %>
         <style>
             label{
@@ -48,13 +48,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="tasktitle" class="col-sm-3 col-md-3 control-label">Task Title</label>
+                            <label for="taskname" class="col-sm-3 col-md-3 control-label">Task Title</label>
                             <div class="col-sm-9 col-md-9">
                                 <input type="text" class="form-control" name="taskname" />
                             </div>
                         </div> 
                         <div class="form-group">
-                            <label for="tasktype" class="col-sm-3 col-md-3 control-label">Task Type</label>
+                            <label for="typeid" class="col-sm-3 col-md-3 control-label">Task Type</label>
                             <div class="col-sm-9 col-md-9">
                                 <select name="typeid" class="form-control">
                                     <option value="" selected>All</option>
@@ -63,11 +63,11 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="taskpriority" class="col-sm-3 col-md-3 control-label">Task Priority</label>
+                            <label for="priority" class="col-sm-3 col-md-3 control-label">Task Priority</label>
                             <div class="col-sm-9 col-md-9">
                                 <select name="priorityid" class="form-control">
                                     <option value="" selected>All</option>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="taskstatus" class="col-sm-3 col-md-3 control-label">Task Status</label>
+                            <label for="status" class="col-sm-3 col-md-3 control-label">Task Status</label>
                             <div class="col-sm-9 col-md-9">
                                 <select name="statusid" class="form-control">
                                     <option value="" selected>All</option>

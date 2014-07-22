@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Staff Query</title>
         <%@include file="../style_jsp/default_header_style.jsp" %>
         <style>
             label{
@@ -61,7 +61,16 @@
                                 <input type="text" class="form-control" name="realname"/>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label for="retired" class="col-sm-3 col-md-3 control-label">Retired</label>
+                            <div class="col-sm-9 col-md-9">
+                                <select name="retired" class="form-control">
+                                    <option value="">All</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>  
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">

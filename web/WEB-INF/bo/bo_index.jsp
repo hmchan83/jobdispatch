@@ -38,7 +38,7 @@
                 $('input[name="password"]').val(hash);
             }
         </script>
-        <title>JSP Page</title>
+        <title>BackOffice - index</title>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

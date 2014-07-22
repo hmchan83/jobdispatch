@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="style_jsp/default_header_style.jsp" %>
-        <title>JSP Page</title>
+        <title>Logout</title>
         <style>
             .logout_msg h1 span{
                 margin-right: 15px;

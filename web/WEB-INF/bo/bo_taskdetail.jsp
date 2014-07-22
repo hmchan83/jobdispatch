@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Task Detail</title>
         <%@include file="../style_jsp/default_header_style.jsp" %>
         <script src="js/moment.min.js"></script>
         <script src="js/bootstrap-sortable.js"></script>
