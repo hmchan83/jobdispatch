@@ -112,6 +112,7 @@
             <iframe class="result_block" src="" data-url="bo_taskQueryResult">
             </iframe>
         </div>
+        <%@include file="../template_jsp/footer-dark.jsp" %>
     </body>
 </html>
 

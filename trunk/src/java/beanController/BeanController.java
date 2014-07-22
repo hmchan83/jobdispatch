@@ -70,7 +70,7 @@ public class BeanController {
             return false;
         }
     }
-
+    
     public ArrayList executeStmt(String sql) {
         ArrayList<ArrayList<String>> result = new ArrayList<>();
         ResultSet temp;

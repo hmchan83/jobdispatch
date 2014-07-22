@@ -78,5 +78,6 @@
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Log In" />
             </form>
         </div>
+        <%@include file="template_jsp/footer-light.jsp" %>
     </body>
 </html>

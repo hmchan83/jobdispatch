@@ -25,7 +25,7 @@
                 if ($('input[name="pwd"]').val().length !== 0) {
                     var hash = CryptoJS.MD5($('input[name="pwd"]').val());
                     $('input[name="pwd"]').val(hash);
-                }else{
+                } else {
                     $('input[name="pwd"]').val("");
                 }
             }
@@ -64,9 +64,9 @@
                         <select name="roleid" class="form-control">
                             <option value="">All</option>
                             <c:forEach items="${requestScope.userrole}" var="role">   
-                            <option value="${role.roleID}" <c:if test="${CurrentStaff.role.roleID == role.roleID}"><c:out value="selected" /></c:if>>
-                                ${role}
-                            </option>
+                                <option value="${role.roleID}" <c:if test="${CurrentStaff.role.roleID == role.roleID}"><c:out value="selected" /></c:if>>
+                                    ${role}
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
@@ -77,9 +77,9 @@
                         <select name="deptid" class="form-control">
                             <option value="">All</option>
                             <c:forEach items="${requestScope.departments}" var="dept">
-                            <option value="${dept.deptID}" <c:if test="${CurrentStaff.dept.deptID == dept.deptID}"><c:out value="selected" /></c:if>>
-                                ${dept}
-                            </option>
+                                <option value="${dept.deptID}" <c:if test="${CurrentStaff.dept.deptID == dept.deptID}"><c:out value="selected" /></c:if>>
+                                    ${dept}
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
