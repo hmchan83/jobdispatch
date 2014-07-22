@@ -72,6 +72,7 @@
                 </div>
             </div>
         </div>
+        <%@include file="../template_jsp/footer-dark.jsp" %>
     </body>
 </html>
 

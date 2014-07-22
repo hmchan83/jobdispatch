@@ -110,6 +110,7 @@
             <iframe class="result_block" src="" data-url="bo_staffQueryResult">
             </iframe>
         </div>
+        <%@include file="../template_jsp/footer-dark.jsp" %>
     </body>
 </html>
 

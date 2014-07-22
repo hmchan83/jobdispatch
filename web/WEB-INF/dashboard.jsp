@@ -221,5 +221,6 @@
                 </div>
             </div>
         </div>
+        <%@include file="template_jsp/footer-light.jsp" %>
     </body>
 </html>

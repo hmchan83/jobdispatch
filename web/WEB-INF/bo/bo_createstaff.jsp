@@ -25,7 +25,7 @@
                         text: '',
                         type: 'success'
                     });
-                else if(create_success == "false"){
+                else if (create_success == "false") {
                     new PNotify({
                         title: "Staff can't be created",
                         text: 'Something went wrong',
@@ -60,7 +60,7 @@
                             <div class="col-sm-9 col-md-9">
                                 <select name="role" class="form-control">
                                     <c:forEach items="${requestScope.userrole}" var="role">
-                                    <option value="${role.roleID}">${role}</option>
+                                        <option value="${role.roleID}">${role}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -70,7 +70,7 @@
                             <div class="col-sm-9 col-md-9">
                                 <select name="department" class="form-control">
                                     <c:forEach items="${requestScope.departments}" var="dept">
-                                    <option value="${dept.deptID}">${dept}</option>
+                                        <option value="${dept.deptID}">${dept}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -99,6 +99,7 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
+        <%@include file="../template_jsp/footer-dark.jsp" %>
     </body>
 </html>
 
