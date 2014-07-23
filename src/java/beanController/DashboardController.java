@@ -6,17 +6,9 @@ import bean.Staff;
 import bean.Task;
 import bean.TaskType;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -134,7 +126,7 @@ public class DashboardController extends BeanController {
 
     public void getResolvedType() {
         HashMap temp = new HashMap();
-        super.setpStmt("SELECT TaskType.typeid, IsNull(Temp.TempCount,0) AS count From TaskType Left Join (select count(*) as TempCount, typeid from task where (statusid=4 or statusid=7) group by typeid ) Temp On TaskType.TypeID=Temp.TypeID order by count desc");
+        super.setpStmt("SELECT TaskType.typeid, IsNull(Temp.TempCount,0) AS count From TaskType Left Join (select count(*) as TempCount, typeid from task where statusid=7 group by typeid ) Temp On TaskType.TypeID=Temp.TypeID order by count desc");
         ResultSet rs = super.execute();
         try {
             while (rs.next()) {
@@ -149,7 +141,7 @@ public class DashboardController extends BeanController {
 
     public void getResolvedPriority() {
         HashMap temp = new HashMap();
-        super.setpStmt("SELECT TaskPriority.priorityid, IsNull(Temp.TempCount,0) AS count FROM TaskPriority Left Join (SELECT COUNT(*) AS TempCount, PriorityID FROM task WHERE (statusid=4 or statusid=7) GROUP BY PriorityID) Temp ON TaskPriority.PriorityID=Temp.PriorityID ORDER BY count desc");
+        super.setpStmt("SELECT TaskPriority.priorityid, IsNull(Temp.TempCount,0) AS count FROM TaskPriority Left Join (SELECT COUNT(*) AS TempCount, PriorityID FROM task WHERE statusid=7 GROUP BY PriorityID) Temp ON TaskPriority.PriorityID=Temp.PriorityID ORDER BY count desc");
         ResultSet rs = super.execute();
         try {
             while (rs.next()) {
@@ -210,7 +202,7 @@ public class DashboardController extends BeanController {
     }
 
     public void getResolvedTotal() {
-        super.setpStmt("select count(*) as count from task where statusid=4 or statusid=7");
+        super.setpStmt("select count(*) as count from task where statusid=7");
         ResultSet rs = super.execute();
         try {
             if (rs.next()) {

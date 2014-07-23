@@ -82,14 +82,13 @@
             $(document).ready(function() {
                 if (assign_success == "true")
                     new PNotify({
-                        title: 'Task Assigned Successfully',
-                        text: '',
+                        title: 'Operation Done',
                         type: 'success'
                     });
                 else if(assign_success == "false")
                     new PNotify({
-                        title: "Task Assigned Fail",
-                        text: 'You put the wrong assignee username',
+                        title: "Operation Fail",
+                        text: '',
                         type: 'error'
                     });
             });
@@ -133,9 +132,11 @@
                             </c:when>  
                             <c:when test="${btntype eq 'completed'}">
                                 <button class="btn btn-default btn-danger" type="button"  onclick="changeStatus('Closed', '')"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                                <button class="btn btn-default btn-warning" type="button" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
                             </c:when>
                             <c:when test="${btntype eq 'reported'}">
                                 <button class="btn btn-default btn-info" type="button" onclick="changeStatus('Reported', '')"><span class="glyphicon glyphicon-hand-up"></span> Report</button>
+                                <button class="btn btn-default btn-warning" type="button" onclick="update_prompt('Assign to...', 'assignee')"><span class="glyphicon glyphicon-user"></span> Assign</button>
                             </c:when>
                         </c:choose>
                     </form>

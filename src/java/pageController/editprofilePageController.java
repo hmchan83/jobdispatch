@@ -33,7 +33,7 @@ public class editprofilePageController extends pageController {
         HttpSession session = request.getSession(false);
         LoginStaffController lsc = new LoginStaffController();
         Map<String, String[]> map = request.getParameterMap();
-        if(Integer.parseInt(map.get("staffid")[0])==((LoginStaff)session.getAttribute("CurrentUser")).getStaffID() && lsc.updateStaffByMap(map)){
+        if(Integer.parseInt(map.get("staffid")[0])==((LoginStaff)session.getAttribute("CurrentUser")).getStaffID() && map.get("roleid")==null && map.get("deptid")==null && lsc.updateStaffByMap(map)){
             session.setAttribute("CurrentUser", lsc.getStaff(Integer.parseInt(map.get("staffid")[0])));
             response.sendRedirect("editprofile");
         }else{
