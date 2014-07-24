@@ -3,7 +3,7 @@
     <form id="staff_photo_form" enctype="multipart/form-data" method="POST" action="changeStaffPhoto">
         <input type="hidden" value="" id="redirect_loc" name="redirect_location"/>
         <input type="file" id="staff_photo_img" style="display: none" name="new_staff_photo" onchange="readyToChange($(this).val())"/>
-        <img class="img-circle" id="staff_photo" src="img/staffphoto/${CurrentUser.staffID}.jpg" alt="username" onerror="this.src='img/staffphoto/default.jpg'" />
+        <img class="img-circle" id="staff_photo" src="img/staffphoto/${CurrentUser.staffID}.jpg" onerror="this.src='img/staffphoto/default.jpg'" />
         <h5 id="readyToChangeSpan" class="hide txt-center italic" style="color: red;">Ready to change</h5>
         <button class="btn btn-default btn-success hide W100 MT10" onclick="$('#staff_photo_form').submit()" id="staff_photo_btn"><span class="glyphicon glyphicon-wrench"></span> Submit</button>
         <input type="reset" class="btn btn-default btn-danger hide W100 MT10" id="reset_form_btn" value="Cancel"/>

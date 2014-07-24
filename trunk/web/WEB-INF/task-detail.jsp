@@ -163,11 +163,11 @@
                     <h4 class="task-info-heading">People</h4>
                     <div class="info-block">
                         <div class="task-basic-info-label IB W30">Assignee</div>
-                        <div class="task-basic-info-details IB">${task.assignee}</div>
+                        <div class="task-basic-info-details IB"><a onclick='window.open("staffDetail?staffid=${task.assignee.staffID}")'>${task.assignee}</a></div>
                     </div>
                     <div class="info-block">
                         <div class="task-basic-info-label IB W30">Reporter</div>
-                        <div class="task-basic-info-details IB">${task.reporter}</div>
+                        <div class="task-basic-info-details IB"><a onclick='window.open("staffDetail?staffid=${task.reporter.staffID}")'>${task.reporter}</a></div>
                     </div>
                 </div>
             </div>

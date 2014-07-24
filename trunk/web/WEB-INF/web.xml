@@ -88,6 +88,10 @@
         <servlet-name>changeStaffPhotoPageController</servlet-name>
         <servlet-class>pageController.changeStaffPhotoPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>staffDetailPageController</servlet-name>
+        <servlet-class>pageController.staffDetailPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>indexPageController</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -192,6 +196,10 @@
     <servlet-mapping>
         <servlet-name>changeStaffPhotoPageController</servlet-name>
         <url-pattern>/changeStaffPhoto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>staffDetailPageController</servlet-name>
+        <url-pattern>/staffDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
