@@ -33,7 +33,10 @@
     </head>
     <body>
         <div class="container">
-            <form class="form-horizontal" role="form" action="bo_editStaff" method="POST" onsubmit="hashPW()">
+            <div class="row txt-center">
+                <img class="img-circle" style="width: 150px; border: 4px #F5F5F5 solid;" id="staff_photo" src="img/staffphoto/${CurrentStaff.staffID}.jpg" onerror="this.src='img/staffphoto/default.jpg'" />
+            </div>
+            <form class="form-horizontal MT15" role="form" action="bo_editStaff" method="POST" onsubmit="hashPW()">
                 <div class="form-group">
                     <label for="staffid" class="col-sm-3 col-md-3 control-label">Staff ID</label>
                     <div class="col-sm-9 col-md-9">
